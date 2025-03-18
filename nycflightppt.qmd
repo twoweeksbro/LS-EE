@@ -1,0 +1,163 @@
+---
+title: "New York Flight Data Analysis"
+title-slide-attributes:
+    data-background-image: ./static/images/airport.gif
+    data-background-size: cover
+    data-background-opacity: "0.8"
+subtitle: "sub title"
+author: "TEAM EE"
+format: 
+    revealjs:
+        logo: ./static/images/lsstats-removebg.png
+        theme: default
+        reference-location: document
+        footer: "LS Big Data School EE"
+        css: ./static/css/statple.css
+
+--- 
+
+
+# about TEAM
+
+박수현 이주형 오윤지 조익현
+
+# NYC flights data 를 알아보자!
+
+
+
+## nycflights13 - flights, planes
+:::: {.columns}
+
+::: {.column width="50%"}
+`flights.info()`
+```{python}
+import numpy as np
+import pandas as pd 
+from nycflights13 import flights, planes
+import matplotlib.pyplot as plt
+flights.info()
+```
+
+:::
+
+::: {.column width="50%"}
+`planes.info()`
+```{python}
+planes.info()
+```
+
+:::
+
+
+::::
+
+
+## 우리의 주제
+#### flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
+#### delay(arr_delay, dep_delay)는 어떨 때 많이 생길까?
+##### 비행기 제조년도 별 지연시간 확인.
+##### month 와 delay 확인.
+
+
+## 데이터 확인
+### 지연시간에 이상치가 있다!
+
+
+## 전처리
+
+planes와 flights 데이터를 left join 
+```{python}
+# 최종 전처리 시작.
+
+flights_df = flights
+planes_df = planes
+
+# 전처리 함수 
+def PreProcessing(df, columns):
+    """
+    여러 개의 컬럼에 대해 IQR 방식을 사용하여 이상치를 제거하는 함수
+    
+    Parameters:
+    df (pd.DataFrame): 데이터프레임
+    columns (list): 이상치를 제거할 컬럼 리스트
+    
+    Returns:
+    pd.DataFrame: 이상치가 제거된 데이터프레임
+    """
+    f_df = df.copy()  # 원본 데이터프레임 유지
+    
+    for column in columns:
+        desc = f_df[column].describe()
+        q1 = desc['25%']
+        q3 = desc['75%']
+        iqr = q3 - q1
+        lower_boundary = q1 - (iqr * 1.5)
+        upper_boundary = q3 + (iqr * 1.5)
+        
+        # 이상치 제거 적용
+        f_df = f_df[(f_df[column] >= lower_boundary) & (f_df[column] <= upper_boundary)]
+    
+    return f_df
+
+# 필요 없는 칼럼 제거
+flights_df = flights_df.drop(columns=['year'])
+planes_df = planes_df.drop(columns=['speed'])
+
+# 결측치 처리
+flights_df.isna().sum()
+planes_df.isna().sum() 
+
+flights_df = flights_df.dropna(subset=['dep_time', 'dep_delay','arr_time','arr_delay','tailnum',
+                       'air_time'])
+planes_df = planes_df.dropna()
+
+# merge
+merged_df = pd.merge(planes_df, flights_df, on='tailnum', how='left')
+
+# 전처리 함수 적용
+
+merged_df_f = PreProcessing(merged_df, ['arr_delay', 'dep_delay'])
+
+
+# 파생 변수 생성
+
+## delay 합.
+merged_df_f['delay'] = merged_df_f['arr_delay'] + merged_df_f['dep_delay']
+
+
+```
+
+
+## 지연시간(delay) 히스토그램
+
+```{python}
+## 'delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(merged_df_f['delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("dep_delay")
+plt.ylabel("Frequency")
+plt.show()
+
+```
+
+
+## 전체 히트맵
+
+```{python}
+import seaborn as sns
+corr_mat = merged_df.select_dtypes('number').corr()
+plt.figure(figsize=(10,10))
+sns.heatmap(corr_mat, annot=True,
+            cmap="coolwarm", fmt=".2f", linewidths=0.5)
+plt.title("Heatmap of Feature Correlations")
+plt.show()
+```
+
+
+
+
+
+

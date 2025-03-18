@@ -1,0 +1,44 @@
+.reveal #title-slide .title, .subtitle, .quarto-title-author-name {
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif !important;
+
+}
+
+
+
+.reveal .subtitle, .quarto-title-author-name {
+    font-family: "Arial", sans-serif; /* 원하는 폰트 적용 */
+    font-size: 1em; /* 폰트 크기 조정 */
+    font-weight: bold; /* 글씨 굵게 */
+    color: white; /* 글자 색상 */
+}
+
+
+.reveal #title-slide .footer {
+    display: none;
+}
+
+
+.reveal #title-slide footer {
+    display: none;
+}
+
+
+.reveal h1{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+.reveal .footer p{
+    font-size: 24px;
+}
+
+.reveal h2, .reveal h3{
+    color: navy  ;
+}
+code {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-size: inherit !important;
+  background: none !important;
+  padding: 0 !important;
+}
