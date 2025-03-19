@@ -59,9 +59,58 @@ planes.info()
 ##### month 와 delay 확인.
 
 
-## 데이터 확인
+## 데이터 확인 {.scrollable}
 ### 지연시간에 이상치가 있다!
+:::: {.columns}
 
+::: {.column width="50%"}
+```{python}
+## 'dep_delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(flights['dep_delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("dep_delay")
+plt.ylabel("Frequency")
+plt.show()
+
+
+## 'arr_delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(flights['arr_delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("arr_delay")
+plt.ylabel("Frequency")
+plt.show()
+
+```
+
+:::
+
+::: {.column width="50%"}
+
+
+
+<br>
+
+| Statistic | Value         |
+|-----------|-------------- |
+| count     | 327346.000000 |
+| mean      | 6.895377      |
+| std       | 44.633292     |
+| min       | -86.000000    |
+| 25%       | -17.000000    |
+| 50%       | -5.000000     |
+| 75%       | 14.000000     |
+| max       | 1272.000000   |
+| Name: arr_delay |
+:::
+
+
+::::
 
 ## 전처리
 
@@ -69,8 +118,8 @@ planes와 flights 데이터를 left join
 ```{python}
 # 최종 전처리 시작.
 
-flights_df = flights
-planes_df = planes
+flights_df = flights.copy()
+planes_df = planes.copy()
 
 # 전처리 함수 
 def PreProcessing(df, columns):
@@ -99,6 +148,8 @@ def PreProcessing(df, columns):
     
     return f_df
 
+
+
 # 필요 없는 칼럼 제거
 flights_df = flights_df.drop(columns=['year'])
 planes_df = planes_df.drop(columns=['speed'])
@@ -107,15 +158,15 @@ planes_df = planes_df.drop(columns=['speed'])
 flights_df.isna().sum()
 planes_df.isna().sum() 
 
-flights_df = flights_df.dropna(subset=['dep_time', 'dep_delay','arr_time','arr_delay','tailnum',
-                       'air_time'])
+flights_df = flights_df.dropna(subset=['dep_time', 'dep_delay','arr_time','arr_delay','tailnum','air_time'])
 planes_df = planes_df.dropna()
 
-# merge
+
+# merge: planes_df와 flights_df를 tailnum으로 left join
 merged_df = pd.merge(planes_df, flights_df, on='tailnum', how='left')
 
-# 전처리 함수 적용
 
+# 지연시간에 대해 전처리 함수 적용
 merged_df_f = PreProcessing(merged_df, ['arr_delay', 'dep_delay'])
 
 
@@ -127,19 +178,111 @@ merged_df_f['delay'] = merged_df_f['arr_delay'] + merged_df_f['dep_delay']
 
 ```
 
-
-## 지연시간(delay) 히스토그램
+## 전처리 후 지연시간(delay) 히스토그램 {.scrollable}
 
 ```{python}
-## 'delay' 히스토그램
+## 'dep_delay' 히스토그램
 plt.figure(figsize=(6,4))       
-plt.hist(merged_df_f['delay'], 
+plt.hist(merged_df_f['dep_delay'], 
          bins=20, 
          edgecolor='black', 
          alpha=0.7) 
 plt.xlabel("dep_delay")
 plt.ylabel("Frequency")
 plt.show()
+
+
+## 'arr_delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(merged_df_f['arr_delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("arr_delay")
+plt.ylabel("Frequency")
+plt.show()
+
+## 'delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(merged_df_f['delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("delay")
+plt.ylabel("Frequency")
+plt.show()
+
+
+```
+
+
+
+## month, day, hour 변수와 delay 간 시각화 {.scrollable}
+
+```{python}
+import seaborn as sns
+
+# (df, 그룹화할 칼럼 리스트, 타겟 칼럼 문자열)
+def visualization_df(df, group_cols, target):
+    for col in group_cols:
+        # grouped_df = df.groupby(cat_col)['delay'].mean()  # 그룹별 평균 계산
+
+        # 시각화
+        plt.figure(figsize=(9, 5))
+        
+        sns.barplot(x=col, y=target, data=df, estimator=np.mean,
+                     palette="viridis", edgecolor="black")
+        plt.xlabel(col)
+        plt.ylabel(f"Average ")
+        plt.title(f"Average by {col}")
+        plt.xticks(rotation=90)
+        plt.grid(axis="y", linestyle="--", alpha=0.7)
+        plt.show()
+```
+
+```{python}
+#| echo: false
+
+# 월, 일, 시간 변수 와 delay Visualization
+time_cols = ['month', 'day', 'hour']
+
+visualization_df(merged_df_f, time_cols, 'delay' )
+```
+
+## 나머지 범주형 변수와 delay 간 시각화 {.scrollable}
+
+```{python}
+#| echo: false
+
+# 숫자 아닌 다른 칼럼과 delay Visualization
+# 숫자가 아닌 칼럼(범주형)
+categorical_cols = merged_df_f.select_dtypes(exclude='number').columns 
+categorical_cols = categorical_cols.delete([0,-1])
+
+# visualization_df(merged_df_f, categorical_cols, 'delay' )
+```
+
+
+## 프린트 함수
+
+```{python}
+def print_grouped_data(df, group_cols, target):
+    """
+    특정한 범주형 컬럼 리스트(group_cols)에 대해 숫자형 칼럼(num_col)의 groupby 통계를 출력하는 함수.
+    """
+    for cat_col in group_cols:
+        if cat_col not in df.columns:
+            print(f"⚠️ Warning: '{cat_col}' 칼럼이 데이터프레임에 없음\n")
+            continue  # 존재하지 않는 컬럼이면 건너뛰기
+        
+        grouped = df.groupby(cat_col)[target].agg(['mean', 'median', 'count', 'std'])
+        print(f"\n📌 Grouped statistics by '{cat_col}':\n")
+        print(grouped)
+        print("-" * 50)
+```
+
+```{python}
+print_grouped_data(merged_df_f, time_cols, 'delay')
 
 ```
 
@@ -157,7 +300,43 @@ plt.show()
 ```
 
 
+# flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
+
+## flights(airtimee) 과 planes(seats) 상관계수와 시각화
+
+```{python}
+
+```
+
+
+## 둘 사이의 관계
+- 비행기의 구조적인 측면
+멀리 가려면 연료가 많이 필요하다. 연료통이 큰 비행기가 필요하다. 큰 비행기는 좌석수가 많다.
+
+- 규모의 경제 측면
+같은 돈을 내더라도 사람 수가 많으면 멀리갈 수 있다. 
 
 
 
+# 지연시간(delay)과 관계가 있는 칼럼은 무엇인가?
+
+## 비행기 제조년도와 지연시간 관계 
+
+```{python}
+
+```
+
+## 날씨와 지연시간 관계
+
+```{python}
+
+```
+
+
+
+# 최종 결론
+
+## Conclusion
+
+- airtime이 길어질 수록 시트 수가 많다. 즉 이동한다.
 
