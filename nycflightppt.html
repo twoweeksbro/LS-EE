@@ -155,7 +155,7 @@ TEAM EE
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><code>flights.info()</code></p>
-<div id="5f15418f" class="cell" data-execution_count="1">
+<div id="fdb0529a" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 336776 entries, 0 to 336775
@@ -187,7 +187,7 @@ memory usage: 48.8+ MB</code></pre>
 </div>
 </div><div class="column" style="width:50%;">
 <p><code>planes.info()</code></p>
-<div id="10255636" class="cell" data-execution_count="2">
+<div id="45ceeef9" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 3322 entries, 0 to 3321
@@ -221,7 +221,7 @@ memory usage: 233.7+ KB</code></pre>
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="b26c7c0c" class="cell" data-execution_count="3">
+<div id="82ea0b95" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -293,7 +293,7 @@ memory usage: 233.7+ KB</code></pre>
 </section>
 <section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 지연시간(delay) 히스토그램</h2>
-<div id="96579dc0" class="cell" data-execution_count="5">
+<div id="2faa7eae" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -319,7 +319,7 @@ memory usage: 233.7+ KB</code></pre>
 </section>
 <section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
 <h2>month, day, hour 변수와 delay 간 시각화</h2>
-<div id="cd20147c" class="cell" data-execution_count="7">
+<div id="004819d4" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -348,7 +348,7 @@ memory usage: 233.7+ KB</code></pre>
 </section>
 <section id="프린트-함수" class="slide level2">
 <h2>프린트 함수</h2>
-<div id="664e200d" class="cell" data-execution_count="10">
+<div id="5d309769" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 📌 Grouped statistics by 'month':
@@ -435,23 +435,71 @@ hour
 </section>
 <section id="전체-히트맵" class="slide level2">
 <h2>전체 히트맵</h2>
-<div id="865a5348" class="cell" data-execution_count="11">
+<div id="306e30de" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="848" height="896"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="847" height="896"></p>
 </figure>
 </div>
 </div>
 </div>
 </section></section>
 <section>
-<section id="flightsairtime-칼럼과-planesseats-칼럼은-무슨-관계일까-1" class="title-slide slide level1 center">
-<h1>flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?</h1>
+<section id="flightsair_time-칼럼과-planesseats-칼럼은-무슨-관계일까" class="title-slide slide level1 center">
+<h1>flights(air_time) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?</h1>
 
 </section>
-<section id="flightsairtimee-과-planesseats-상관계수와-시각화" class="slide level2">
-<h2>flights(airtimee) 과 planes(seats) 상관계수와 시각화</h2>
+<section id="비행시간과-좌석수-상관계수의-관계" class="slide level2">
+<h2>비행시간과 좌석수 상관계수의 관계</h2>
+<h3 id="flightsair_time-planesseats">flights(air_time)-planes(seats)</h3>
+<ul>
+<li>+0.54의 상관계수를 갖는다. =&gt; 비교적 강한 상관계수를 가진다.</li>
+<li><strong>seat(좌석수)</strong>가 많은수록 <strong>비행시간</strong>이 길다.</li>
+<li>큰 비행기 일 수록 비행 시간이 길다.</li>
+</ul>
+<h3 id="flightsair_time-flightsdistance">flights(air_time)-flights(distance)</h3>
+<ul>
+<li>+0.52의 상관계수를 갖는다. =&gt; 비교적 강한 상관계수를 가진다.</li>
+<li><strong>seat(좌석수)</strong>가 많을수록 <strong>목적지</strong>까지의 거리가 길다.</li>
+<li>큰 비행기일수록 목적지까지의 거리가 길다.</li>
+</ul>
+</section>
+<section id="air_time과-seatsdistance-상관관계-시각화" class="slide level2">
+<h2>air_time과 seats/distance 상관관계 시각화</h2>
+</section>
+<section id="air_time-seats의-관계" class="slide level2">
+<h2>air_time-seats의 관계</h2>
+<p>비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드</p>
+<div id="383dcd47" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-13-output-1.png" width="816" height="2449"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>seats 변수는 대부분 100~200 사이에 집중</li>
+<li>대부분의 항공기가 중형 크기로 설계되었음</li>
+<li>좌석 수가 많을수록 비행 시간이 길어지는 경향이 관찰됨</li>
+<li>속도가 높은 항공기는 비행 시간이 짧거나 특정 좌석 수에 집중되어 있음</li>
+<li>seats와 air_time: 상관계수 +0.52로, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있습니다.</li>
+</ul>
+</section>
+<section id="flightsdistance-flightsseats의-관계" class="slide level2">
+<h2>flights(distance)-flights(seats)의 관계</h2>
+<p>비행거리와 좌석 수의 관계 시각화 코드</p>
+<div id="86a2e8ab" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-14-output-1.png" width="816" height="819"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="둘-사이의-관계" class="slide level2">
 <h2>둘 사이의 관계</h2>
