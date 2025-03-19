@@ -156,13 +156,28 @@ plt.show()
 :::
 
 ::: {.column width="50%"}
+```{python}
+# flights['dep_delay'].describe()
+```
 
 
-<br>
+| Statistic | Value        |
+|-----------|--------------|
+| count     | 328,521.000  |
+| mean      | 12.639       |
+| std       | 40.210       |
+| min       | -43.000      |
+| 25%       | -5.000       |
+| 50%       | -2.000       |
+| 75%       | 11.000       |
+| max       | 1301.000     |
+| Name: dep_delay |
+
 
 ```{python}
 # flights['arr_delay'].describe()
 ```
+
 
 | Statistic | Value         |
 |-----------|-------------- |
@@ -176,28 +191,64 @@ plt.show()
 | max       | 1272.000000   |
 | Name: arr_delay |
 
-```{python}
-# flights['dep_delay'].describe()
-```
 
-| Statistic | Value        |
-|-----------|--------------|
-| count     | 328,521.000  |
-| mean      | 12.639       |
-| std       | 40.210       |
-| min       | -43.000      |
-| 25%       | -5.000       |
-| 50%       | -2.000       |
-| 75%       | 11.000       |
-| max       | 1301.000     |
 :::
-
 
 ::::
 
+
+## 데이터 확인 {.scrollable}
+### weahter(wind_speed) 풍속에 이상치가 있다!
+:::: {.columns}
+
+::: {.column width="50%"}
+```{python}
+## 'wind_speed' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(weather['wind_speed'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("wind_speed")
+plt.ylabel("Frequency")
+plt.show()
+
+
+```
+
+:::
+
+::: {.column width="50%"}
+```{python}
+# weather['wind_speed'].describe()
+```
+
+
+| Statistic | Value         |
+|-----------|--------------|
+| count     | 26111.000000 |
+| mean      | 10.517488    |
+| std       | 8.539253     |
+| min       | 0.000000     |
+| 25%       | 6.904680     |
+| 50%       | 10.357020    |
+| 75%       | 13.809360    |
+| max       | 1048.360580  |
+| Name: wind_speed |
+
+
+
+:::
+
+::::
+
+
+
 ## 전처리
 
-planes와 flights 데이터를 left join 
+flight(arr_delay), flight(dep_delay), weather(wind_speed) 전처리
+
+
 ```{python}
 # 최종 전처리 시작.
 
@@ -258,7 +309,6 @@ merged_df_f = PreProcessing(merged_df, ['arr_delay', 'dep_delay'])
 ## delay 합.
 merged_df_f['delay'] = merged_df_f['arr_delay'] + merged_df_f['dep_delay']
 
-
 ```
 
 ## 전처리 후 지연시간(delay) 히스토그램 {.scrollable}
@@ -298,7 +348,22 @@ plt.show()
 
 ```
 
+## 전처리 후 weather(wind_speed) 풍속 히스토그램 {.scrollable}
 
+```{python}
+weather_df = weather.copy()
+weather_df = PreProcessing(weather_df, ['wind_speed'])
+
+plt.figure(figsize=(6,4))       
+plt.hist(weather_df['wind_speed'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("wind_speed")
+plt.ylabel("Frequency")
+plt.show()
+
+```
 
 ## month, day, hour 변수와 delay 간 시각화 {.scrollable}
 
@@ -365,7 +430,7 @@ def print_grouped_data(df, group_cols, target):
 ```
 
 ```{python}
-print_grouped_data(merged_df_f, time_cols, 'delay')
+# print_grouped_data(merged_df_f, time_cols, 'delay')
 
 ```
 
@@ -476,9 +541,9 @@ plt.show()
 ```
 
 
-## 날씨
+# 지연시간에 날씨도 당연히 영향을 미치지 않을까?
 
-# 화씨를 섭씨로 변환
+## 화씨를 섭씨로 변환
 ```{python}
 
 from nycflights13 import flights,planes,weather,airports,airlines
@@ -527,7 +592,7 @@ plt.show()
 
 ```
 
-# Dew point
+## Dew point
 
 ```{python}
 weather["dewp_c"] = weather["dewp"].apply(F_to_C)
@@ -619,7 +684,7 @@ plt.show()
 
 ## precip
 ```{python}
-weather['precip'] = PreProcessing(weather,['precip'])
+weather = PreProcessing(weather,['precip'])
 weather["precip"].describe()
 weather["precip"].value_counts()
 

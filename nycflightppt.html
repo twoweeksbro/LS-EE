@@ -472,7 +472,7 @@ TEAM EE
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="f45f816e" class="cell" data-execution_count="5">
+<div id="2562b79c" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -489,7 +489,52 @@ TEAM EE
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>count</td>
+<td>328,521.000</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>12.639</td>
+</tr>
+<tr class="odd">
+<td>std</td>
+<td>40.210</td>
+</tr>
+<tr class="even">
+<td>min</td>
+<td>-43.000</td>
+</tr>
+<tr class="odd">
+<td>25%</td>
+<td>-5.000</td>
+</tr>
+<tr class="even">
+<td>50%</td>
+<td>-2.000</td>
+</tr>
+<tr class="odd">
+<td>75%</td>
+<td>11.000</td>
+</tr>
+<tr class="even">
+<td>max</td>
+<td>1301.000</td>
+</tr>
+<tr class="odd">
+<td>Name: dep_delay</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -536,6 +581,23 @@ TEAM EE
 </tr>
 </tbody>
 </table>
+</div></div>
+</section>
+<section id="데이터-확인-1" class="slide level2 scrollable">
+<h2>데이터 확인</h2>
+<h3 id="weahterwind_speed-풍속에-이상치가-있다">weahter(wind_speed) 풍속에 이상치가 있다!</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="687cbfa9" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-9-output-1.png" width="536" height="356"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -546,35 +608,39 @@ TEAM EE
 <tbody>
 <tr class="odd">
 <td>count</td>
-<td>328,521.000</td>
+<td>26111.000000</td>
 </tr>
 <tr class="even">
 <td>mean</td>
-<td>12.639</td>
+<td>10.517488</td>
 </tr>
 <tr class="odd">
 <td>std</td>
-<td>40.210</td>
+<td>8.539253</td>
 </tr>
 <tr class="even">
 <td>min</td>
-<td>-43.000</td>
+<td>0.000000</td>
 </tr>
 <tr class="odd">
 <td>25%</td>
-<td>-5.000</td>
+<td>6.904680</td>
 </tr>
 <tr class="even">
 <td>50%</td>
-<td>-2.000</td>
+<td>10.357020</td>
 </tr>
 <tr class="odd">
 <td>75%</td>
-<td>11.000</td>
+<td>13.809360</td>
 </tr>
 <tr class="even">
 <td>max</td>
-<td>1301.000</td>
+<td>1048.360580</td>
+</tr>
+<tr class="odd">
+<td>Name: wind_speed</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -582,29 +648,41 @@ TEAM EE
 </section>
 <section id="전처리" class="slide level2">
 <h2>전처리</h2>
-<p>planes와 flights 데이터를 left join</p>
+<p>flight(arr_delay), flight(dep_delay), weather(wind_speed) 전처리</p>
 </section>
 <section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 지연시간(delay) 히스토그램</h2>
-<div id="b97bd363" class="cell" data-execution_count="9">
+<div id="42f9c8e8" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-10-output-1.png" width="536" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="536" height="356"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-10-output-2.png" width="536" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-2.png" width="536" height="356"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-10-output-3.png" width="536" height="358"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-3.png" width="536" height="358"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="전처리-후-weatherwind_speed-풍속-히스토그램" class="slide level2 scrollable">
+<h2>전처리 후 weather(wind_speed) 풍속 히스토그램</h2>
+<div id="8cd479ae" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-13-output-1.png" width="527" height="356"></p>
 </figure>
 </div>
 </div>
@@ -612,25 +690,25 @@ TEAM EE
 </section>
 <section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
 <h2>month, day, hour 변수와 delay 간 시각화</h2>
-<div id="2d8d2241" class="cell" data-execution_count="11">
+<div id="3440d7af" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="745" height="466"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-15-output-1.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-2.png" width="745" height="466"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-15-output-2.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-3.png" width="745" height="466"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-15-output-3.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
@@ -641,98 +719,14 @@ TEAM EE
 </section>
 <section id="프린트-함수" class="slide level2">
 <h2>프린트 함수</h2>
-<div id="8ed51386" class="cell" data-execution_count="14">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-📌 Grouped statistics by 'month':
-
-            mean  median  count        std
-month                                     
-1.0    -7.469175   -10.0  18102  20.008805
-2.0    -8.022157   -10.0  15977  20.310522
-3.0   -10.042049   -12.0  18431  20.374969
-4.0    -7.649370   -10.0  18347  21.040970
-5.0   -12.926045   -15.0  18660  20.817733
-6.0    -8.177766   -11.0  16578  20.709426
-7.0    -8.182657   -11.0  17021  21.621459
-8.0    -9.509452   -12.0  19256  21.172983
-9.0   -16.654730   -19.0  19938  18.682653
-10.0  -11.067273   -13.0  20989  18.756338
-11.0   -9.580393   -12.0  19952  18.750315
-12.0   -1.802654    -4.0  16955  21.549482
---------------------------------------------------
-
-📌 Grouped statistics by 'day':
-
-           mean  median  count        std
-day                                      
-1.0  -10.984823   -13.0   7050  21.062430
-2.0  -10.654838   -13.0   7017  20.037977
-3.0   -8.982829   -11.0   7629  20.329292
-4.0  -11.279702   -13.0   8055  19.914976
-5.0  -11.779650   -14.0   7715  19.545442
-6.0  -12.326953   -14.0   7732  19.966093
-7.0   -9.410120   -12.0   6976  21.461228
-8.0   -7.407017   -10.0   6356  21.774851
-9.0   -9.869940   -13.0   6620  20.767830
-10.0  -8.703842   -12.0   6716  20.990988
-11.0  -7.814482   -11.0   7002  20.829917
-12.0  -7.790437   -10.0   6881  21.057658
-13.0  -7.841904   -10.0   7078  22.075775
-14.0  -9.446109   -12.0   7543  21.553101
-15.0 -11.170115   -13.0   8024  19.325104
-16.0  -8.242717   -11.0   7655  20.206379
-17.0  -7.070330   -10.0   7280  20.889677
-18.0  -8.384332   -11.0   7327  20.119238
-19.0  -7.991234   -10.0   6959  20.012300
-20.0  -9.892592   -12.0   7681  19.341606
-21.0  -8.274919   -11.0   7675  19.483318
-22.0  -4.954383    -8.0   6730  21.007776
-23.0  -4.063287    -7.0   6747  20.850789
-24.0  -7.898216   -10.0   7005  19.884979
-25.0  -8.189465   -11.0   7062  20.904726
-26.0  -9.251889   -12.0   7412  20.538864
-27.0 -13.196399   -16.0   7332  20.507918
-28.0 -12.174813   -15.0   6813  20.302421
-29.0 -12.379115   -15.0   6895  19.723476
-30.0 -13.897461   -16.0   7012  19.967086
-31.0  -9.204873   -11.0   4227  19.431841
---------------------------------------------------
-
-📌 Grouped statistics by 'hour':
-
-           mean  median  count        std
-hour                                     
-5.0   -8.816176   -11.0   1496  17.674509
-6.0  -10.687294   -12.0  19747  17.209510
-7.0  -12.738224   -15.0  17748  18.636493
-8.0  -10.724119   -13.0  20121  19.519045
-9.0  -10.964727   -13.0  15536  20.263718
-10.0 -10.613081   -13.0  12553  19.722812
-11.0 -10.633679   -13.0  10701  19.114769
-12.0  -9.225668   -12.0  12093  19.219580
-13.0  -7.475078   -10.0  13402  19.933975
-14.0  -7.452344   -10.0  13671  20.843547
-15.0  -6.042357    -9.0  13693  21.622440
-16.0  -8.766569   -11.0  13670  22.080245
-17.0  -7.240093   -10.0  13374  22.749715
-18.0  -8.467556   -11.0  12375  23.320701
-19.0  -9.895800   -12.0  11977  22.855508
-20.0  -9.620476   -12.0   9670  22.432213
-21.0  -8.096303   -11.0   5815  21.309996
-22.0  -6.160604   -10.0   1787  18.904115
-23.0  -4.011583    -6.0    777  18.451556
---------------------------------------------------</code></pre>
-</div>
-</div>
 </section>
 <section id="전체-히트맵" class="slide level2">
 <h2>전체 히트맵</h2>
-<div id="b13c523e" class="cell" data-execution_count="15">
+<div id="31e6a403" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-16-output-1.png" width="848" height="896"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="848" height="896"></p>
 </figure>
 </div>
 </div>
@@ -760,11 +754,11 @@ hour
 </section>
 <section id="비행기-제조년도와-지연시간-관계" class="slide level2">
 <h2>비행기 제조년도와 지연시간 관계</h2>
-<div id="fd4f79a3" class="cell" data-execution_count="16">
+<div id="08943fef" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-17-output-1.png" width="819" height="523"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="819" height="523"></p>
 </figure>
 </div>
 </div>
@@ -775,11 +769,102 @@ hour
 </section>
 <section id="model-vs-delay" class="slide level2">
 <h2>Model vs Delay</h2>
-<div id="96ed7ab2" class="cell" data-execution_count="17">
+<div id="af5ba9c9" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-18-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="지연시간에-날씨도-당연히-영향을-미치지-않을까" class="title-slide slide level1 center">
+<h1>지연시간에 날씨도 당연히 영향을 미치지 않을까?</h1>
+
+</section>
+<section id="화씨를-섭씨로-변환" class="slide level2">
+<h2>화씨를 섭씨로 변환</h2>
+</section>
+<section id="temperature" class="slide level2">
+<h2>temperature</h2>
+<div id="fa7634c7" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="dew-point" class="title-slide slide level1 center">
+<h1>Dew point</h1>
+<div id="add0ac99" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-24-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="humid" class="slide level2">
+<h2>humid</h2>
+<div id="c1776b7d" class="cell" data-execution_count="24">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-25-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="wind_speed" class="slide level2">
+<h2>wind_speed</h2>
+<div id="8635ff47" class="cell" data-execution_count="25">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-26-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="precip" class="slide level2">
+<h2>precip</h2>
+<div id="8b2fa333" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>precip
+0.0    23881
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="pressure" class="slide level2">
+<h2>pressure</h2>
+<div id="cca650d4" class="cell" data-execution_count="27">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-28-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="visib" class="slide level2">
+<h2>visib</h2>
+<div id="5e7d6e07" class="cell" data-execution_count="28">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-29-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
