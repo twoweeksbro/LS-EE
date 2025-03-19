@@ -150,69 +150,320 @@ TEAM EE
 <h1>NYC flights data 를 알아보자!</h1>
 
 </section>
-<section id="nycflights13---flights-planes" class="slide level2">
+<section id="nycflights13---flights-planes" class="slide level2 scrollable">
 <h2>nycflights13 - flights, planes</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><code>flights.info()</code></p>
-<div id="5f15418f" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 336776 entries, 0 to 336775
-Data columns (total 19 columns):
- #   Column          Non-Null Count   Dtype  
----  ------          --------------   -----  
- 0   year            336776 non-null  int64  
- 1   month           336776 non-null  int64  
- 2   day             336776 non-null  int64  
- 3   dep_time        328521 non-null  float64
- 4   sched_dep_time  336776 non-null  int64  
- 5   dep_delay       328521 non-null  float64
- 6   arr_time        328063 non-null  float64
- 7   sched_arr_time  336776 non-null  int64  
- 8   arr_delay       327346 non-null  float64
- 9   carrier         336776 non-null  object 
- 10  flight          336776 non-null  int64  
- 11  tailnum         334264 non-null  object 
- 12  origin          336776 non-null  object 
- 13  dest            336776 non-null  object 
- 14  air_time        327346 non-null  float64
- 15  distance        336776 non-null  int64  
- 16  hour            336776 non-null  int64  
- 17  minute          336776 non-null  int64  
- 18  time_hour       336776 non-null  object 
-dtypes: float64(5), int64(9), object(5)
-memory usage: 48.8+ MB</code></pre>
+<p><code>info()</code></p>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">flights</a></li><li><a href="#tabset-1-2">planes</a></li><li><a href="#tabset-1-3">weather</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Column</th>
+<th>Non-Null Count</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>year</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>month</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>day</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>dep_time</td>
+<td>328521 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>sched_dep_time</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>dep_delay</td>
+<td>328521 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>arr_time</td>
+<td>328063 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>sched_arr_time</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>arr_delay</td>
+<td>327346 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>carrier</td>
+<td>336776 non-null</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>flight</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>tailnum</td>
+<td>334264 non-null</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>origin</td>
+<td>336776 non-null</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>dest</td>
+<td>336776 non-null</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>air_time</td>
+<td>327346 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>distance</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>hour</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>minute</td>
+<td>336776 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>time_hour</td>
+<td>336776 non-null</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-2">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Column</th>
+<th>Non-Null Count</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>tailnum</td>
+<td>3322 non-null</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>year</td>
+<td>3252 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>type</td>
+<td>3322 non-null</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>manufacturer</td>
+<td>3322 non-null</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>model</td>
+<td>3322 non-null</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>engines</td>
+<td>3322 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>seats</td>
+<td>3322 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>speed</td>
+<td>23 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>engine</td>
+<td>3322 non-null</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-3">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Column</th>
+<th>Non-Null Count</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>origin</td>
+<td>26115 non-null</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>year</td>
+<td>26115 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>month</td>
+<td>26115 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>day</td>
+<td>26115 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>hour</td>
+<td>26115 non-null</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>temp</td>
+<td>26114 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>dewp</td>
+<td>26114 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>humid</td>
+<td>26114 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>wind_dir</td>
+<td>25655 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>wind_speed</td>
+<td>26111 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>wind_gust</td>
+<td>5337 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>precip</td>
+<td>26115 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>pressure</td>
+<td>23386 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>visib</td>
+<td>26115 non-null</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>time_hour</td>
+<td>26115 non-null</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<p><code>planes.info()</code></p>
-<div id="10255636" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 3322 entries, 0 to 3321
-Data columns (total 9 columns):
- #   Column        Non-Null Count  Dtype  
----  ------        --------------  -----  
- 0   tailnum       3322 non-null   object 
- 1   year          3252 non-null   float64
- 2   type          3322 non-null   object 
- 3   manufacturer  3322 non-null   object 
- 4   model         3322 non-null   object 
- 5   engines       3322 non-null   int64  
- 6   seats         3322 non-null   int64  
- 7   speed         23 non-null     float64
- 8   engine        3322 non-null   object 
-dtypes: float64(2), int64(2), object(5)
-memory usage: 233.7+ KB</code></pre>
 </div>
-</div>
-</div></div>
 </section>
 <section id="우리의-주제" class="slide level2">
 <h2>우리의 주제</h2>
 <h4 id="flightsairtime-칼럼과-planesseats-칼럼은-무슨-관계일까">flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?</h4>
 <h4 id="delayarr_delay-dep_delay는-어떨-때-많이-생길까">delay(arr_delay, dep_delay)는 어떨 때 많이 생길까?</h4>
+<h5 id="delay가-특별히-긴-model이-존재할까">delay가 특별히 긴 model이 존재할까?</h5>
 <h5 id="비행기-제조년도-별-지연시간-확인.">비행기 제조년도 별 지연시간 확인.</h5>
 <h5 id="month-와-delay-확인.">month 와 delay 확인.</h5>
 </section>
@@ -221,18 +472,18 @@ memory usage: 233.7+ KB</code></pre>
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="b26c7c0c" class="cell" data-execution_count="3">
+<div id="f45f816e" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-4-output-1.png" width="544" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-1.png" width="544" height="356"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-4-output-2.png" width="544" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-2.png" width="544" height="356"></p>
 </figure>
 </div>
 </div>
@@ -285,6 +536,48 @@ memory usage: 233.7+ KB</code></pre>
 </tr>
 </tbody>
 </table>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>count</td>
+<td>328,521.000</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>12.639</td>
+</tr>
+<tr class="odd">
+<td>std</td>
+<td>40.210</td>
+</tr>
+<tr class="even">
+<td>min</td>
+<td>-43.000</td>
+</tr>
+<tr class="odd">
+<td>25%</td>
+<td>-5.000</td>
+</tr>
+<tr class="even">
+<td>50%</td>
+<td>-2.000</td>
+</tr>
+<tr class="odd">
+<td>75%</td>
+<td>11.000</td>
+</tr>
+<tr class="even">
+<td>max</td>
+<td>1301.000</td>
+</tr>
+</tbody>
+</table>
 </div></div>
 </section>
 <section id="전처리" class="slide level2">
@@ -293,25 +586,25 @@ memory usage: 233.7+ KB</code></pre>
 </section>
 <section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 지연시간(delay) 히스토그램</h2>
-<div id="96579dc0" class="cell" data-execution_count="5">
+<div id="b97bd363" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-1.png" width="536" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-10-output-1.png" width="536" height="356"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-2.png" width="536" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-10-output-2.png" width="536" height="356"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-3.png" width="536" height="358"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-10-output-3.png" width="536" height="358"></p>
 </figure>
 </div>
 </div>
@@ -319,25 +612,25 @@ memory usage: 233.7+ KB</code></pre>
 </section>
 <section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
 <h2>month, day, hour 변수와 delay 간 시각화</h2>
-<div id="cd20147c" class="cell" data-execution_count="7">
+<div id="2d8d2241" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-8-output-1.png" width="745" height="466"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-8-output-2.png" width="745" height="466"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-2.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-8-output-3.png" width="745" height="466"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-3.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
@@ -348,7 +641,7 @@ memory usage: 233.7+ KB</code></pre>
 </section>
 <section id="프린트-함수" class="slide level2">
 <h2>프린트 함수</h2>
-<div id="664e200d" class="cell" data-execution_count="10">
+<div id="8ed51386" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 📌 Grouped statistics by 'month':
@@ -435,11 +728,11 @@ hour
 </section>
 <section id="전체-히트맵" class="slide level2">
 <h2>전체 히트맵</h2>
-<div id="865a5348" class="cell" data-execution_count="11">
+<div id="b13c523e" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="848" height="896"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-16-output-1.png" width="848" height="896"></p>
 </figure>
 </div>
 </div>
@@ -467,9 +760,30 @@ hour
 </section>
 <section id="비행기-제조년도와-지연시간-관계" class="slide level2">
 <h2>비행기 제조년도와 지연시간 관계</h2>
+<div id="fd4f79a3" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-17-output-1.png" width="819" height="523"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="날씨와-지연시간-관계" class="slide level2">
 <h2>날씨와 지연시간 관계</h2>
+</section>
+<section id="model-vs-delay" class="slide level2">
+<h2>Model vs Delay</h2>
+<div id="96ed7ab2" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-18-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="최종-결론" class="title-slide slide level1 center">

@@ -25,31 +25,94 @@ format:
 
 
 
-## nycflights13 - flights, planes
-:::: {.columns}
+## nycflights13 - flights, planes {.scrollable}
 
-::: {.column width="50%"}
-`flights.info()`
+`info()`
 ```{python}
 import numpy as np
 import pandas as pd 
-from nycflights13 import flights, planes
+from nycflights13 import flights, planes, weather
 import matplotlib.pyplot as plt
-flights.info()
 ```
 
-:::
+::: {.panel-tabset}
 
-::: {.column width="50%"}
-`planes.info()`
+#### flights
+
 ```{python}
-planes.info()
+# flights.info()
 ```
+
+|    | Column          | Non-Null Count | Dtype   |
+|----|---------------|----------------|--------|
+|  0 | year            | 336776 non-null | int64   |
+|  1 | month           | 336776 non-null | int64   |
+|  2 | day             | 336776 non-null | int64   |
+|  3 | dep_time        | 328521 non-null | float64 |
+|  4 | sched_dep_time  | 336776 non-null | int64   |
+|  5 | dep_delay       | 328521 non-null | float64 |
+|  6 | arr_time        | 328063 non-null | float64 |
+|  7 | sched_arr_time  | 336776 non-null | int64   |
+|  8 | arr_delay       | 327346 non-null | float64 |
+|  9 | carrier         | 336776 non-null | object  |
+| 10 | flight          | 336776 non-null | int64   |
+| 11 | tailnum         | 334264 non-null | object  |
+| 12 | origin          | 336776 non-null | object  |
+| 13 | dest            | 336776 non-null | object  |
+| 14 | air_time        | 327346 non-null | float64 |
+| 15 | distance        | 336776 non-null | int64   |
+| 16 | hour            | 336776 non-null | int64   |
+| 17 | minute          | 336776 non-null | int64   |
+| 18 | time_hour       | 336776 non-null | object  |
+
+#### planes
+```{python}
+# planes.info()
+```
+
+|    | Column        | Non-Null Count | Dtype   |
+|----|--------------|----------------|--------|
+|  0 | tailnum       | 3322 non-null  | object  |
+|  1 | year          | 3252 non-null  | float64 |
+|  2 | type          | 3322 non-null  | object  |
+|  3 | manufacturer  | 3322 non-null  | object  |
+|  4 | model         | 3322 non-null  | object  |
+|  5 | engines       | 3322 non-null  | int64   |
+|  6 | seats         | 3322 non-null  | int64   |
+|  7 | speed         | 23 non-null    | float64 |
+|  8 | engine        | 3322 non-null  | object  |
+
+
+#### weather
+```{python}
+# weather.info()
+```
+|    | Column      | Non-Null Count | Dtype   |
+|----|------------|----------------|--------|
+|  0 | origin      | 26115 non-null  | object  |
+|  1 | year        | 26115 non-null  | int64   |
+|  2 | month       | 26115 non-null  | int64   |
+|  3 | day         | 26115 non-null  | int64   |
+|  4 | hour        | 26115 non-null  | int64   |
+|  5 | temp        | 26114 non-null  | float64 |
+|  6 | dewp        | 26114 non-null  | float64 |
+|  7 | humid       | 26114 non-null  | float64 |
+|  8 | wind_dir    | 25655 non-null  | float64 |
+|  9 | wind_speed  | 26111 non-null  | float64 |
+| 10 | wind_gust   | 5337 non-null   | float64 |
+| 11 | precip      | 26115 non-null  | float64 |
+| 12 | pressure    | 23386 non-null  | float64 |
+| 13 | visib       | 26115 non-null  | float64 |
+| 14 | time_hour   | 26115 non-null  | object  |
+
 
 :::
 
 
-::::
+
+
+
+
 
 
 ## 우리의 주제
@@ -95,8 +158,11 @@ plt.show()
 ::: {.column width="50%"}
 
 
-
 <br>
+
+```{python}
+# flights['arr_delay'].describe()
+```
 
 | Statistic | Value         |
 |-----------|-------------- |
@@ -109,6 +175,21 @@ plt.show()
 | 75%       | 14.000000     |
 | max       | 1272.000000   |
 | Name: arr_delay |
+
+```{python}
+# flights['dep_delay'].describe()
+```
+
+| Statistic | Value        |
+|-----------|--------------|
+| count     | 328,521.000  |
+| mean      | 12.639       |
+| std       | 40.210       |
+| min       | -43.000      |
+| 25%       | -5.000       |
+| 50%       | -2.000       |
+| 75%       | 11.000       |
+| max       | 1301.000     |
 :::
 
 
