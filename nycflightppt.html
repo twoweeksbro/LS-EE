@@ -472,7 +472,7 @@ TEAM EE
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="2562b79c" class="cell" data-execution_count="5">
+<div id="b3f9ac21" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -588,7 +588,7 @@ TEAM EE
 <h3 id="weahterwind_speed-풍속에-이상치가-있다">weahter(wind_speed) 풍속에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="687cbfa9" class="cell" data-execution_count="8">
+<div id="3945485f" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -652,7 +652,7 @@ TEAM EE
 </section>
 <section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 지연시간(delay) 히스토그램</h2>
-<div id="42f9c8e8" class="cell" data-execution_count="11">
+<div id="75d288e6" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -678,7 +678,7 @@ TEAM EE
 </section>
 <section id="전처리-후-weatherwind_speed-풍속-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 weather(wind_speed) 풍속 히스토그램</h2>
-<div id="8cd479ae" class="cell" data-execution_count="12">
+<div id="a0b7de9e" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -690,7 +690,7 @@ TEAM EE
 </section>
 <section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
 <h2>month, day, hour 변수와 delay 간 시각화</h2>
-<div id="3440d7af" class="cell" data-execution_count="14">
+<div id="446aabf1" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -722,7 +722,7 @@ TEAM EE
 </section>
 <section id="전체-히트맵" class="slide level2">
 <h2>전체 히트맵</h2>
-<div id="31e6a403" class="cell" data-execution_count="18">
+<div id="51067848" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -737,8 +737,56 @@ TEAM EE
 <h1>flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?</h1>
 
 </section>
-<section id="flightsairtimee-과-planesseats-상관계수와-시각화" class="slide level2">
-<h2>flights(airtimee) 과 planes(seats) 상관계수와 시각화</h2>
+<section id="비행시간과-좌석수-상관계수의-관계" class="slide level2">
+<h2>비행시간과 좌석수 상관계수의 관계</h2>
+<h3 id="flightsair_time-planesseats">flights(air_time)-planes(seats)</h3>
+<ul>
+<li>+0.54의 상관계수를 갖는다. =&gt; 비교적 강한 상관계수를 가진다.</li>
+<li><strong>seat(좌석수)</strong>가 많은수록 <strong>비행시간</strong>이 길다.</li>
+<li>큰 비행기 일 수록 비행 시간이 길다.</li>
+</ul>
+<h3 id="flightsair_time-flightsdistance">flights(air_time)-flights(distance)</h3>
+<ul>
+<li>+0.52의 상관계수를 갖는다. =&gt; 비교적 강한 상관계수를 가진다.</li>
+<li><strong>seat(좌석수)</strong>가 많을수록 <strong>목적지</strong>까지의 거리가 길다.</li>
+<li>큰 비행기일수록 목적지까지의 거리가 길다.</li>
+</ul>
+</section>
+<section id="air_time과-seatsdistance-상관관계-시각화" class="slide level2">
+<h2>air_time과 seats/distance 상관관계 시각화</h2>
+</section>
+<section id="air_time-seats의-관계" class="slide level2">
+<h2>air_time-seats의 관계</h2>
+<p>비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드</p>
+<div id="2609aa42" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="816" height="2449"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>seats 변수는 대부분 100~200 사이에 집중</li>
+<li>대부분의 항공기가 중형 크기로 설계되었음</li>
+<li>좌석 수가 많을수록 비행 시간이 길어지는 경향이 관찰됨</li>
+<li>속도가 높은 항공기는 비행 시간이 짧거나 특정 좌석 수에 집중되어 있음</li>
+<li>seats와 air_time: 상관계수 +0.52로, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있습니다.</li>
+</ul>
+</section>
+<section id="flightsdistance-flightsseats의-관계" class="slide level2">
+<h2>flights(distance)-flights(seats)의 관계</h2>
+<p>비행거리와 좌석 수의 관계 시각화 코드</p>
+<div id="e673e18e" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="816" height="819"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="둘-사이의-관계" class="slide level2">
 <h2>둘 사이의 관계</h2>
@@ -754,11 +802,11 @@ TEAM EE
 </section>
 <section id="비행기-제조년도와-지연시간-관계" class="slide level2">
 <h2>비행기 제조년도와 지연시간 관계</h2>
-<div id="08943fef" class="cell" data-execution_count="19">
+<div id="214e2f3f" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="819" height="523"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-22-output-1.png" width="819" height="523"></p>
 </figure>
 </div>
 </div>
@@ -769,11 +817,11 @@ TEAM EE
 </section>
 <section id="model-vs-delay" class="slide level2">
 <h2>Model vs Delay</h2>
-<div id="af5ba9c9" class="cell" data-execution_count="20">
+<div id="26c5cf2a" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
@@ -789,32 +837,7 @@ TEAM EE
 </section>
 <section id="temperature" class="slide level2">
 <h2>temperature</h2>
-<div id="fa7634c7" class="cell" data-execution_count="22">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="1141" height="565"></p>
-</figure>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="dew-point" class="title-slide slide level1 center">
-<h1>Dew point</h1>
-<div id="add0ac99" class="cell" data-execution_count="23">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-24-output-1.png" width="1141" height="565"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="humid" class="slide level2">
-<h2>humid</h2>
-<div id="c1776b7d" class="cell" data-execution_count="24">
+<div id="85ec6c7c" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -824,9 +847,9 @@ TEAM EE
 </div>
 </div>
 </section>
-<section id="wind_speed" class="slide level2">
-<h2>wind_speed</h2>
-<div id="8635ff47" class="cell" data-execution_count="25">
+<section id="dew-point" class="slide level2">
+<h2>Dew point</h2>
+<div id="4478d17d" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -836,19 +859,21 @@ TEAM EE
 </div>
 </div>
 </section>
-<section id="precip" class="slide level2">
-<h2>precip</h2>
-<div id="8b2fa333" class="cell" data-execution_count="26">
-<div class="cell-output cell-output-display" data-execution_count="54">
-<pre><code>precip
-0.0    23881
-Name: count, dtype: int64</code></pre>
+<section id="humid" class="slide level2">
+<h2>humid</h2>
+<div id="836c1c8e" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-27-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="pressure" class="slide level2">
-<h2>pressure</h2>
-<div id="cca650d4" class="cell" data-execution_count="27">
+<section id="wind_speed" class="slide level2">
+<h2>wind_speed</h2>
+<div id="b51c7c3c" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -858,13 +883,35 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="visib" class="slide level2">
-<h2>visib</h2>
-<div id="5e7d6e07" class="cell" data-execution_count="28">
+<section id="precip" class="slide level2">
+<h2>precip</h2>
+<div id="b5f4aa02" class="cell" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>precip
+0.0    23881
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="pressure" class="slide level2">
+<h2>pressure</h2>
+<div id="49e559a3" class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-29-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-30-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="visib" class="slide level2">
+<h2>visib</h2>
+<div id="92a7f983" class="cell" data-execution_count="30">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-31-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>

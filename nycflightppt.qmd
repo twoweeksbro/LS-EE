@@ -450,10 +450,82 @@ plt.show()
 
 # flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
 
-## flights(airtimee) 과 planes(seats) 상관계수와 시각화
+## 비행시간과 좌석수 상관계수의 관계
 
+### flights(air_time)-planes(seats)
+- +0.54의 상관계수를 갖는다. => 비교적 강한 상관계수를 가진다.
+- **seat(좌석수)**가 많은수록 **비행시간**이 길다.
+- 큰 비행기 일 수록 비행 시간이 길다.
+
+### flights(air_time)-flights(distance)
+- +0.52의 상관계수를 갖는다. => 비교적 강한 상관계수를 가진다.
+- **seat(좌석수)**가 많을수록 **목적지**까지의 거리가 길다.
+- 큰 비행기일수록 목적지까지의 거리가 길다.
+
+## air_time과 seats/distance 상관관계 시각화
+
+
+## air_time-seats의 관계
+비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드
 ```{python}
+plt.figure(figsize=(10, 10))
+sns.scatterplot(
+    x=merged_df["air_time"],
+    y=merged_df["seats"],
+    hue=merged_df["model"],
+    sizes=(30, 200),
+    palette="Set2",
+    alpha=0.5,
+    data=merged_df,
+)
 
+sns.regplot(
+    x=merged_df["air_time"],
+    y=merged_df["seats"],
+    scatter=False,
+    color="red",
+)
+
+plt.xlabel("air_time")
+plt.ylabel("seats")
+plt.title("Scatter Plot")
+plt.show()
+```
+
+- seats 변수는 대부분 100~200 사이에 집중
+- 대부분의 항공기가 중형 크기로 설계되었음
+- 좌석 수가 많을수록 비행 시간이 길어지는 경향이 관찰됨
+- 속도가 높은 항공기는 비행 시간이 짧거나 특정 좌석 수에 집중되어 있음
+- seats와 air_time: 상관계수 +0.52로, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있습니다.
+
+
+## flights(distance)-flights(seats)의 관계
+비행거리와 좌석 수의 관계 시각화 코드
+```{python}
+import seaborn as sns
+
+plt.figure(figsize=(10, 10))
+sns.scatterplot(
+    x=merged_df["distance"],
+    y=merged_df["seats"],
+    sizes=(30, 200),
+    palette="Set2",
+    alpha=0.5,
+    data=merged_df,
+)
+
+# Regression line (correlation line)
+sns.regplot(
+    x=merged_df["air_time"],
+    y=merged_df["seats"],
+    scatter=False,
+    color="orange",
+)
+
+plt.xlabel("air_time")
+plt.ylabel("seats")
+plt.title("Scatter Plot")
+plt.show()
 ```
 
 
