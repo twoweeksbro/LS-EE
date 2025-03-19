@@ -155,7 +155,7 @@ TEAM EE
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><code>flights.info()</code></p>
-<div id="ccb487d5" class="cell" data-execution_count="1">
+<div id="5f15418f" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 336776 entries, 0 to 336775
@@ -187,7 +187,7 @@ memory usage: 48.8+ MB</code></pre>
 </div>
 </div><div class="column" style="width:50%;">
 <p><code>planes.info()</code></p>
-<div id="6685150b" class="cell" data-execution_count="2">
+<div id="10255636" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 3322 entries, 0 to 3321
@@ -216,37 +216,271 @@ memory usage: 233.7+ KB</code></pre>
 <h5 id="비행기-제조년도-별-지연시간-확인.">비행기 제조년도 별 지연시간 확인.</h5>
 <h5 id="month-와-delay-확인.">month 와 delay 확인.</h5>
 </section>
-<section id="데이터-확인" class="slide level2">
+<section id="데이터-확인" class="slide level2 scrollable">
 <h2>데이터 확인</h2>
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="b26c7c0c" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-4-output-1.png" width="544" height="356"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-4-output-2.png" width="544" height="356"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>count</td>
+<td>327346.000000</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>6.895377</td>
+</tr>
+<tr class="odd">
+<td>std</td>
+<td>44.633292</td>
+</tr>
+<tr class="even">
+<td>min</td>
+<td>-86.000000</td>
+</tr>
+<tr class="odd">
+<td>25%</td>
+<td>-17.000000</td>
+</tr>
+<tr class="even">
+<td>50%</td>
+<td>-5.000000</td>
+</tr>
+<tr class="odd">
+<td>75%</td>
+<td>14.000000</td>
+</tr>
+<tr class="even">
+<td>max</td>
+<td>1272.000000</td>
+</tr>
+<tr class="odd">
+<td>Name: arr_delay</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div></div>
 </section>
 <section id="전처리" class="slide level2">
 <h2>전처리</h2>
 <p>planes와 flights 데이터를 left join</p>
 </section>
-<section id="지연시간delay-히스토그램" class="slide level2">
-<h2>지연시간(delay) 히스토그램</h2>
-<div id="2259a55c" class="cell" data-execution_count="4">
+<section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
+<h2>전처리 후 지연시간(delay) 히스토그램</h2>
+<div id="96579dc0" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-5-output-1.png" width="536" height="358"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-1.png" width="536" height="356"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-2.png" width="536" height="356"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-3.png" width="536" height="358"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="전체-히트맵" class="slide level2">
-<h2>전체 히트맵</h2>
-<div id="64784a6e" class="cell" data-execution_count="5">
+<section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
+<h2>month, day, hour 변수와 delay 간 시각화</h2>
+<div id="cd20147c" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-6-output-1.png" width="848" height="896"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-8-output-1.png" width="745" height="466"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-8-output-2.png" width="745" height="466"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-8-output-3.png" width="745" height="466"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="나머지-범주형-변수와-delay-간-시각화" class="slide level2 scrollable">
+<h2>나머지 범주형 변수와 delay 간 시각화</h2>
+</section>
+<section id="프린트-함수" class="slide level2">
+<h2>프린트 함수</h2>
+<div id="664e200d" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📌 Grouped statistics by 'month':
+
+            mean  median  count        std
+month                                     
+1.0    -7.469175   -10.0  18102  20.008805
+2.0    -8.022157   -10.0  15977  20.310522
+3.0   -10.042049   -12.0  18431  20.374969
+4.0    -7.649370   -10.0  18347  21.040970
+5.0   -12.926045   -15.0  18660  20.817733
+6.0    -8.177766   -11.0  16578  20.709426
+7.0    -8.182657   -11.0  17021  21.621459
+8.0    -9.509452   -12.0  19256  21.172983
+9.0   -16.654730   -19.0  19938  18.682653
+10.0  -11.067273   -13.0  20989  18.756338
+11.0   -9.580393   -12.0  19952  18.750315
+12.0   -1.802654    -4.0  16955  21.549482
+--------------------------------------------------
+
+📌 Grouped statistics by 'day':
+
+           mean  median  count        std
+day                                      
+1.0  -10.984823   -13.0   7050  21.062430
+2.0  -10.654838   -13.0   7017  20.037977
+3.0   -8.982829   -11.0   7629  20.329292
+4.0  -11.279702   -13.0   8055  19.914976
+5.0  -11.779650   -14.0   7715  19.545442
+6.0  -12.326953   -14.0   7732  19.966093
+7.0   -9.410120   -12.0   6976  21.461228
+8.0   -7.407017   -10.0   6356  21.774851
+9.0   -9.869940   -13.0   6620  20.767830
+10.0  -8.703842   -12.0   6716  20.990988
+11.0  -7.814482   -11.0   7002  20.829917
+12.0  -7.790437   -10.0   6881  21.057658
+13.0  -7.841904   -10.0   7078  22.075775
+14.0  -9.446109   -12.0   7543  21.553101
+15.0 -11.170115   -13.0   8024  19.325104
+16.0  -8.242717   -11.0   7655  20.206379
+17.0  -7.070330   -10.0   7280  20.889677
+18.0  -8.384332   -11.0   7327  20.119238
+19.0  -7.991234   -10.0   6959  20.012300
+20.0  -9.892592   -12.0   7681  19.341606
+21.0  -8.274919   -11.0   7675  19.483318
+22.0  -4.954383    -8.0   6730  21.007776
+23.0  -4.063287    -7.0   6747  20.850789
+24.0  -7.898216   -10.0   7005  19.884979
+25.0  -8.189465   -11.0   7062  20.904726
+26.0  -9.251889   -12.0   7412  20.538864
+27.0 -13.196399   -16.0   7332  20.507918
+28.0 -12.174813   -15.0   6813  20.302421
+29.0 -12.379115   -15.0   6895  19.723476
+30.0 -13.897461   -16.0   7012  19.967086
+31.0  -9.204873   -11.0   4227  19.431841
+--------------------------------------------------
+
+📌 Grouped statistics by 'hour':
+
+           mean  median  count        std
+hour                                     
+5.0   -8.816176   -11.0   1496  17.674509
+6.0  -10.687294   -12.0  19747  17.209510
+7.0  -12.738224   -15.0  17748  18.636493
+8.0  -10.724119   -13.0  20121  19.519045
+9.0  -10.964727   -13.0  15536  20.263718
+10.0 -10.613081   -13.0  12553  19.722812
+11.0 -10.633679   -13.0  10701  19.114769
+12.0  -9.225668   -12.0  12093  19.219580
+13.0  -7.475078   -10.0  13402  19.933975
+14.0  -7.452344   -10.0  13671  20.843547
+15.0  -6.042357    -9.0  13693  21.622440
+16.0  -8.766569   -11.0  13670  22.080245
+17.0  -7.240093   -10.0  13374  22.749715
+18.0  -8.467556   -11.0  12375  23.320701
+19.0  -9.895800   -12.0  11977  22.855508
+20.0  -9.620476   -12.0   9670  22.432213
+21.0  -8.096303   -11.0   5815  21.309996
+22.0  -6.160604   -10.0   1787  18.904115
+23.0  -4.011583    -6.0    777  18.451556
+--------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="전체-히트맵" class="slide level2">
+<h2>전체 히트맵</h2>
+<div id="865a5348" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-12-output-1.png" width="848" height="896"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="flightsairtime-칼럼과-planesseats-칼럼은-무슨-관계일까-1" class="title-slide slide level1 center">
+<h1>flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?</h1>
+
+</section>
+<section id="flightsairtimee-과-planesseats-상관계수와-시각화" class="slide level2">
+<h2>flights(airtimee) 과 planes(seats) 상관계수와 시각화</h2>
+</section>
+<section id="둘-사이의-관계" class="slide level2">
+<h2>둘 사이의 관계</h2>
+<ul>
+<li><p>비행기의 구조적인 측면 멀리 가려면 연료가 많이 필요하다. 연료통이 큰 비행기가 필요하다. 큰 비행기는 좌석수가 많다.</p></li>
+<li><p>규모의 경제 측면 같은 돈을 내더라도 사람 수가 많으면 멀리갈 수 있다.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="지연시간delay과-관계가-있는-칼럼은-무엇인가" class="title-slide slide level1 center">
+<h1>지연시간(delay)과 관계가 있는 칼럼은 무엇인가?</h1>
+
+</section>
+<section id="비행기-제조년도와-지연시간-관계" class="slide level2">
+<h2>비행기 제조년도와 지연시간 관계</h2>
+</section>
+<section id="날씨와-지연시간-관계" class="slide level2">
+<h2>날씨와 지연시간 관계</h2>
+</section></section>
+<section>
+<section id="최종-결론" class="title-slide slide level1 center">
+<h1>최종 결론</h1>
+
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li>airtime이 길어질 수록 시트 수가 많다. 즉 이동한다.</li>
+</ul>
 
 </section></section>
     </div>
