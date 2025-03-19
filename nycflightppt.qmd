@@ -476,6 +476,218 @@ plt.show()
 ```
 
 
+## 날씨
+
+# 화씨를 섭씨로 변환
+```{python}
+
+from nycflights13 import flights,planes,weather,airports,airlines
+
+# 화씨를 섭씨로 변환하는 함수
+def F_to_C(f):
+    return (f - 32) * 5 / 9
+
+# 변환 적용
+weather["temp_c"] = weather["temp"].apply(F_to_C)
+weather["dewp_c"] = weather["dewp"].apply(F_to_C)
+
+```
+
+
+## temperature
+```{python}
+# temp
+def categorize_temp(t):
+    t_c = F_to_C(t)
+    if t_c <= 0: return 0
+    elif t_c <= 5: return 5
+    elif t_c <= 10: return 10
+    elif t_c <= 15: return 15
+    elif t_c <= 20: return 20
+    elif t_c <= 25: return 25
+    elif t_c <= 30: return 30
+    else: return 40
+
+weather["temp_group"] = weather["temp"].apply(categorize_temp)
+
+weather_mg=pd.merge(merged_df_f,weather,on=['origin','hour','month','day'],how='left')
+
+#groupby
+temp_delay=weather_mg.groupby('temp_group')['delay'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x=temp_delay.index,y=temp_delay.values,palette="viridis",ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Temperature(°C)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Temperature(°C)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+```
+
+# Dew point
+
+```{python}
+weather["dewp_c"] = weather["dewp"].apply(F_to_C)
+weather['dewp_c'].describe()
+
+def categorize_dewp(d):
+    d_c = F_to_C(d)
+    if d_c <= 0: return 0
+    elif d_c <= 5: return 5
+    elif d_c <= 10: return 10
+    elif d_c <= 15: return 15
+    elif d_c <= 20: return 20
+    else: return 25
+
+weather["dewp_group"] = weather["dewp"].apply(categorize_dewp)
+
+weather_mg=pd.merge(merged_df_f,weather,on=['origin','hour','month','day'],how='left')
+
+dewp_delay=weather_mg.groupby('dewp_group')['delay'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x=dewp_delay.index,y=dewp_delay.values,palette="viridis",ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Dew point(°C)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Temperature(°C)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+```
+
+## humid
+```{python}
+def categorize_humid(h):
+    if h <= 20: return 20
+    elif h <= 40: return 40
+    elif h <= 60: return 60
+    elif h <= 80: return 80
+    else: return 100
+
+weather["humid_group"] = weather["humid"].apply(categorize_humid)
+
+weather_mg = pd.merge(merged_df_f, weather, on=['origin', 'hour', 'month', 'day'], how='left')
+
+humid_delay = weather_mg.groupby('humid_group')['delay'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x=humid_delay.index, y=humid_delay.values, palette="viridis", ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Humidity (%)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Humidity (%)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+```
+
+## wind_speed
+```{python}
+weather = PreProcessing(weather, ['wind_speed'])
+weather['wind_speed'].describe()
+
+def categorize_wind_speed(ws):
+    if ws <= 5: return 5
+    elif ws <= 10: return 10
+    elif ws <= 15: return 15
+    elif ws <= 20: return 20
+    else: return 25
+
+weather["wind_speed_group"] = weather["wind_speed"].apply(categorize_wind_speed)
+
+weather_mg = pd.merge(merged_df_f, weather, on=['origin', 'hour', 'month', 'day'], how='left')
+
+wind_speed_delay = weather_mg.groupby('wind_speed_group')['delay'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x=wind_speed_delay.index, y=wind_speed_delay.values, palette="viridis", ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Wind Speed (km/h or m/s)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Wind Speed')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+```
+
+## precip
+```{python}
+weather['precip'] = PreProcessing(weather,['precip'])
+weather["precip"].describe()
+weather["precip"].value_counts()
+
+
+```
+
+## pressure
+```{python}
+weather["pressure"].describe()
+weather["pressure"].value_counts()
+
+def categorize_pressure(p):
+    if p <= 1000: return 1000
+    elif p <= 1010: return 1010
+    elif p <= 1020: return 1020
+    elif p <= 1030: return 1030
+    else: return 1040
+
+weather["pressure_group"] = weather["pressure"].apply(categorize_pressure)
+
+weather_mg = pd.merge(merged_df_f, weather, on=['origin', 'hour', 'month', 'day'], how='left')
+
+pressure_delay = weather_mg.groupby('pressure_group')['delay'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x=pressure_delay.index, y=pressure_delay.values, palette="viridis", ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Pressure (hPa)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Pressure (hPa)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+```
+
+
+## visib
+```{python}
+
+weather["visib"].describe()
+weather["visib"].value_counts()
+
+def categorize_visib(v):
+    if v <= 2: return 2
+    elif v <= 5: return 5
+    elif v <= 8: return 8
+    else: return 10
+
+weather["visib_group"] = weather["visib"].apply(categorize_visib)
+
+weather_mg = pd.merge(merged_df_f, weather, on=['origin', 'hour', 'month', 'day'], how='left')
+
+visib_delay = weather_mg.groupby('visib_group')['delay'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.barplot(x=visib_delay.index, y=visib_delay.values, palette="viridis", ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Visibility (km)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Visibility (km)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+```
+
 # 최종 결론
 
 ## Conclusion
