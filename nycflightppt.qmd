@@ -716,11 +716,13 @@ plt.show()
 
 
 ## air_time-seats의 관계 {.scrollable}
+::: {.panel-tabset}
+### 시각화
 비행시간(air_time)과 좌석 수(seats)간 관계 시각화
 
 :::: {.columns}
 
-::: {.column width="60%"}
+::: {.column width="65%"}
 ```{python}
 
 # 모델 그룹화 기준
@@ -764,7 +766,7 @@ model_delay=merged_df_f.groupby('group')['delay'].mean().sort_values()
 
 ```
 ```{python}
-plt.figure(figsize=(10, 10))
+plt.figure(figsize=(8, 8))
 sns.scatterplot(
     x=merged_df_f["air_time"],
     y=merged_df_f["seats"],
@@ -789,7 +791,9 @@ plt.show()
 ```
 :::
 
-::: {.column width="40%"}
+::: {.column width="35%"}
+
+
 <small>
 air_time(비행시간)과 seats(좌석 수)는 양의 상관관계임 (비행시간이 증가할 때마다 좌석 수도 증가하는 경향)
 </small>
@@ -808,6 +812,27 @@ seats(좌석수) 변수는 대부분 100 ~ 200 사이에 집중
 :::
 
 ::::
+
+### 모델 그룹화
+```{.python}
+# 모델 그룹화 기준
+grouped = {'717': [], '737': [], '757': [], '767': [], '777': [], '787': [],
+           'A319': [], 'A320': [], 'A321': [], 'A330': [], 'A340': [],
+           'EMB': [], 'ERJ': [], 'CL': [], 'MD': [], 'DC': [], 'PA': [], 'FALCON': [], 'etc': []}
+
+group_mapping = {}
+
+# flights['model']을 기준으로 그룹화
+for model in merged_df_f['model']:
+    assigned_group = "etc"  # 기본 그룹 설정
+    for group in grouped:
+        if model.startswith(group):  # 특정 그룹으로 분류
+            assigned_group = group
+            break
+    group_mapping[model] = assigned_group
+
+```
+::: 
 
 ## {.scrollable}
 ### 데이터를 그룹화 하여 특징 알아내기 
@@ -879,7 +904,7 @@ plt.show()
 ::::
 
 
-## flights(distance)-flights(seats)의 관계 {.scrollable}
+<!-- ## flights(distance)-flights(seats)의 관계 {.scrollable}
 
 비행거리와 좌석 수의 관계 시각화 코드
 
@@ -957,7 +982,7 @@ plt.show()
 
 :::
 
-::::
+:::: -->
 
 <!-- ## 그룹화된 데이터에 대해 상관관계 시각화 {.scrollable}
 
@@ -1349,7 +1374,7 @@ plt.show()
 
 ```{python}
 #Pressure
-colors = [ "yellowgreen","lightgrey","lightgrey","lightgrey","lightgrey"]  
+colors = [ "yellowgreen","lightgrey","lightgrey","lightgrey","yellowgreen"]  
 plt.figure(figsize=(6,4))
 sns.barplot(x=pressure_delay.index, y=pressure_delay.values, palette=colors, ci=None)
 sns.light_palette("seagreen", as_cmap=True)

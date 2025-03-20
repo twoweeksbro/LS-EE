@@ -536,7 +536,7 @@ TEAM EE
 <h4 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h4>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="2b0870be" class="cell" data-execution_count="5">
+<div id="246a034d" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -652,7 +652,7 @@ TEAM EE
 <h4 id="weahterwind_speed-풍속에-이상치가-있다">weahter(wind_speed) 풍속에 이상치가 있다!</h4>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="ab1c9132" class="cell" data-execution_count="8">
+<div id="6384703b" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -714,7 +714,7 @@ TEAM EE
 <h2>전처리에 사용된 함수</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div id="05d2dd93" class="cell" data-execution_count="10">
+<div id="e550078e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="co"># 전처리 함수 </span></span>
 <span id="cb1-2"><a href=""></a><span class="kw">def</span> PreProcessing(df, columns):</span>
 <span id="cb1-3"><a href=""></a></span>
@@ -746,7 +746,7 @@ TEAM EE
 <section id="전처리" class="slide level2 scrollable">
 <h2>전처리</h2>
 <h4 id="최종-전처리-시작">최종 전처리 시작</h4>
-<div id="3d578335" class="cell" data-execution_count="11">
+<div id="4a458618" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="im">from</span> nycflights13 <span class="im">import</span> flights, planes, weather</span>
 <span id="cb2-2"><a href=""></a></span>
 <span id="cb2-3"><a href=""></a>flights_df <span class="op">=</span> flights.copy()</span>
@@ -755,7 +755,7 @@ TEAM EE
 </div>
 <p><br> <br></p>
 <h4 id="필요-없는-칼럼-제거">필요 없는 칼럼 제거</h4>
-<div id="357714a3" class="cell" data-execution_count="12">
+<div id="0955fc41" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>flights_df <span class="op">=</span> flights_df.drop(columns<span class="op">=</span>[<span class="st">'year'</span>])</span>
 <span id="cb3-2"><a href=""></a>planes_df <span class="op">=</span> planes_df.drop(columns<span class="op">=</span>[<span class="st">'speed'</span>])</span>
 <span id="cb3-3"><a href=""></a>weather_df <span class="op">=</span> weather_df.drop(columns<span class="op">=</span>[<span class="st">'wind_dir'</span>,<span class="st">'wind_gust'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -969,7 +969,7 @@ TEAM EE
 </div>
 <p><br> <br></p>
 <h4 id="결측치-처리">결측치 처리</h4>
-<div id="c95bb837" class="cell" data-execution_count="13">
+<div id="b5dae560" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>flights_df <span class="op">=</span> flights_df.dropna()</span>
 <span id="cb7-2"><a href=""></a>planes_df <span class="op">=</span> planes_df.dropna()</span>
 <span id="cb7-3"><a href=""></a>weather_df <span class="op">=</span> weather_df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -979,12 +979,12 @@ TEAM EE
 <section id="merge" class="slide level2">
 <h2>merge</h2>
 <h4 id="planes_df와-flights_df를-tailnum으로-left-join">planes_df와 flights_df를 tailnum으로 left join</h4>
-<div id="9e613854" class="cell" data-execution_count="14">
+<div id="edd684ef" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>merged_df <span class="op">=</span> pd.merge(planes_df, flights_df, on<span class="op">=</span><span class="st">'tailnum'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br></p>
 <h4 id="flightsarr_delay-dep_delay과-weatherwind_speed-에-대해-전처리-함수-적용">flights(arr_delay, dep_delay)과 weather(wind_speed) 에 대해 전처리 함수 적용</h4>
-<div id="0c93e1ea" class="cell" data-execution_count="15">
+<div id="b0eee0e8" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a>merged_df_f <span class="op">=</span> PreProcessing(merged_df, [<span class="st">'arr_delay'</span>, <span class="st">'dep_delay'</span>])</span>
 <span id="cb9-2"><a href=""></a>weather_df_f <span class="op">=</span> PreProcessing(weather_df, [<span class="st">'wind_speed'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -993,7 +993,7 @@ TEAM EE
 <section id="파생-변수-생성" class="slide level2">
 <h2>파생 변수 생성</h2>
 <h4 id="arr_delay와-dep_delay를-더해서-총-지연시간-delay-변수-생성">arr_delay와 dep_delay를 더해서 총 지연시간 delay 변수 생성</h4>
-<div id="2d3a0fc9" class="cell" data-execution_count="16">
+<div id="a41a4b5a" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a>merged_df_f[<span class="st">'delay'</span>] <span class="op">=</span> merged_df_f[<span class="st">'arr_delay'</span>] <span class="op">+</span> merged_df_f[<span class="st">'dep_delay'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
@@ -1004,7 +1004,7 @@ TEAM EE
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><small>전처리 전 출발 지연 히스토그램 </small></p>
-<div id="dca4283c" class="cell" data-execution_count="17">
+<div id="22aef27f" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1014,7 +1014,7 @@ TEAM EE
 </div>
 </div>
 <p><small> 전처리 전 도착 지연 히스토그램 </small></p>
-<div id="276ff68c" class="cell" data-execution_count="18">
+<div id="f10a82a0" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1025,7 +1025,7 @@ TEAM EE
 </div>
 </div><div class="column" style="width:50%;">
 <p><small>전처리 후 출발 지연 히스토그램 </small></p>
-<div id="2ee192d2" class="cell" data-execution_count="19">
+<div id="8224ea94" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1035,7 +1035,7 @@ TEAM EE
 </div>
 </div>
 <p><small>전처리 후 도착 지연 히스토그램 </small></p>
-<div id="6a569aab" class="cell" data-execution_count="20">
+<div id="d39bbe3c" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1052,7 +1052,7 @@ TEAM EE
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><small>전처리 전 풍속 히스토그램 </small></p>
-<div id="62caab49" class="cell" data-execution_count="21">
+<div id="4709acc7" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1063,7 +1063,7 @@ TEAM EE
 </div>
 </div><div class="column" style="width:50%;">
 <p><small>전처리 후 풍속 히스토그램 </small></p>
-<div id="30745ae5" class="cell" data-execution_count="22">
+<div id="6c6dfa53" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1080,14 +1080,14 @@ TEAM EE
 <li>arr_delay, dep_delay 가 음수로 된 값도 있다.</li>
 <li>실제 지연 시간만 분석하기 위해 delay가 양수인 값만 취한다.</li>
 </ul>
-<div id="9827de5c" class="cell" data-execution_count="23">
+<div id="fe13019b" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>merged_df_f <span class="op">=</span> merged_df_f.loc[(merged_df_f[<span class="st">'arr_delay'</span>]<span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">|</span> (merged_df_f[<span class="st">'dep_delay'</span>]<span class="op">&gt;</span> <span class="dv">0</span>),:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- ## month, day, hour 변수와 delay 간 시각화 {.scrollable} -->
 </section>
 <section id="전체-히트맵" class="slide level2 scrollable">
 <h2>전체 히트맵</h2>
-<div id="996abf52" class="cell" data-execution_count="27">
+<div id="a2b7636f" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1119,28 +1119,52 @@ TEAM EE
 </section>
 <section id="air_time-seats의-관계" class="slide level2 scrollable">
 <h2>air_time-seats의 관계</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">시각화</a></li><li><a href="#tabset-3-2">모델 그룹화</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
 <p>비행시간(air_time)과 좌석 수(seats)간 관계 시각화</p>
 <div class="columns">
-<div class="column" style="width:60%;">
-<div id="f85e427e" class="cell" data-execution_count="29">
+<div class="column" style="width:65%;">
+<div id="16c5e7f0" class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-30-output-1.png" width="816" height="819"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-30-output-1.png" width="668" height="671"></p>
 </figure>
 </div>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:35%;">
 <p><small> air_time(비행시간)과 seats(좌석 수)는 양의 상관관계임 (비행시간이 증가할 때마다 좌석 수도 증가하는 경향) </small> <br> <small> seats(좌석수) 변수는 대부분 100 ~ 200 사이에 집중 </small> <br> <small> - seats(좌석수)가 많을수록 air_time(비행 시간)이 길어지는 경향 </small> <br> <small> 즉, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있음 </small></p>
 </div></div>
+</div>
+<div id="tabset-3-2">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="co"># 모델 그룹화 기준</span></span>
+<span id="cb12-2"><a href=""></a>grouped <span class="op">=</span> {<span class="st">'717'</span>: [], <span class="st">'737'</span>: [], <span class="st">'757'</span>: [], <span class="st">'767'</span>: [], <span class="st">'777'</span>: [], <span class="st">'787'</span>: [],</span>
+<span id="cb12-3"><a href=""></a>           <span class="st">'A319'</span>: [], <span class="st">'A320'</span>: [], <span class="st">'A321'</span>: [], <span class="st">'A330'</span>: [], <span class="st">'A340'</span>: [],</span>
+<span id="cb12-4"><a href=""></a>           <span class="st">'EMB'</span>: [], <span class="st">'ERJ'</span>: [], <span class="st">'CL'</span>: [], <span class="st">'MD'</span>: [], <span class="st">'DC'</span>: [], <span class="st">'PA'</span>: [], <span class="st">'FALCON'</span>: [], <span class="st">'etc'</span>: []}</span>
+<span id="cb12-5"><a href=""></a></span>
+<span id="cb12-6"><a href=""></a>group_mapping <span class="op">=</span> {}</span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a><span class="co"># flights['model']을 기준으로 그룹화</span></span>
+<span id="cb12-9"><a href=""></a><span class="cf">for</span> model <span class="kw">in</span> merged_df_f[<span class="st">'model'</span>]:</span>
+<span id="cb12-10"><a href=""></a>    assigned_group <span class="op">=</span> <span class="st">"etc"</span>  <span class="co"># 기본 그룹 설정</span></span>
+<span id="cb12-11"><a href=""></a>    <span class="cf">for</span> group <span class="kw">in</span> grouped:</span>
+<span id="cb12-12"><a href=""></a>        <span class="cf">if</span> model.startswith(group):  <span class="co"># 특정 그룹으로 분류</span></span>
+<span id="cb12-13"><a href=""></a>            assigned_group <span class="op">=</span> group</span>
+<span id="cb12-14"><a href=""></a>            <span class="cf">break</span></span>
+<span id="cb12-15"><a href=""></a>    group_mapping[model] <span class="op">=</span> assigned_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="section-2" class="slide level2 scrollable">
 <h2></h2>
 <h3 id="데이터를-그룹화-하여-특징-알아내기">데이터를 그룹화 하여 특징 알아내기</h3>
 <div class="columns">
 <p>비행 시간 분포를 좌석 수 범주별로 시각화 <br></p><div class="column" style="width:70%;">
-<div id="521c9438" class="cell" data-execution_count="30">
+<div id="7a9d5768" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1156,45 +1180,62 @@ TEAM EE
 <p><small>즉. 소형 항공기일 수록 비행 시간에 영향을 많이 받음 </small> <small>소형 항공기의 경우 운행 시 비행 시간에 많은 영향을 받음</small></p>
 <p><small> 하지만 크기가 큰 항공기일 수록 오히려 비행 시간에 영향을 받지 않고 균등하게 분포하는 경향이 있음 </small></p>
 </div></div>
-</section>
-<section id="flightsdistance-flightsseats의-관계" class="slide level2 scrollable">
-<h2>flights(distance)-flights(seats)의 관계</h2>
-<p>비행거리와 좌석 수의 관계 시각화 코드</p>
-<div id="045f39c0" class="cell" data-execution_count="31">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-32-output-1.png" width="816" height="819"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="section-3" class="slide level2 scrollable">
-<h2></h2>
-<h3 id="데이터를-그룹화-하여-특징-알아내기-1">데이터를 그룹화 하여 특징 알아내기</h3>
-<div class="columns">
-<p>비행 거리 분포를 좌석 수 범주별로 시각화</p><p><br></p><div class="column" style="width:70%;">
-<div id="5bb47c70" class="cell" data-execution_count="32">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-33-output-1.png" width="982" height="671"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<p><small><code>0~150</code> (소형 항공기) : 비행거리가 짧은 구간(0~1000)에 주로 분포 </small> <small><code>150~250</code> (중형 항공기) : 비행거리가 1000인 시점부터 전체 빈도 중 차지하는 비율 높아지는 것 관찰 가능 </small> <small><code>250~350</code> (대형 항공기) : 비행거리 2500부터 운행 빈도가 증가</small> <small><code>350~450+</code> (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행 </small></p>
-<p><small> 소형 항공기일 수록 비행 거리에 영향을 많이 받음 (주로 단거리 운행)</small> <small> 소형 항공기의 경우 운행 시 비행거리에 많은 영향을 받음 </small> <small> 하지만 크기가 큰 항공기일 수록 오히려 비행 거리에 영향을 받지 않고 균등하게 분포하는 경향이 있음 </small></p>
-</div></div>
+<!-- ## flights(distance)-flights(seats)의 관계 {.scrollable}
+
+비행거리와 좌석 수의 관계 시각화 코드
+
+::: {#8d35ea25 .cell execution_count=31}
+
+::: {.cell-output .cell-output-display}
+![](nycflightppt_files/figure-revealjs/cell-32-output-1.png){width=816 height=819}
+:::
+:::
+
+
+## {.scrollable}
+### 데이터를 그룹화 하여 특징 알아내기 
+
+:::: {.columns}
+
+비행 거리 분포를 좌석 수 범주별로 시각화 
+
+<br>
+
+::: {.column width="70%"}
+
+::: {#af42bc1b .cell execution_count=32}
+
+::: {.cell-output .cell-output-display}
+![](nycflightppt_files/figure-revealjs/cell-33-output-1.png){width=982 height=671}
+:::
+:::
+
+
+:::
+
+::: {.column width="30%"}
+
+
+<small>`0~150` (소형 항공기) : 비행거리가 짧은 구간(0~1000)에 주로 분포 </small>
+<small>`150~250` (중형 항공기) : 비행거리가 1000인 시점부터 전체 빈도 중 차지하는 비율 높아지는 것 관찰 가능 </small>
+<small>`250~350` (대형 항공기) : 비행거리 2500부터 운행 빈도가 증가</small>
+<small>`350~450+` (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행 </small>
+
+<small>
+소형 항공기일 수록 비행 거리에 영향을 많이 받음 (주로 단거리 운행)</small>
+<small> 소형 항공기의 경우 운행 시 비행거리에 많은 영향을 받음 </small>
+<small> 하지만 크기가 큰 항공기일 수록 오히려 비행 거리에 영향을 받지 않고 균등하게 분포하는 경향이 있음 </small>
+
+:::
+
+:::: -->
 <!-- ## 그룹화된 데이터에 대해 상관관계 시각화 {.scrollable}
 
 ::::{.columns}
 
 :::{.column width="60%"}
 
-::: {#c226eb88 .cell execution_count=33}
+::: {#7262b1bd .cell execution_count=33}
 
 ::: {.cell-output .cell-output-display}
 ![](nycflightppt_files/figure-revealjs/cell-34-output-1.png){width=617 height=505}
@@ -1232,11 +1273,11 @@ TEAM EE
 </section>
 <section id="날씨-히트맵" class="slide level2 scrollable">
 <h2>날씨 히트맵</h2>
-<div id="6ee712df" class="cell" data-execution_count="34">
+<div id="4dcba17d" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-35-output-1.png" width="684" height="718"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-35-output-1.png" width="730" height="764"></p>
 </figure>
 </div>
 </div>
@@ -1246,26 +1287,26 @@ TEAM EE
 <h2>Temperature(기온)</h2>
 <div class="columns">
 <p><small><strong>가독성을 위해 화씨(°F)를 섭씨(°C)로 변환</strong></small></p><div class="column" style="width:40%;">
-<div id="5caeb52f" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="co"># 화씨(°F)를 섭씨(°C)로 </span></span>
-<span id="cb12-2"><a href=""></a><span class="co"># 변환하는 함수 </span></span>
-<span id="cb12-3"><a href=""></a><span class="kw">def</span> F_to_C(f):</span>
-<span id="cb12-4"><a href=""></a>    <span class="cf">return</span> (f <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span></span>
-<span id="cb12-5"><a href=""></a></span>
-<span id="cb12-6"><a href=""></a><span class="co"># 기온 구간 나누는 함수 </span></span>
-<span id="cb12-7"><a href=""></a><span class="kw">def</span> categorize_temp(t):</span>
-<span id="cb12-8"><a href=""></a>    t_c <span class="op">=</span> F_to_C(t)</span>
-<span id="cb12-9"><a href=""></a>    <span class="cf">if</span> t_c <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb12-10"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
-<span id="cb12-11"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
-<span id="cb12-12"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
-<span id="cb12-13"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
-<span id="cb12-14"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="dv">25</span></span>
-<span id="cb12-15"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">30</span>: <span class="cf">return</span> <span class="dv">30</span></span>
-<span id="cb12-16"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b6c334e8" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="co"># 화씨(°F)를 섭씨(°C)로 </span></span>
+<span id="cb13-2"><a href=""></a><span class="co"># 변환하는 함수 </span></span>
+<span id="cb13-3"><a href=""></a><span class="kw">def</span> F_to_C(f):</span>
+<span id="cb13-4"><a href=""></a>    <span class="cf">return</span> (f <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span></span>
+<span id="cb13-5"><a href=""></a></span>
+<span id="cb13-6"><a href=""></a><span class="co"># 기온 구간 나누는 함수 </span></span>
+<span id="cb13-7"><a href=""></a><span class="kw">def</span> categorize_temp(t):</span>
+<span id="cb13-8"><a href=""></a>    t_c <span class="op">=</span> F_to_C(t)</span>
+<span id="cb13-9"><a href=""></a>    <span class="cf">if</span> t_c <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb13-10"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb13-11"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
+<span id="cb13-12"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
+<span id="cb13-13"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb13-14"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="dv">25</span></span>
+<span id="cb13-15"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">30</span>: <span class="cf">return</span> <span class="dv">30</span></span>
+<span id="cb13-16"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:60%;">
-<div id="3978fdf3" class="cell" data-execution_count="37">
+<div id="44dad250" class="cell" data-execution_count="37">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1287,46 +1328,46 @@ TEAM EE
 <li>이슬점이 너무 낮아도 활주로에 서리나 얼음이 생길 수 있어 제설 작업 등으로 항공기 운항이 지연될 가능성이 있다.</li>
 </ul>
 </section>
-<section id="section-4" class="slide level2 scrollable">
+<section id="section-3" class="slide level2 scrollable">
 <h2></h2>
 <h3 id="dew-point이슬점-humid습도">Dew Point(이슬점)/ Humid(습도)</h3>
 <h3 id="visible-distance가시거리">/Visible Distance(가시거리)</h3>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br></p>
-<div id="19c7ae53" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="co"># 화씨 섭씨로 변환 후,</span></span>
-<span id="cb13-2"><a href=""></a><span class="co"># 이슬점 구간 나누는 함수</span></span>
-<span id="cb13-3"><a href=""></a><span class="kw">def</span> categorize_dewp(d):</span>
-<span id="cb13-4"><a href=""></a>    d_c <span class="op">=</span> F_to_C(d)</span>
-<span id="cb13-5"><a href=""></a>    <span class="cf">if</span> d_c <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
-<span id="cb13-7"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
-<span id="cb13-8"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
-<span id="cb13-9"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
-<span id="cb13-10"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4bfa4f8b" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="co"># 화씨 섭씨로 변환 후,</span></span>
+<span id="cb14-2"><a href=""></a><span class="co"># 이슬점 구간 나누는 함수</span></span>
+<span id="cb14-3"><a href=""></a><span class="kw">def</span> categorize_dewp(d):</span>
+<span id="cb14-4"><a href=""></a>    d_c <span class="op">=</span> F_to_C(d)</span>
+<span id="cb14-5"><a href=""></a>    <span class="cf">if</span> d_c <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb14-6"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb14-7"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
+<span id="cb14-8"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
+<span id="cb14-9"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb14-10"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br> <br></p>
-<div id="b93c09e9" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="co"># 습도 범위 나누는 함수 정의</span></span>
-<span id="cb14-2"><a href=""></a><span class="kw">def</span> categorize_humid(h):</span>
-<span id="cb14-3"><a href=""></a>    <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
-<span id="cb14-4"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">40</span>: <span class="cf">return</span> <span class="dv">40</span></span>
-<span id="cb14-5"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">60</span>: <span class="cf">return</span> <span class="dv">60</span></span>
-<span id="cb14-6"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">80</span>: <span class="cf">return</span> <span class="dv">80</span></span>
-<span id="cb14-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="55a2638f" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a><span class="co"># 습도 범위 나누는 함수 정의</span></span>
+<span id="cb15-2"><a href=""></a><span class="kw">def</span> categorize_humid(h):</span>
+<span id="cb15-3"><a href=""></a>    <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb15-4"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">40</span>: <span class="cf">return</span> <span class="dv">40</span></span>
+<span id="cb15-5"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">60</span>: <span class="cf">return</span> <span class="dv">60</span></span>
+<span id="cb15-6"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">80</span>: <span class="cf">return</span> <span class="dv">80</span></span>
+<span id="cb15-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br> <br> <br></p>
-<div id="df5c2d76" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a><span class="co"># 가시거리 범위 나누는 함수 정의</span></span>
-<span id="cb15-2"><a href=""></a><span class="kw">def</span> categorize_visib(v):</span>
-<span id="cb15-3"><a href=""></a>    <span class="cf">if</span> v <span class="op">&lt;=</span> <span class="dv">2</span>: <span class="cf">return</span> <span class="dv">2</span></span>
-<span id="cb15-4"><a href=""></a>    <span class="cf">elif</span> v <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
-<span id="cb15-5"><a href=""></a>    <span class="cf">elif</span> v <span class="op">&lt;=</span> <span class="dv">8</span>: <span class="cf">return</span> <span class="dv">8</span></span>
-<span id="cb15-6"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d4c8c03a" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a><span class="co"># 가시거리 범위 나누는 함수 정의</span></span>
+<span id="cb16-2"><a href=""></a><span class="kw">def</span> categorize_visib(v):</span>
+<span id="cb16-3"><a href=""></a>    <span class="cf">if</span> v <span class="op">&lt;=</span> <span class="dv">2</span>: <span class="cf">return</span> <span class="dv">2</span></span>
+<span id="cb16-4"><a href=""></a>    <span class="cf">elif</span> v <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb16-5"><a href=""></a>    <span class="cf">elif</span> v <span class="op">&lt;=</span> <span class="dv">8</span>: <span class="cf">return</span> <span class="dv">8</span></span>
+<span id="cb16-6"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:60%;">
-<div id="7692368c" class="cell" data-execution_count="44">
+<div id="6161c41e" class="cell" data-execution_count="44">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1336,7 +1377,7 @@ TEAM EE
 </div>
 </div>
 <p><small>- 이슬점이 너무 낮거나 높으면 항공기 운항이 지연되는 경향이 보인다.</small></p>
-<div id="34372c74" class="cell" data-execution_count="45">
+<div id="c91f2c8b" class="cell" data-execution_count="45">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1346,7 +1387,7 @@ TEAM EE
 </div>
 </div>
 <p><small>- 습도가 너무 높으면 항공기 운항이 지연되는 경향이 있다.</small></p>
-<div id="fae93797" class="cell" data-execution_count="46">
+<div id="d942efc7" class="cell" data-execution_count="46">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1358,41 +1399,41 @@ TEAM EE
 <p><small>- 가시거리가 짧을 수록 항공기 운항이 지연되는 경향이 있다.</small></p>
 </div></div>
 </section>
-<section id="section-5" class="slide level2 scrollable">
+<section id="section-4" class="slide level2 scrollable">
 <h2></h2>
 <h3 id="wind_speed풍속precip강수량">Wind_speed(풍속)/Precip(강수량)</h3>
 <h3 id="pressure기압">/Pressure(기압)</h3>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br></p>
-<div id="155081df" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a><span class="co"># 풍속 구간 나누는 함수</span></span>
-<span id="cb16-2"><a href=""></a><span class="kw">def</span> categorize_wind_speed(ws):</span>
-<span id="cb16-3"><a href=""></a>    <span class="cf">if</span> ws <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
-<span id="cb16-4"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
-<span id="cb16-5"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
-<span id="cb16-6"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
-<span id="cb16-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="852a31ba" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="co"># 풍속 구간 나누는 함수</span></span>
+<span id="cb17-2"><a href=""></a><span class="kw">def</span> categorize_wind_speed(ws):</span>
+<span id="cb17-3"><a href=""></a>    <span class="cf">if</span> ws <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb17-4"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
+<span id="cb17-5"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
+<span id="cb17-6"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb17-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br> <br></p>
-<div id="dcbdb5e0" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="co"># 강수량 범위 나누는 함수 정의</span></span>
-<span id="cb17-2"><a href=""></a><span class="kw">def</span> categorize_precip(precip):</span>
-<span id="cb17-3"><a href=""></a>    <span class="cf">if</span> precip <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="st">"sunny"</span></span>
-<span id="cb17-4"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">"rainy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e8a4ce9e" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="co"># 강수량 범위 나누는 함수 정의</span></span>
+<span id="cb18-2"><a href=""></a><span class="kw">def</span> categorize_precip(precip):</span>
+<span id="cb18-3"><a href=""></a>    <span class="cf">if</span> precip <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="st">"sunny"</span></span>
+<span id="cb18-4"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">"rainy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br> <br> <br> <br> <br></p>
-<div id="24eb4bf0" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="co"># 기압 범위 나누는 함수 정의</span></span>
-<span id="cb18-2"><a href=""></a><span class="kw">def</span> categorize_pressure(p):</span>
-<span id="cb18-3"><a href=""></a>    <span class="cf">if</span> p <span class="op">&lt;=</span> <span class="dv">1000</span>: <span class="cf">return</span> <span class="dv">1000</span></span>
-<span id="cb18-4"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1010</span>: <span class="cf">return</span> <span class="dv">1010</span></span>
-<span id="cb18-5"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1020</span>: <span class="cf">return</span> <span class="dv">1020</span></span>
-<span id="cb18-6"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1030</span>: <span class="cf">return</span> <span class="dv">1030</span></span>
-<span id="cb18-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">1040</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c8b9c7da" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a><span class="co"># 기압 범위 나누는 함수 정의</span></span>
+<span id="cb19-2"><a href=""></a><span class="kw">def</span> categorize_pressure(p):</span>
+<span id="cb19-3"><a href=""></a>    <span class="cf">if</span> p <span class="op">&lt;=</span> <span class="dv">1000</span>: <span class="cf">return</span> <span class="dv">1000</span></span>
+<span id="cb19-4"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1010</span>: <span class="cf">return</span> <span class="dv">1010</span></span>
+<span id="cb19-5"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1020</span>: <span class="cf">return</span> <span class="dv">1020</span></span>
+<span id="cb19-6"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1030</span>: <span class="cf">return</span> <span class="dv">1030</span></span>
+<span id="cb19-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">1040</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:60%;">
-<div id="8879d00e" class="cell" data-execution_count="53">
+<div id="8ae0cad7" class="cell" data-execution_count="53">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1402,7 +1443,7 @@ TEAM EE
 </div>
 </div>
 <p><small> - 풍속이 빠를수록 항공기 운항이 지연되는 경향이 보인다.</small></p>
-<div id="11b3c609" class="cell" data-execution_count="54">
+<div id="1c06c214" class="cell" data-execution_count="54">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1412,7 +1453,7 @@ TEAM EE
 </div>
 </div>
 <p><small> - 강수량이 있으면 항공기 운항이 지연되는 경향이 있다.</small></p>
-<div id="e413c972" class="cell" data-execution_count="55">
+<div id="07a27aa6" class="cell" data-execution_count="55">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
