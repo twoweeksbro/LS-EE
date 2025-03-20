@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="nycflightppt_files/libs/clipboard/clipboard.min.js"></script>
+<script src="nycflightppt_files/libs/clipboard/clipboard.min.js"></script>
 <script src="nycflightppt_files/libs/quarto-html/tabby.min.js"></script>
 <script src="nycflightppt_files/libs/quarto-html/popper.min.js"></script>
 <script src="nycflightppt_files/libs/quarto-html/tippy.umd.min.js"></script>
@@ -187,9 +187,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-  
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -197,7 +194,6 @@
 
 <section id="title-slide" data-background-image="./static/images/airport.gif" data-background-opacity="0.8" data-background-size="cover" class="quarto-title-block center">
   <h1 class="title">New York Flight Data Analysis</h1>
-  <p class="subtitle">sub title</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -210,6 +206,7 @@ TEAM EE
 </section>
 <section id="about-team" class="title-slide slide level1 center" data-background-image="./static/images/airport.gif" data-background-opacity="0.3">
 <h1>about TEAM</h1>
+<p><br> <br></p>
 <p>박수현 이주형 오윤지 조익현</p>
 </section>
 
@@ -218,8 +215,8 @@ TEAM EE
 <h1>NYC flights data 를 알아보자!</h1>
 
 </section>
-<section id="nycflights13---flights-planes" class="slide level2 scrollable">
-<h2>nycflights13 - flights, planes</h2>
+<section id="nycflights13---flights-planes-weather" class="slide level2 scrollable">
+<h2>nycflights13 - flights, planes, weather</h2>
 <p><code>info()</code></p>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">flights</a></li><li><a href="#tabset-1-2">planes</a></li><li><a href="#tabset-1-3">weather</a></li></ul>
@@ -530,16 +527,16 @@ TEAM EE
 <section id="subject" class="slide level2">
 <h2>Subject</h2>
 <p><br></p>
-<h3 id="지연시간arr_delay-dep_delay과-날씨weather-간-상관관계-분석">지연시간(arr_delay, dep_delay)과 날씨(weather) 간 상관관계 분석</h3>
-<p><br></p>
 <h3 id="flightsairtime과-planesseats은-무슨-관계일까">flights(airtime)과 planes(seats)은 무슨 관계일까?</h3>
+<p><br></p>
+<h3 id="지연시간arr_delay-dep_delay과-날씨weather-간-상관관계-분석">지연시간(arr_delay, dep_delay)과 날씨(weather) 간 상관관계 분석</h3>
 </section>
 <section id="데이터-확인" class="slide level2 scrollable">
 <h2>데이터 확인</h2>
-<h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
+<h4 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h4>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="83b6abff" class="cell" data-execution_count="5">
+<div id="2b0870be" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -566,7 +563,7 @@ TEAM EE
 <tbody>
 <tr class="odd">
 <td>count</td>
-<td>328,521.000</td>
+<td>328521.000</td>
 </tr>
 <tr class="even">
 <td>mean</td>
@@ -655,7 +652,7 @@ TEAM EE
 <h4 id="weahterwind_speed-풍속에-이상치가-있다">weahter(wind_speed) 풍속에 이상치가 있다!</h4>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="8715dc35" class="cell" data-execution_count="8">
+<div id="ab1c9132" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -717,7 +714,7 @@ TEAM EE
 <h2>전처리에 사용된 함수</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div id="924b8eb4" class="cell" data-execution_count="10">
+<div id="05d2dd93" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="co"># 전처리 함수 </span></span>
 <span id="cb1-2"><a href=""></a><span class="kw">def</span> PreProcessing(df, columns):</span>
 <span id="cb1-3"><a href=""></a></span>
@@ -738,23 +735,27 @@ TEAM EE
 <span id="cb1-18"><a href=""></a>    <span class="cf">return</span> f_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:40%;">
-<p>여러 개의 컬럼에 대해 IQR 방식을 사용하여 이상치를 제거하는 함수</p>
-<p><code>Parameters:df</code> (pd.DataFrame): 데이터프레임 columns (list): 이상치를 제거할 컬럼 리스트</p>
-<p>Returns: pd.DataFrame: 이상치가 제거된 데이터프레임</p>
+<p><small> 여러 개의 컬럼에 대해 IQR을 활용하여 이상치를 제거하는 함수</small></p><small>
+<p><br></p>
+<p><code>Parameters:</code> df (pd.DataFrame): 데이터프레임 columns (list): 이상치를 제거할 컬럼 리스트</p>
+<p><br></p>
+<p><code>Returns:</code> f_df(pd.DataFrame): 이상치가 제거된 데이터프레임</p>
+</small><p><small></small></p>
 </div></div>
 </section>
 <section id="전처리" class="slide level2 scrollable">
 <h2>전처리</h2>
 <h4 id="최종-전처리-시작">최종 전처리 시작</h4>
-<div id="3e8d779d" class="cell" data-execution_count="11">
+<div id="3d578335" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="im">from</span> nycflights13 <span class="im">import</span> flights, planes, weather</span>
 <span id="cb2-2"><a href=""></a></span>
 <span id="cb2-3"><a href=""></a>flights_df <span class="op">=</span> flights.copy()</span>
 <span id="cb2-4"><a href=""></a>planes_df <span class="op">=</span> planes.copy()</span>
 <span id="cb2-5"><a href=""></a>weather_df <span class="op">=</span> weather.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br> <br></p>
 <h4 id="필요-없는-칼럼-제거">필요 없는 칼럼 제거</h4>
-<div id="63035820" class="cell" data-execution_count="12">
+<div id="357714a3" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>flights_df <span class="op">=</span> flights_df.drop(columns<span class="op">=</span>[<span class="st">'year'</span>])</span>
 <span id="cb3-2"><a href=""></a>planes_df <span class="op">=</span> planes_df.drop(columns<span class="op">=</span>[<span class="st">'speed'</span>])</span>
 <span id="cb3-3"><a href=""></a>weather_df <span class="op">=</span> weather_df.drop(columns<span class="op">=</span>[<span class="st">'wind_dir'</span>,<span class="st">'wind_gust'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -968,7 +969,7 @@ TEAM EE
 </div>
 <p><br> <br></p>
 <h4 id="결측치-처리">결측치 처리</h4>
-<div id="2cb388e1" class="cell" data-execution_count="13">
+<div id="c95bb837" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>flights_df <span class="op">=</span> flights_df.dropna()</span>
 <span id="cb7-2"><a href=""></a>planes_df <span class="op">=</span> planes_df.dropna()</span>
 <span id="cb7-3"><a href=""></a>weather_df <span class="op">=</span> weather_df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -978,30 +979,32 @@ TEAM EE
 <section id="merge" class="slide level2">
 <h2>merge</h2>
 <h4 id="planes_df와-flights_df를-tailnum으로-left-join">planes_df와 flights_df를 tailnum으로 left join</h4>
-<div id="c5a55d01" class="cell" data-execution_count="14">
+<div id="9e613854" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>merged_df <span class="op">=</span> pd.merge(planes_df, flights_df, on<span class="op">=</span><span class="st">'tailnum'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br> <br></p>
+<p><br> <br> <br></p>
 <h4 id="flightsarr_delay-dep_delay과-weatherwind_speed-에-대해-전처리-함수-적용">flights(arr_delay, dep_delay)과 weather(wind_speed) 에 대해 전처리 함수 적용</h4>
-<div id="1b5991e7" class="cell" data-execution_count="15">
+<div id="0c93e1ea" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a>merged_df_f <span class="op">=</span> PreProcessing(merged_df, [<span class="st">'arr_delay'</span>, <span class="st">'dep_delay'</span>])</span>
 <span id="cb9-2"><a href=""></a>weather_df_f <span class="op">=</span> PreProcessing(weather_df, [<span class="st">'wind_speed'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><small> 이상치가 있는 칼럼 flight(arr_delay), flight(dep_delay), weather(wind_speed)에 대해 전처리를 진행했습니다. IQR을 이용하여 lower boundary를 Q1-(IQR * 1.5)로 설정하고 upper boundary를 Q3+(IQR * 1.5)로 설정했습니다. 해당 범위 안에 있는 데이터만 남기고 나머지는 제외했습니다. </small></p>
 </section>
 <section id="파생-변수-생성" class="slide level2">
 <h2>파생 변수 생성</h2>
 <h4 id="arr_delay와-dep_delay를-더해서-총-지연시간-delay-변수-생성">arr_delay와 dep_delay를 더해서 총 지연시간 delay 변수 생성</h4>
-<div id="593b8036" class="cell" data-execution_count="16">
+<div id="2d3a0fc9" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a>merged_df_f[<span class="st">'delay'</span>] <span class="op">=</span> merged_df_f[<span class="st">'arr_delay'</span>] <span class="op">+</span> merged_df_f[<span class="st">'dep_delay'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<p>이상치가 있는 칼럼 flight(arr_delay), flight(dep_delay), weather(wind_speed)에 대해 전처리를 진행했습니다. IQR을 이용하여 lower boundary를 Q1-(IQR * 1.5)로 설정하고 upper boundary를 Q3+(IQR * 1.5)로 설정했습니다. 해당 범위 안에 있는 데이터만 남기고 나머지는 제외했습니다.</p>
 </section>
-<section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
-<h2>전처리 후 지연시간(delay) 히스토그램</h2>
+<section id="section" class="slide level2 scrollable">
+<h2></h2>
+<h3 id="전처리-후-지연시간delay-히스토그램">전처리 후 지연시간(delay) 히스토그램</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="c417541f" class="cell" data-execution_count="17">
+<p><small>전처리 전 출발 지연 히스토그램 </small></p>
+<div id="dca4283c" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1009,52 +1012,62 @@ TEAM EE
 </figure>
 </div>
 </div>
+</div>
+<p><small> 전처리 전 도착 지연 히스토그램 </small></p>
+<div id="276ff68c" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-18-output-2.png" width="470" height="282"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="470" height="282"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="ecb07535" class="cell" data-execution_count="18">
+<p><small>전처리 후 출발 지연 히스토그램 </small></p>
+<div id="2ee192d2" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="461" height="282"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="461" height="282"></p>
 </figure>
 </div>
 </div>
+</div>
+<p><small>전처리 후 도착 지연 히스토그램 </small></p>
+<div id="6a569aab" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-2.png" width="461" height="282"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="461" height="282"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-<section id="전처리-후-weatherwind_speed-풍속-히스토그램" class="slide level2 scrollable">
-<h2>전처리 후 weather(wind_speed) 풍속 히스토그램</h2>
+<section id="section-1" class="slide level2 scrollable">
+<h2></h2>
+<h3 id="전처리-후-weatherwind_speed-풍속-히스토그램">전처리 후 weather(wind_speed) 풍속 히스토그램</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="7296a3a4" class="cell" data-execution_count="19">
+<p><small>전처리 전 풍속 히스토그램 </small></p>
+<div id="62caab49" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="536" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-22-output-1.png" width="536" height="356"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="febf486c" class="cell" data-execution_count="20">
+<p><small>전처리 후 풍속 히스토그램 </small></p>
+<div id="30745ae5" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="527" height="356"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="527" height="356"></p>
 </figure>
 </div>
 </div>
@@ -1067,111 +1080,49 @@ TEAM EE
 <li>arr_delay, dep_delay 가 음수로 된 값도 있다.</li>
 <li>실제 지연 시간만 분석하기 위해 delay가 양수인 값만 취한다.</li>
 </ul>
-<div id="c03688d9" class="cell" data-execution_count="21">
+<div id="9827de5c" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>merged_df_f <span class="op">=</span> merged_df_f.loc[(merged_df_f[<span class="st">'arr_delay'</span>]<span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">|</span> (merged_df_f[<span class="st">'dep_delay'</span>]<span class="op">&gt;</span> <span class="dv">0</span>),:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- ## month, day, hour 변수와 delay 간 시각화 {.scrollable} -->
 </section>
 <section id="전체-히트맵" class="slide level2 scrollable">
 <h2>전체 히트맵</h2>
-<div id="8e1c0838" class="cell" data-execution_count="25">
+<div id="996abf52" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-26-output-1.png" width="837" height="896"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-28-output-1.png" width="837" height="896"></p>
 </figure>
 </div>
 </div>
 </div>
 </section></section>
 <section>
-<section id="flightsairtime과-planesseats간-관계성" class="title-slide slide level1 center" data-background-image="./static/images/airport.gif" data-background-opacity="0.3">
-<h1>flights(airtime)과 planes(seats)간 관계성</h1>
+<section id="flightsairtime-과-planesseats-간-관계성" class="title-slide slide level1 center" data-background-image="./static/images/airport.gif" data-background-opacity="0.3">
+<h1>flights(airtime) 과 planes(seats) 간 관계성</h1>
 
 </section>
-<section id="비행시간과-좌석수-상관계수의-관계" class="slide level2">
-<h2>비행시간과 좌석수 상관계수의 관계</h2>
-<h3 id="flightsair_time-planesseats">flights(air_time)-planes(seats)</h3>
+<section id="비행시간과-좌석수의-관계" class="slide level2 scrollable">
+<h2>비행시간과 좌석수의 관계</h2>
+<h3 id="flightsair_time---planesseats">flights(air_time) - planes(seats)</h3>
 <ul>
 <li>+0.54의 상관계수를 갖는다. =&gt; 비교적 강한 상관계수를 가진다.</li>
-<li><strong>seat(좌석수)</strong>가 많은수록 <strong>비행시간</strong>이 길 것이다.</li>
+<li><strong>seat(좌석수)</strong>가 많을수록 <strong>비행시간</strong>이 길 것이다.</li>
 <li>큰 비행기 일 수록 비행 시간이 길 것이다.</li>
 </ul>
-<h3 id="flightsair_time-flightsdistance">flights(air_time)-flights(distance)</h3>
+<h3 id="flightsair_time---flightsdistance">flights(air_time) - flights(distance)</h3>
 <ul>
 <li>+0.52의 상관계수를 갖는다. =&gt; 비교적 강한 상관계수를 가진다.</li>
-<li><strong>seat(좌석수)</strong>가 많을수록 <strong>목적지</strong>까지의 거리가 길 것이다.</li>
+<li><strong>air_time(비행시간)</strong>이 길수록 <strong>목적지</strong>까지의 거리가 길 것이다.</li>
 <li>큰 비행기일수록 목적지까지의 거리가 길 것이다.</li>
 </ul>
 </section>
-<section id="air_time과-seatsdistance-상관관계-시각화" class="slide level2">
-<h2>air_time과 seats/distance 상관관계 시각화</h2>
-</section>
 <section id="air_time-seats의-관계" class="slide level2 scrollable">
 <h2>air_time-seats의 관계</h2>
-<p>비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드</p>
+<p>비행시간(air_time)과 좌석 수(seats)간 관계 시각화</p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div id="c58dc135" class="cell" data-execution_count="27">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-28-output-1.png" width="816" height="819"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:40%;">
-<ol type="1">
-<li>산점도에서 알 수 있는 것들</li>
-</ol>
-<ul>
-<li>air_time(비행시간)과 seats(좌석 수)는 양의 상관관계임 (비행시간이 증가할 때마다 좌석 수도 증가하는 경향)</li>
-<li>seats(좌석수) 변수는 대부분 100 ~ 200 사이에 집중</li>
-<li>seats(좌석수)가 많을수록 air_time(비행 시간)이 길어지는 경향</li>
-</ul>
-<ol start="2" type="1">
-<li>결론 : 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있음</li>
-</ol>
-</div></div>
-</section>
-<section id="데이터를-그룹화-하여-특징-알아내기" class="slide level2 scrollable">
-<h2>데이터를 그룹화 하여 특징 알아내기</h2>
-<div class="columns">
-<h3 id="비행-시간-분포를-좌석-수-범주별로-시각화">비행 시간 분포를 좌석 수 범주별로 시각화</h3>
-<div class="column" style="width:70%;">
-<div id="593cec1a" class="cell" data-execution_count="28">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-29-output-1.png" width="982" height="671"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:30%;">
-<ol type="1">
-<li>좌석 수(개)별 범주 나눔</li>
-</ol>
-<ul>
-<li><code>0~150</code> (소형 항공기) : 비행시간이 짧은 구간(0~150)에 주로 분포</li>
-<li><code>150~250</code> (중형 항공기) : 비행시간이 100-150인 구간에 주로 분포</li>
-<li><code>250~350</code> (대형 항공기) : 비행시간이 짧은 구간에서는 작은 비율을 차지하다가 긴 구간에서 차지하는 비율이 서서히 증가하는 경향</li>
-<li><code>350~450+</code> (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행</li>
-</ul>
-<ol start="2" type="1">
-<li>결론 소형 항공기일 수록 비행 시간에 영향을 많이 받음</li>
-</ol>
-<ul>
-<li>소형 항공기의 경우 운행 시 비행 시간에 많은 영향을 받음</li>
-<li>하지만 크기가 큰 항공기일 수록 오히려 비행 시간에 영향을 받지 않고 균등하게 분포하는 경향이 있음</li>
-</ul>
-</div></div>
-</section>
-<section id="flightsdistance-flightsseats의-관계" class="slide level2 scrollable">
-<h2>flights(distance)-flights(seats)의 관계</h2>
-<p>비행거리와 좌석 수의 관계 시각화 코드</p>
-<div id="676040be" class="cell" data-execution_count="29">
+<div id="f85e427e" class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1180,13 +1131,16 @@ TEAM EE
 </div>
 </div>
 </div>
+</div><div class="column" style="width:40%;">
+<p><small> air_time(비행시간)과 seats(좌석 수)는 양의 상관관계임 (비행시간이 증가할 때마다 좌석 수도 증가하는 경향) </small> <br> <small> seats(좌석수) 변수는 대부분 100 ~ 200 사이에 집중 </small> <br> <small> - seats(좌석수)가 많을수록 air_time(비행 시간)이 길어지는 경향 </small> <br> <small> 즉, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있음 </small></p>
+</div></div>
 </section>
-<section id="데이터를-그룹화-하여-특징-알아내기-1" class="slide level2 scrollable">
-<h2>데이터를 그룹화 하여 특징 알아내기</h2>
+<section id="section-2" class="slide level2 scrollable">
+<h2></h2>
+<h3 id="데이터를-그룹화-하여-특징-알아내기">데이터를 그룹화 하여 특징 알아내기</h3>
 <div class="columns">
-<h3 id="비행-거리-분포를-좌석-수-범주별로-시각화">비행 거리 분포를 좌석 수 범주별로 시각화</h3>
-<div class="column" style="width:70%;">
-<div id="afe50eb9" class="cell" data-execution_count="30">
+<p>비행 시간 분포를 좌석 수 범주별로 시각화 <br></p><div class="column" style="width:70%;">
+<div id="521c9438" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1196,56 +1150,78 @@ TEAM EE
 </div>
 </div>
 </div><div class="column" style="width:30%;">
-<ol type="1">
-<li>좌석 수(개)별 범주 나눔</li>
-</ol>
-<ul>
-<li><code>0~150</code> (소형 항공기) : 비행거리가 짧은 구간(0~1000)에 주로 분포</li>
-<li><code>150~250</code> (중형 항공기) : 비행거리가 1000인 시점부터 전체 빈도 중 차지하는 비율 높아지는 것 관찰 가능</li>
-<li><code>250~350</code> (대형 항공기) : 비행거리 2500부터 운행 빈도가 증가</li>
-<li><code>350~450+</code> (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행</li>
-</ul>
-<ol start="2" type="1">
-<li>결론 소형 항공기일 수록 비행 거리에 영향을 많이 받음 (주로 단거리 운행)</li>
-</ol>
-<ul>
-<li>소형 항공기의 경우 운행 시 비행거리에 많은 영향을 받음</li>
-<li>하지만 크기가 큰 항공기일 수록 오히려 비행 거리에 영향을 받지 않고 균등하게 분포하는 경향이 있음</li>
-</ul>
+<p><small> <code>0~150</code> (소형 항공기) : 비행시간이 짧은 구간(0~150)에 주로 분포 </small></p>
+<p><small> <code>150~250</code> (중형 항공기) : 비행시간이 100-150인 구간에 주로 분포 </small></p>
+<p><small> <code>250~350</code> (대형 항공기) : 비행시간이 짧은 구간에서는 작은 비율을 차지하다가 긴 구간에서 차지하는 비율이 서서히 증가하는 경향 </small> <small> <code>350~450+</code> (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행 </small></p>
+<p><small>즉. 소형 항공기일 수록 비행 시간에 영향을 많이 받음 </small> <small>소형 항공기의 경우 운행 시 비행 시간에 많은 영향을 받음</small></p>
+<p><small> 하지만 크기가 큰 항공기일 수록 오히려 비행 시간에 영향을 받지 않고 균등하게 분포하는 경향이 있음 </small></p>
 </div></div>
 </section>
-<section id="그룹화된-데이터에-대해-상관관계-시각화" class="slide level2 scrollable">
-<h2>그룹화된 데이터에 대해 상관관계 시각화</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div id="3c1d9fcf" class="cell" data-execution_count="31">
+<section id="flightsdistance-flightsseats의-관계" class="slide level2 scrollable">
+<h2>flights(distance)-flights(seats)의 관계</h2>
+<p>비행거리와 좌석 수의 관계 시각화 코드</p>
+<div id="045f39c0" class="cell" data-execution_count="31">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-32-output-1.png" width="617" height="505"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-32-output-1.png" width="816" height="819"></p>
 </figure>
 </div>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
-<ol type="1">
-<li>생성된 범주를 기준으로 그룹화된 데이터를 가지고 seats와 air_time 간의 상관관계를 계산해봄</li>
-</ol>
-<ul>
-<li>air_time - seats : 0.52 (기존) &gt; 0.82 (그룹화)</li>
-<li>distance - seats : 0.54 (기존) &gt; 0.83 (그룹화)</li>
-</ul>
-<ol start="2" type="1">
-<li>그룹화된 데이터의 상관관계는 기존 데이터보다 더 높은 상관관계를 가지는 것으로 보임</li>
-</ol>
+</section>
+<section id="section-3" class="slide level2 scrollable">
+<h2></h2>
+<h3 id="데이터를-그룹화-하여-특징-알아내기-1">데이터를 그룹화 하여 특징 알아내기</h3>
+<div class="columns">
+<p>비행 거리 분포를 좌석 수 범주별로 시각화</p><p><br></p><div class="column" style="width:70%;">
+<div id="5bb47c70" class="cell" data-execution_count="32">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-33-output-1.png" width="982" height="671"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><small><code>0~150</code> (소형 항공기) : 비행거리가 짧은 구간(0~1000)에 주로 분포 </small> <small><code>150~250</code> (중형 항공기) : 비행거리가 1000인 시점부터 전체 빈도 중 차지하는 비율 높아지는 것 관찰 가능 </small> <small><code>250~350</code> (대형 항공기) : 비행거리 2500부터 운행 빈도가 증가</small> <small><code>350~450+</code> (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행 </small></p>
+<p><small> 소형 항공기일 수록 비행 거리에 영향을 많이 받음 (주로 단거리 운행)</small> <small> 소형 항공기의 경우 운행 시 비행거리에 많은 영향을 받음 </small> <small> 하지만 크기가 큰 항공기일 수록 오히려 비행 거리에 영향을 받지 않고 균등하게 분포하는 경향이 있음 </small></p>
 </div></div>
+<!-- ## 그룹화된 데이터에 대해 상관관계 시각화 {.scrollable}
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+::: {#c226eb88 .cell execution_count=33}
+
+::: {.cell-output .cell-output-display}
+![](nycflightppt_files/figure-revealjs/cell-34-output-1.png){width=617 height=505}
+:::
+:::
+
+
+:::
+
+:::{.column width="40%"}
+1. 생성된 범주를 기준으로 그룹화된 데이터를 가지고 seats와 air_time 간의 상관관계를 계산해봄
+- air_time - seats : 0.52 (기존) > 0.82 (그룹화)
+- distance - seats : 0.54 (기존) > 0.83 (그룹화)
+2. 그룹화된 데이터의 상관관계는 기존 데이터보다 더 높은 상관관계를 가지는 것으로 보임
+:::
+:::: -->
 </section>
 <section id="둘-사이의-관계" class="slide level2">
 <h2>둘 사이의 관계</h2>
 <ul>
-<li><p>비행기의 구조적인 측면 멀리 가려면 연료가 많이 필요하다. 연료통이 큰 비행기가 필요하다. 큰 비행기는 좌석수가 많다.</p></li>
-<li><p>규모의 경제 측면 같은 돈을 내더라도 사람 수가 많으면 멀리갈 수 있다.</p></li>
+<li>비행기의 구조적인 측면</li>
 </ul>
+<p>멀리 가려면 연료가 많이 필요하다. 연료통이 커야 한다. 연료통이 크려면 큰 비행기여야 한다. 큰 비행기는 좌석수가 많다.</p>
+<ul>
+<li>규모의 경제 측면</li>
+</ul>
+<p>같은 돈을 내더라도 사람 수가 많으면 멀리갈 수 있다. 많은 사람을 수용할 수 있는 비행기가 멀리갈 수 있다.</p>
 <!-- # 지연시간(delay)과 관계가 있는 칼럼은 무엇인가? -->
 <!-- ## Model vs Delay  -->
 </section></section>
@@ -1256,11 +1232,11 @@ TEAM EE
 </section>
 <section id="날씨-히트맵" class="slide level2 scrollable">
 <h2>날씨 히트맵</h2>
-<div id="6de4b055" class="cell" data-execution_count="32">
+<div id="6ee712df" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-33-output-1.png" width="693" height="727"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-35-output-1.png" width="684" height="718"></p>
 </figure>
 </div>
 </div>
@@ -1270,7 +1246,7 @@ TEAM EE
 <h2>Temperature(기온)</h2>
 <div class="columns">
 <p><small><strong>가독성을 위해 화씨(°F)를 섭씨(°C)로 변환</strong></small></p><div class="column" style="width:40%;">
-<div id="133d53f4" class="cell" data-execution_count="33">
+<div id="5caeb52f" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="co"># 화씨(°F)를 섭씨(°C)로 </span></span>
 <span id="cb12-2"><a href=""></a><span class="co"># 변환하는 함수 </span></span>
 <span id="cb12-3"><a href=""></a><span class="kw">def</span> F_to_C(f):</span>
@@ -1288,291 +1264,12 @@ TEAM EE
 <span id="cb12-15"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">30</span>: <span class="cf">return</span> <span class="dv">30</span></span>
 <span id="cb12-16"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div><div id="425fb151" class="cell" data-execution_count="34">
-<div class="cell-output cell-output-display" data-execution_count="82">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header" style="text-align: right;">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">origin</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">month</th>
-<th data-quarto-table-cell-role="th">day</th>
-<th data-quarto-table-cell-role="th">hour</th>
-<th data-quarto-table-cell-role="th">temp</th>
-<th data-quarto-table-cell-role="th">dewp</th>
-<th data-quarto-table-cell-role="th">humid</th>
-<th data-quarto-table-cell-role="th">wind_dir</th>
-<th data-quarto-table-cell-role="th">wind_speed</th>
-<th data-quarto-table-cell-role="th">wind_gust</th>
-<th data-quarto-table-cell-role="th">precip</th>
-<th data-quarto-table-cell-role="th">pressure</th>
-<th data-quarto-table-cell-role="th">visib</th>
-<th data-quarto-table-cell-role="th">time_hour</th>
-<th data-quarto-table-cell-role="th">dewp_group</th>
-<th data-quarto-table-cell-role="th">humid_group</th>
-<th data-quarto-table-cell-role="th">visib_group</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>EWR</td>
-<td>2013</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>39.02</td>
-<td>26.06</td>
-<td>59.37</td>
-<td>270.0</td>
-<td>10.35702</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1012.0</td>
-<td>10.0</td>
-<td>2013-01-01T06:00:00Z</td>
-<td>0</td>
-<td>60</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>EWR</td>
-<td>2013</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>39.02</td>
-<td>26.96</td>
-<td>61.63</td>
-<td>250.0</td>
-<td>8.05546</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1012.3</td>
-<td>10.0</td>
-<td>2013-01-01T07:00:00Z</td>
-<td>0</td>
-<td>80</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>EWR</td>
-<td>2013</td>
-<td>1</td>
-<td>1</td>
-<td>3</td>
-<td>39.02</td>
-<td>28.04</td>
-<td>64.43</td>
-<td>240.0</td>
-<td>11.50780</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1012.5</td>
-<td>10.0</td>
-<td>2013-01-01T08:00:00Z</td>
-<td>0</td>
-<td>80</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>EWR</td>
-<td>2013</td>
-<td>1</td>
-<td>1</td>
-<td>4</td>
-<td>39.92</td>
-<td>28.04</td>
-<td>62.21</td>
-<td>250.0</td>
-<td>12.65858</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1012.2</td>
-<td>10.0</td>
-<td>2013-01-01T09:00:00Z</td>
-<td>0</td>
-<td>80</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>EWR</td>
-<td>2013</td>
-<td>1</td>
-<td>1</td>
-<td>5</td>
-<td>39.02</td>
-<td>28.04</td>
-<td>64.43</td>
-<td>260.0</td>
-<td>12.65858</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1011.9</td>
-<td>10.0</td>
-<td>2013-01-01T10:00:00Z</td>
-<td>0</td>
-<td>80</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">26110</td>
-<td>LGA</td>
-<td>2013</td>
-<td>12</td>
-<td>30</td>
-<td>14</td>
-<td>35.96</td>
-<td>19.94</td>
-<td>51.78</td>
-<td>340.0</td>
-<td>13.80936</td>
-<td>21.86482</td>
-<td>0.0</td>
-<td>1017.1</td>
-<td>10.0</td>
-<td>2013-12-30T19:00:00Z</td>
-<td>0</td>
-<td>60</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">26111</td>
-<td>LGA</td>
-<td>2013</td>
-<td>12</td>
-<td>30</td>
-<td>15</td>
-<td>33.98</td>
-<td>17.06</td>
-<td>49.51</td>
-<td>330.0</td>
-<td>17.26170</td>
-<td>21.86482</td>
-<td>0.0</td>
-<td>1018.8</td>
-<td>10.0</td>
-<td>2013-12-30T20:00:00Z</td>
-<td>0</td>
-<td>60</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">26112</td>
-<td>LGA</td>
-<td>2013</td>
-<td>12</td>
-<td>30</td>
-<td>16</td>
-<td>32.00</td>
-<td>15.08</td>
-<td>49.19</td>
-<td>340.0</td>
-<td>14.96014</td>
-<td>23.01560</td>
-<td>0.0</td>
-<td>1019.5</td>
-<td>10.0</td>
-<td>2013-12-30T21:00:00Z</td>
-<td>0</td>
-<td>60</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">26113</td>
-<td>LGA</td>
-<td>2013</td>
-<td>12</td>
-<td>30</td>
-<td>17</td>
-<td>30.92</td>
-<td>12.92</td>
-<td>46.74</td>
-<td>320.0</td>
-<td>17.26170</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1019.9</td>
-<td>10.0</td>
-<td>2013-12-30T22:00:00Z</td>
-<td>0</td>
-<td>60</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">26114</td>
-<td>LGA</td>
-<td>2013</td>
-<td>12</td>
-<td>30</td>
-<td>18</td>
-<td>28.94</td>
-<td>10.94</td>
-<td>46.41</td>
-<td>330.0</td>
-<td>18.41248</td>
-<td>NaN</td>
-<td>0.0</td>
-<td>1020.9</td>
-<td>10.0</td>
-<td>2013-12-30T23:00:00Z</td>
-<td>0</td>
-<td>60</td>
-<td>10</td>
-</tr>
-</tbody>
-</table>
-
-<p>26115 rows × 18 columns</p>
-</div>
-</div>
 </div><div class="column" style="width:60%;">
-<div id="ca77b777" class="cell" data-execution_count="36">
+<div id="3978fdf3" class="cell" data-execution_count="37">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-37-output-1.png" width="565" height="373"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-38-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
@@ -1590,14 +1287,14 @@ TEAM EE
 <li>이슬점이 너무 낮아도 활주로에 서리나 얼음이 생길 수 있어 제설 작업 등으로 항공기 운항이 지연될 가능성이 있다.</li>
 </ul>
 </section>
-<section id="section" class="slide level2 scrollable">
+<section id="section-4" class="slide level2 scrollable">
 <h2></h2>
 <h3 id="dew-point이슬점-humid습도">Dew Point(이슬점)/ Humid(습도)</h3>
 <h3 id="visible-distance가시거리">/Visible Distance(가시거리)</h3>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br></p>
-<div id="23376761" class="cell" data-execution_count="37">
+<div id="19c7ae53" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="co"># 화씨 섭씨로 변환 후,</span></span>
 <span id="cb13-2"><a href=""></a><span class="co"># 이슬점 구간 나누는 함수</span></span>
 <span id="cb13-3"><a href=""></a><span class="kw">def</span> categorize_dewp(d):</span>
@@ -1610,7 +1307,7 @@ TEAM EE
 <span id="cb13-10"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br> <br></p>
-<div id="18120968" class="cell" data-execution_count="38">
+<div id="b93c09e9" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="co"># 습도 범위 나누는 함수 정의</span></span>
 <span id="cb14-2"><a href=""></a><span class="kw">def</span> categorize_humid(h):</span>
 <span id="cb14-3"><a href=""></a>    <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
@@ -1620,7 +1317,7 @@ TEAM EE
 <span id="cb14-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br> <br> <br> <br> <br></p>
-<div id="62993e62" class="cell" data-execution_count="39">
+<div id="df5c2d76" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a><span class="co"># 가시거리 범위 나누는 함수 정의</span></span>
 <span id="cb15-2"><a href=""></a><span class="kw">def</span> categorize_visib(v):</span>
 <span id="cb15-3"><a href=""></a>    <span class="cf">if</span> v <span class="op">&lt;=</span> <span class="dv">2</span>: <span class="cf">return</span> <span class="dv">2</span></span>
@@ -1629,17 +1326,7 @@ TEAM EE
 <span id="cb15-6"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:60%;">
-<div id="52eefb73" class="cell" data-execution_count="43">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-44-output-1.png" width="565" height="373"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><small>- 이슬점이 너무 낮거나 높으면 항공기 운항이 지연되는 경향이 보인다.</small></p>
-<div id="1158a539" class="cell" data-execution_count="44">
+<div id="7692368c" class="cell" data-execution_count="44">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1648,8 +1335,8 @@ TEAM EE
 </div>
 </div>
 </div>
-<p><small>- 습도가 너무 높으면 항공기 운항이 지연되는 경향이 있다.</small></p>
-<div id="3c5c1a73" class="cell" data-execution_count="45">
+<p><small>- 이슬점이 너무 낮거나 높으면 항공기 운항이 지연되는 경향이 보인다.</small></p>
+<div id="34372c74" class="cell" data-execution_count="45">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1658,43 +1345,84 @@ TEAM EE
 </div>
 </div>
 </div>
+<p><small>- 습도가 너무 높으면 항공기 운항이 지연되는 경향이 있다.</small></p>
+<div id="fae93797" class="cell" data-execution_count="46">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-47-output-1.png" width="565" height="373"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><small>- 가시거리가 짧을 수록 항공기 운항이 지연되는 경향이 있다.</small></p>
 </div></div>
 </section>
-<section id="wind_speed" class="slide level2">
-<h2>wind_speed</h2>
-<div id="5df5dc7b" class="cell" data-execution_count="46">
+<section id="section-5" class="slide level2 scrollable">
+<h2></h2>
+<h3 id="wind_speed풍속precip강수량">Wind_speed(풍속)/Precip(강수량)</h3>
+<h3 id="pressure기압">/Pressure(기압)</h3>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<div id="155081df" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a><span class="co"># 풍속 구간 나누는 함수</span></span>
+<span id="cb16-2"><a href=""></a><span class="kw">def</span> categorize_wind_speed(ws):</span>
+<span id="cb16-3"><a href=""></a>    <span class="cf">if</span> ws <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb16-4"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
+<span id="cb16-5"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
+<span id="cb16-6"><a href=""></a>    <span class="cf">elif</span> ws <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb16-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br> <br> <br> <br></p>
+<div id="dcbdb5e0" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="co"># 강수량 범위 나누는 함수 정의</span></span>
+<span id="cb17-2"><a href=""></a><span class="kw">def</span> categorize_precip(precip):</span>
+<span id="cb17-3"><a href=""></a>    <span class="cf">if</span> precip <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="st">"sunny"</span></span>
+<span id="cb17-4"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">"rainy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<div id="24eb4bf0" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="co"># 기압 범위 나누는 함수 정의</span></span>
+<span id="cb18-2"><a href=""></a><span class="kw">def</span> categorize_pressure(p):</span>
+<span id="cb18-3"><a href=""></a>    <span class="cf">if</span> p <span class="op">&lt;=</span> <span class="dv">1000</span>: <span class="cf">return</span> <span class="dv">1000</span></span>
+<span id="cb18-4"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1010</span>: <span class="cf">return</span> <span class="dv">1010</span></span>
+<span id="cb18-5"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1020</span>: <span class="cf">return</span> <span class="dv">1020</span></span>
+<span id="cb18-6"><a href=""></a>    <span class="cf">elif</span> p <span class="op">&lt;=</span> <span class="dv">1030</span>: <span class="cf">return</span> <span class="dv">1030</span></span>
+<span id="cb18-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">1040</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div id="8879d00e" class="cell" data-execution_count="53">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-47-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-54-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="precip" class="slide level2">
-<h2>precip</h2>
-<div id="89adc08f" class="cell" data-execution_count="47">
+<p><small> - 풍속이 빠를수록 항공기 운항이 지연되는 경향이 보인다.</small></p>
+<div id="11b3c609" class="cell" data-execution_count="54">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-48-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-55-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="pressure" class="slide level2">
-<h2>pressure</h2>
-<div id="fb439a23" class="cell" data-execution_count="48">
+<p><small> - 강수량이 있으면 항공기 운항이 지연되는 경향이 있다.</small></p>
+<div id="e413c972" class="cell" data-execution_count="55">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-49-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-56-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
+</div>
+<p><small> - 기압이 너무 낮거나 높으면 항공기 운항이 지연되는 경향이 보인다. </small></p>
+</div><p><small> -(고기압은 일반적으로 맑고 안정적인 날씨를 제공하지만, 고기압 지역에서는 기온이 상승 가능성에 따라 고도가 높은 공항에서의 이륙 지연이 발생할 수 있다.)</small></p>
 </div>
 </section></section>
 <section>
@@ -1704,14 +1432,18 @@ TEAM EE
 </section>
 <section id="conclusion-1" class="slide level2">
 <h2>Conclusion</h2>
+<h4 id="비행시간airtime과-좌석수seats">비행시간(airtime)과 좌석수(seats)</h4>
 <ul>
-<li>airtime이 길어질 수록 시트 수가 많다. 즉 이동한다.</li>
+<li>비행 시간이 길어질 수록 좌석 수가 많다.</li>
 </ul>
 <h4 id="날씨weather와-지연시간delay">날씨(weather)와 지연시간(delay)</h4>
-<p>날씨가 악화될수록 항공기 운행이 지연될 가능성이 높아진다. 특히, <strong>저온, 높은 습도, 극단적인 이슬점, 짧은 가시거리</strong>와 같은 조건이 결합될 경우 지연 확률이 더욱 증가할 것으로 예상된다.</p>
+<ul>
+<li><p>날씨가 악화될수록 항공기 운행이 지연될 가능성이 높아진다. 특히, <strong>저온, 높은 습도, 극단적인 이슬점, 짧은 가시거리</strong>와 같은 조건이 결합될 경우 지연 확률이 더욱 증가할 것으로 예상된다.</p></li>
+<li><p>추가로, <strong>강한 풍속, 강수량, 극단적인 기압 변화</strong>와 같은 조건이 결합될 경우에도 항공기 운항의 지연 확률이 올라갈 수밖에 없다.</p></li>
+</ul>
 </section></section>
-<section id="qa" class="title-slide slide level1 center" data-background-image="./static/images/airport.gif" data-background-opacity="0.3">
-<h1>Q&amp;A</h1>
+<section id="thank-you" class="title-slide slide level1 center" data-background-image="./static/images/airport.gif" data-background-opacity="0.3">
+<h1>Thank You</h1>
 
 </section>
     </div>
@@ -1883,7 +1615,7 @@ TEAM EE
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
+        backgroundTransition: 'fade',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,
