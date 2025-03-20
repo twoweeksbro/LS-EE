@@ -33,6 +33,9 @@ import numpy as np
 import pandas as pd 
 from nycflights13 import flights, planes, weather
 import matplotlib.pyplot as plt
+import seaborn as sns
+viridis_cmap = sns.color_palette("viridis", as_cmap=True)
+
 ```
 
 ::: {.panel-tabset}
@@ -115,12 +118,14 @@ import matplotlib.pyplot as plt
 
 
 
-## 우리의 주제
-#### flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
-#### delay(arr_delay, dep_delay)는 어떨 때 많이 생길까?
-##### delay가 특별히 긴 model이 존재할까?
-##### 비행기 제조년도 별 지연시간 확인.
-##### month 와 delay 확인.
+## Subject
+<br>
+
+### 지연시간(arr_delay, dep_delay)과 날씨(weather) 간 상관관계 분석
+
+<br>
+
+### flights(airtime)과 planes(seats)은 무슨 관계일까?
 
 
 
@@ -131,24 +136,45 @@ import matplotlib.pyplot as plt
 ::: {.column width="50%"}
 ```{python}
 ## 'dep_delay' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(flights['dep_delay'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
-plt.xlabel("dep_delay")
+plt.figure(figsize=(6,4))
+sns.histplot(flights['dep_delay'], 
+             bins=20, 
+             kde=True, 
+             color=sns.color_palette("viridis", as_cmap=True)(0.7), 
+             edgecolor='black', 
+             alpha=0.7)
+plt.ylim(0, 280000)
+# plt.hist(flights['dep_delay'], 
+#          bins=20, 
+#          edgecolor='black', 
+#          alpha=0.7) 
+
+plt.xlabel("Departure Delay (dep_delay)")
 plt.ylabel("Frequency")
+plt.title("Histogram of Departure Delays")
 plt.show()
 
 
 ## 'arr_delay' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(flights['arr_delay'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
-plt.xlabel("arr_delay")
+plt.figure(figsize=(6,4))
+sns.histplot(flights['arr_delay'], 
+             bins=20, 
+             kde=True, 
+             color=sns.color_palette("viridis", as_cmap=True)(0.7), 
+             edgecolor='black', 
+             alpha=0.7)
+
+   
+# plt.hist(flights['arr_delay'], 
+#          bins=20, 
+#          edgecolor='black', 
+#          alpha=0.7) 
+
+plt.ylim(0, 250000)
+
+plt.xlabel("Arrival Delay (arr_delay)")
 plt.ylabel("Frequency")
+plt.title("Histogram of Arrival Delays")
 plt.show()
 
 ```
@@ -198,17 +224,20 @@ plt.show()
 
 
 ## 데이터 확인 {.scrollable}
-### weahter(wind_speed) 풍속에 이상치가 있다!
+#### weahter(wind_speed) 풍속에 이상치가 있다!
 :::: {.columns}
 
 ::: {.column width="50%"}
 ```{python}
 ## 'wind_speed' 히스토그램
 plt.figure(figsize=(6,4))       
-plt.hist(weather['wind_speed'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
+# plt.hist(weather['wind_speed'], 
+#          bins=20, 
+#          edgecolor='black', 
+#          alpha=0.7) 
+sns.histplot(weather['wind_speed'], 
+            bins=20, color =viridis_cmap(0.7))  # kde=True는 커널 밀도 추정 추가
+
 plt.xlabel("wind_speed")
 plt.ylabel("Frequency")
 plt.show()
@@ -310,68 +339,98 @@ planes_df = planes_df.drop(columns=['speed'])
 weather_df = weather_df.drop(columns=['wind_dir','wind_gust'])
 ```
 
-## 결측치
-
+## 결측치 {.scrollable}
 #### 결측치 확인
 
-```{python}
-#| echo: True
+::: {.panel-tabset}
+
+##### flights
+```{.python}
 flights_df.isna().sum()
-planes_df.isna().sum() 
-weather_df.isna().sum()
+len(flights_df)     # 327346
+
+```
+| Column           | Missing Count|
+|------------------|--------------|
+| dep_time         | 8255         |
+| dep_delay        | 8255         |
+| arr_time         | 8713         |
+| arr_delay        | 9430         |
+| tailnum          | 2512         |
+| air_time         | 9430         |
+| month            | 0            |
+| day              | 0            |
+| sched_dep_time   | 0            |
+| sched_arr_time   | 0            |
+| carrier          | 0            |
+| flight           | 0            |
+| origin           | 0            |
+| dest             | 0            |
+| distance         | 0            |
+| hour             | 0            |
+| minute           | 0            |
+| time_hour        | 0            |
+
+
+
+
+
+##### planes
+
+```{.python}
+planes_df.isna().sum()
+len(planes_df)      # 3252
 
 ```
 
-
-|----------------|--------------|
-| month          | 0            |
-| day            | 0            |
-| dep_time       | 8255         |
-| sched_dep_time | 0            |
-| dep_delay      | 8255         |
-| arr_time       | 8713         |
-| sched_arr_time | 0            |
-| arr_delay      | 9430         |
-| carrier        | 0            |
-| flight         | 0            |
-| tailnum        | 2512         |
-| origin         | 0            |
-| dest           | 0            |
-| air_time       | 9430         |
-| distance       | 0            |
-| hour           | 0            |
-| minute         | 0            |
-| time_hour      | 0            |
-|----------------|--------------|
-
-
+| Column       | Missing Count|
 |--------------|--------------|
-| tailnum      | 0            |
 | year         | 70           |
+| tailnum      | 0            |
 | type         | 0            |
 | manufacturer | 0            |
 | model        | 0            |
 | engines      | 0            |
 | seats        | 0            |
 | engine       | 0            |
-|----------------|--------------|
 
 
-|------------|--------------|
-| origin     | 0            |
-| year       | 0            |
-| month      | 0            |
-| day        | 0            |
-| hour       | 0            |
-| temp       | 1            |
-| dewp       | 1            |
-| humid      | 1            |
-| wind_speed | 4            |
-| precip     | 0            |
-| pressure   | 2729         |
-| visib      | 0            |
-| time_hour  | 0            |
-|------------|--------------|
+
+
+##### weather
+
+```{.python} 
+weather_df.isna().sum()
+len(weather)        # 26116
+```
+
+| Column       | Missing Count|
+| -------------| -------------|
+| pressure     | 2729         |
+| wind_speed   | 4            |
+| temp         | 1            |
+| dewp         | 1            |
+| humid        | 1            |
+| origin       | 0            |
+| year         | 0            |
+| month        | 0            |
+| day          | 0            |
+| hour         | 0            |
+| precip       | 0            |
+| visib        | 0            |
+| time_hour    | 0            |
+
+
+
+
+:::
+
+
+
+
+
+<br>
+<br>
 
 
 #### 결측치 처리
@@ -384,12 +443,13 @@ weather_df = weather_df.dropna()
 
 ```
 
+<br>
 
 
 
 
-
-## merge: planes_df와 flights_df를 tailnum으로 left join
+## merge
+#### planes_df와 flights_df를 tailnum으로 left join
 
 ```{python}
 #| echo: True
@@ -398,8 +458,11 @@ merged_df = pd.merge(planes_df, flights_df, on='tailnum', how='left')
 
 ```
 
+<br>
+<br>
 
-### flights(arr_delay, dep_delay)과 weather(wind_speed) 에 대해 전처리 함수 적용
+
+#### flights(arr_delay, dep_delay)과 weather(wind_speed) 에 대해 전처리 함수 적용
 
 ```{python}
 #| echo: True
@@ -419,6 +482,7 @@ merged_df_f['delay'] = merged_df_f['arr_delay'] + merged_df_f['dep_delay']
 
 ```
 
+<br>
 
 이상치가 있는 칼럼 flight(arr_delay), flight(dep_delay), weather(wind_speed)에 대해 전처리를 진행했습니다.
 IQR을 이용하여 lower boundary를 Q1-(IQR * 1.5)로 설정하고 upper boundary를 Q3+(IQR * 1.5)로 설정했습니다.
@@ -434,35 +498,26 @@ IQR을 이용하여 lower boundary를 Q1-(IQR * 1.5)로 설정하고 upper bound
 
 ```{python}
 ## 'dep_delay' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(flights['dep_delay'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
+plt.figure(figsize=(5,3))       
+# plt.hist(flights['dep_delay'], bins=20, edgecolor='black', alpha=0.7) 
+sns.histplot(flights['dep_delay'], bins=20, color=viridis_cmap(0.3) )
+
 plt.xlabel("dep_delay")
 plt.ylabel("Frequency")
 plt.show()
 
 
 ## 'arr_delay' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(flights['arr_delay'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
+plt.figure(figsize=(5,3))     
+# plt.hist(flights['arr_delay'], bins=20, edgecolor='black')  
+sns.histplot(flights['arr_delay'], bins=20,  color=viridis_cmap(0.5))
+
+
 plt.xlabel("arr_delay")
 plt.ylabel("Frequency")
 plt.show()
 
-## 'wind_speed' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(weather['wind_speed'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
-plt.xlabel("wind_speed")
-plt.ylabel("Frequency")
-plt.show()
+
 
 
 ```
@@ -473,35 +528,23 @@ plt.show()
 ::: {.column width="50%"}
 ```{python}
 ## 'dep_delay' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(merged_df_f['dep_delay'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
+plt.figure(figsize=(5,3))       
+
+sns.histplot(merged_df_f['dep_delay'], bins=20, kde=True, color=viridis_cmap(0.3))
 plt.xlabel("dep_delay")
 plt.ylabel("Frequency")
 plt.show()
 
 
 ## 'arr_delay' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(merged_df_f['arr_delay'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
+plt.figure(figsize=(5,3))       
+sns.histplot(merged_df_f['arr_delay'], bins=20, kde=True, color=viridis_cmap(0.5))
+
 plt.xlabel("arr_delay")
 plt.ylabel("Frequency")
 plt.show()
 
-## 'wind_speed' 히스토그램
-plt.figure(figsize=(6,4))       
-plt.hist(weather_df_f['wind_speed'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
-plt.xlabel("wind_speed")
-plt.ylabel("Frequency")
-plt.show()
+
 
 ```
 :::
@@ -519,11 +562,11 @@ plt.show()
 weather_df = weather.copy()
 weather_df = PreProcessing(weather_df, ['wind_speed'])
 
+## 'wind_speed' 히스토그램
 plt.figure(figsize=(6,4))       
-plt.hist(weather_df['wind_speed'], 
-         bins=20, 
-         edgecolor='black', 
-         alpha=0.7) 
+# plt.hist(weather['wind_speed'], bins=20, edgecolor='black', alpha=0.7) 
+sns.histplot(weather['wind_speed'], bins=20,  color=viridis_cmap(0.7))
+
 plt.xlabel("wind_speed")
 plt.ylabel("Frequency")
 plt.show()
@@ -535,19 +578,16 @@ plt.show()
 ::: {.column width="50%"}
 
 ```{python}
-# weather_df['wind_speed'].describe()
+## 'wind_speed' 히스토그램
+plt.figure(figsize=(6,4))       
+sns.histplot(weather_df_f['wind_speed'], bins=20, kde=True, color=viridis_cmap(0.7))
+
+plt.xlabel("wind_speed")
+plt.ylabel("Frequency")
+plt.show()
 ```
 
-| Statistic | Value         |
-|-----------|--------------|
-| count     | 25,531.000000 |
-| mean      | 10.104561     |
-| std       | 5.087477      |
-| min       | 0.000000      |
-| 25%       | 6.904680      |
-| 50%       | 9.206240      |
-| 75%       | 13.809360     |
-| max       | 23.015600     |
+
 
 
 :::
@@ -558,6 +598,7 @@ plt.show()
 ```{python}
 
 merged_df_f = merged_df_f.loc[(merged_df_f['arr_delay']> 0) |  (merged_df_f['dep_delay']> 0),:]
+
 ```
 
 
@@ -624,7 +665,7 @@ plt.show()
 
 # flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
 
-## 비행시간과 좌석수 상관계수의 관계
+## 비행시간과 좌석수 상관계수의 관계 {.scrollable}
 
 ### flights(air_time)-planes(seats)
 - +0.54의 상관계수를 갖는다. => 비교적 강한 상관계수를 가진다.
@@ -641,28 +682,28 @@ plt.show()
 ## air_time-seats의 관계 {.scrollable}
 비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드
 ```{python}
-plt.figure(figsize=(10, 10))
-sns.scatterplot(
-    x=merged_df["air_time"],
-    y=merged_df["seats"],
-    hue=merged_df["model"],
-    sizes=(30, 200),
-    palette="Set2",
-    alpha=0.5,
-    data=merged_df,
-)
+# plt.figure(figsize=(10, 10))
+# sns.scatterplot(
+#     x=merged_df["air_time"],
+#     y=merged_df["seats"],
+#     hue=merged_df["model"],
+#     sizes=(30, 200),
+#     palette="Set2",
+#     alpha=0.5,
+#     data=merged_df,
+# )
 
-sns.regplot(
-    x=merged_df["air_time"],
-    y=merged_df["seats"],
-    scatter=False,
-    color="red",
-)
+# sns.regplot(
+#     x=merged_df["air_time"],
+#     y=merged_df["seats"],
+#     scatter=False,
+#     color="red",
+# )
 
-plt.xlabel("air_time")
-plt.ylabel("seats")
-plt.title("Scatter Plot")
-plt.show()
+# plt.xlabel("air_time")
+# plt.ylabel("seats")
+# plt.title("Scatter Plot")
+# plt.show()
 ```
 
 - seats 변수는 대부분 100~200 사이에 집중
@@ -675,30 +716,30 @@ plt.show()
 ## flights(distance)-flights(seats)의 관계 {.scrollable}
 비행거리와 좌석 수의 관계 시각화 코드
 ```{python}
-import seaborn as sns
+# import seaborn as sns
 
-plt.figure(figsize=(10, 10))
-sns.scatterplot(
-    x=merged_df["distance"],
-    y=merged_df["seats"],
-    sizes=(30, 200),
-    palette="Set2",
-    alpha=0.5,
-    data=merged_df,
-)
+# plt.figure(figsize=(10, 10))
+# sns.scatterplot(
+#     x=merged_df["distance"],
+#     y=merged_df["seats"],
+#     sizes=(30, 200),
+#     palette="Set2",
+#     alpha=0.5,
+#     data=merged_df,
+# )
 
-# Regression line (correlation line)
-sns.regplot(
-    x=merged_df["air_time"],
-    y=merged_df["seats"],
-    scatter=False,
-    color="orange",
-)
+# # Regression line (correlation line)
+# sns.regplot(
+#     x=merged_df["air_time"],
+#     y=merged_df["seats"],
+#     scatter=False,
+#     color="orange",
+# )
 
-plt.xlabel("air_time")
-plt.ylabel("seats")
-plt.title("Scatter Plot")
-plt.show()
+# plt.xlabel("air_time")
+# plt.ylabel("seats")
+# plt.title("Scatter Plot")
+# plt.show()
 ```
 
 
