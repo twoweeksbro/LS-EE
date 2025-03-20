@@ -443,6 +443,37 @@ plt.show()
 
 ## air_time-seats의 관계 {.scrollable}
 비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드
+
+```{python}
+
+# 모델 그룹화 기준
+grouped = {'717': [], '737': [], '757': [], '767': [], '777': [], '787': [],
+           'A319': [], 'A320': [], 'A321': [], 'A330': [], 'A340': [],
+           'EMB': [], 'ERJ': [], 'CL': [], 'MD': [], 'DC': [], 'PA': [], 'FALCON': [], 'etc': []}
+
+# 항공기 모델별 그룹 할당
+group_mapping = {}
+
+# flights['model']을 기준으로 그룹화
+for model in merged_df_f['model']:
+    assigned_group = "etc"  # 기본 그룹 설정
+    for group in grouped:
+        if model.startswith(group):  # 특정 그룹으로 분류
+            assigned_group = group
+            break
+    group_mapping[model] = assigned_group
+
+# 데이터프레임 생성
+model_df = pd.DataFrame({'Model': merged_df_f['model'], 'Group': merged_df_f['model'].map(group_mapping)})
+
+#전처리한 데이터셋에 모델 그룹화한 칼럼 추가하기
+merged_df_f['group']=model_df['Group']
+
+#모델별 count 
+merged_df_f['group'].value_counts()
+
+```
+
 ```{python}
 plt.figure(figsize=(10, 10))
 sns.scatterplot(
@@ -456,8 +487,8 @@ sns.scatterplot(
 )
 
 sns.regplot(
-    x=merged_df["air_time"],
-    y=merged_df["seats"],
+    x=merged_df_f["air_time"],
+    y=merged_df_f["seats"],
     scatter=False,
     color="red",
 )
@@ -521,32 +552,6 @@ plt.show()
 
 ```{python}
 
-# 모델 그룹화 기준
-grouped = {'717': [], '737': [], '757': [], '767': [], '777': [], '787': [],
-           'A319': [], 'A320': [], 'A321': [], 'A330': [], 'A340': [],
-           'EMB': [], 'ERJ': [], 'CL': [], 'MD': [], 'DC': [], 'PA': [], 'FALCON': [], 'etc': []}
-
-# 항공기 모델별 그룹 할당
-group_mapping = {}
-
-# flights['model']을 기준으로 그룹화
-for model in merged_df_f['model']:
-    assigned_group = "etc"  # 기본 그룹 설정
-    for group in grouped:
-        if model.startswith(group):  # 특정 그룹으로 분류
-            assigned_group = group
-            break
-    group_mapping[model] = assigned_group
-
-# 데이터프레임 생성
-model_df = pd.DataFrame({'Model': merged_df_f['model'], 'Group': merged_df_f['model'].map(group_mapping)})
-
-#전처리한 데이터셋에 모델 그룹화한 칼럼 추가하기
-merged_df_f['group']=model_df['Group']
-
-#모델별 count 
-merged_df_f['group'].value_counts()
-
 model_delay=merged_df_f.groupby('group')['delay'].mean().sort_values()
 
 #시각화
@@ -564,6 +569,7 @@ plt.show()
 
 
 # 지연시간에 날씨도 당연히 영향을 미치지 않을까?
+
 ## 우선 화씨를 섭씨로 변환해봅시다!
 
 ### 화씨를 섭씨로 변환
@@ -583,9 +589,25 @@ weather["dewp_c"] = weather["dewp"].apply(F_to_C)
 ```
 
 
-## temperature
+
+
+---
+
+
+
+## Temperature(기온)
+
+
+::::: {.columns}
+
+::: {.column width="40%"}
+
 ```{python}
-# temp
+# | echo : True
+
+# 화씨 섭씨로 변환 후,
+# 구간 나누기
+
 def categorize_temp(t):
     t_c = F_to_C(t)
     if t_c <= 0: return 0
@@ -597,14 +619,22 @@ def categorize_temp(t):
     elif t_c <= 30: return 30
     else: return 40
 
+```
+:::
+
+```{python}
 weather["temp_group"] = weather["temp"].apply(categorize_temp)
 
 weather_mg=pd.merge(merged_df_f,weather,on=['origin','hour','month','day'],how='left')
 
 #groupby
 temp_delay=weather_mg.groupby('temp_group')['delay'].mean()
+```
 
-plt.figure(figsize=(12, 6))
+::: {.column width="60%"}
+```{python}
+
+plt.figure(figsize=(6, 4))
 sns.barplot(x=temp_delay.index,y=temp_delay.values,palette="viridis",ci=None)
 sns.light_palette("seagreen", as_cmap=True)
 plt.xlabel('Temperature(°C)')
@@ -613,14 +643,35 @@ plt.title('Average Delay by Temperature(°C)')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-
 ```
+:::
 
-## Dew point 
+:::::
 
+## Dew point(이슬점)
+
+이슬점과 비행기 지연의 관계
+
+![](dewp.png){height=200px}
+![](plane.png){height=200px}
+![](time.png){height=200px}
+
+
+
+- 이슬점이 낮다 --> 공기가 매우 건조하다
+- 이슬점이 낮다 --> 공기가 매우 건조하다
+
+
+
+---
+
+::::: {.columns}
+
+::: {.column width="40%"}
 ```{python}
-weather["dewp_c"] = weather["dewp"].apply(F_to_C)
-weather['dewp_c'].describe()
+# | echo : True
+# 화씨 섭씨로 변환 후,
+# 구간 나누는 함수 정의
 
 def categorize_dewp(d):
     d_c = F_to_C(d)
@@ -630,14 +681,22 @@ def categorize_dewp(d):
     elif d_c <= 15: return 15
     elif d_c <= 20: return 20
     else: return 25
+```
 
+:::
+
+```{python}
 weather["dewp_group"] = weather["dewp"].apply(categorize_dewp)
 
 weather_mg=pd.merge(merged_df_f,weather,on=['origin','hour','month','day'],how='left')
 
 dewp_delay=weather_mg.groupby('dewp_group')['delay'].mean()
+```
 
-plt.figure(figsize=(12, 6))
+::: {.column width="60%"}
+
+```{python}
+plt.figure(figsize=(6,4))
 sns.barplot(x=dewp_delay.index,y=dewp_delay.values,palette="viridis",ci=None)
 sns.light_palette("seagreen", as_cmap=True)
 plt.xlabel('Dew point(°C)')
@@ -646,11 +705,23 @@ plt.title('Average Delay by Temperature(°C)')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-
 ```
 
+:::
+
+:::::
+
 ## humid
+
+::::: {.columns}
+
+::: {.column width="40%"}
+
+
 ```{python}
+# | echo : True
+
+# 범위 나누는 함수 정의
 def categorize_humid(h):
     if h <= 20: return 20
     elif h <= 40: return 40
@@ -658,13 +729,24 @@ def categorize_humid(h):
     elif h <= 80: return 80
     else: return 100
 
+```
+
+```{python}
+
 weather["humid_group"] = weather["humid"].apply(categorize_humid)
 
 weather_mg = pd.merge(merged_df_f, weather, on=['origin', 'hour', 'month', 'day'], how='left')
 
 humid_delay = weather_mg.groupby('humid_group')['delay'].mean()
 
-plt.figure(figsize=(12, 6))
+```
+
+:::
+
+::: {.column width="60%"}
+```{python}
+
+plt.figure(figsize=(6,4))
 sns.barplot(x=humid_delay.index, y=humid_delay.values, palette="viridis", ci=None)
 sns.light_palette("seagreen", as_cmap=True)
 plt.xlabel('Humidity (%)')
@@ -675,6 +757,10 @@ plt.tight_layout()
 plt.show()
 
 ```
+
+:::
+
+:::::
 
 ## wind_speed
 ```{python}

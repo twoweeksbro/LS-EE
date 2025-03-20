@@ -537,7 +537,7 @@ TEAM EE
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="9d1df7e7" class="cell" data-execution_count="5">
+<div id="acb5ae20" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -653,7 +653,7 @@ TEAM EE
 <h3 id="weahterwind_speed-풍속에-이상치가-있다">weahter(wind_speed) 풍속에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="0f7a8e39" class="cell" data-execution_count="8">
+<div id="0e0d7a96" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -717,7 +717,7 @@ TEAM EE
 </section>
 <section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 지연시간(delay) 히스토그램</h2>
-<div id="7b8e7e0e" class="cell" data-execution_count="11">
+<div id="885992ef" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -743,7 +743,7 @@ TEAM EE
 </section>
 <section id="전처리-후-weatherwind_speed-풍속-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 weather(wind_speed) 풍속 히스토그램</h2>
-<div id="3708a746" class="cell" data-execution_count="12">
+<div id="8c65b37d" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -755,7 +755,7 @@ TEAM EE
 </section>
 <section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
 <h2>month, day, hour 변수와 delay 간 시각화</h2>
-<div id="930369b0" class="cell" data-execution_count="14">
+<div id="519ba9bb" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -781,7 +781,7 @@ TEAM EE
 </section>
 <section id="전체-히트맵" class="slide level2">
 <h2>전체 히트맵</h2>
-<div id="409832ea" class="cell" data-execution_count="16">
+<div id="ba8e7c8f" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -814,11 +814,35 @@ TEAM EE
 <section id="air_time-seats의-관계" class="slide level2 scrollable">
 <h2>air_time-seats의 관계</h2>
 <p>비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드</p>
-<div id="39390860" class="cell" data-execution_count="17">
+<div id="b39a5ea4" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>group
+A320      47533
+737       39487
+EMB       27962
+CL        21539
+757       19355
+A319      18720
+ERJ       18642
+MD         8411
+767        5753
+A321       4947
+DC         3239
+717        2362
+etc        1723
+A330        293
+PA          135
+FALCON       93
+777           6
+787           6
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="39cadc21" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-18-output-1.png" width="816" height="2449"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="816" height="2449"></p>
 </figure>
 </div>
 </div>
@@ -834,11 +858,11 @@ TEAM EE
 <section id="flightsdistance-flightsseats의-관계" class="slide level2">
 <h2>flights(distance)-flights(seats)의 관계</h2>
 <p>비행거리와 좌석 수의 관계 시각화 코드</p>
-<div id="bd87d3ed" class="cell" data-execution_count="18">
+<div id="9af66b02" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="816" height="819"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="816" height="819"></p>
 </figure>
 </div>
 </div>
@@ -858,11 +882,11 @@ TEAM EE
 </section>
 <section id="model-vs-delay" class="slide level2">
 <h2>Model vs Delay</h2>
-<div id="5e019c2c" class="cell" data-execution_count="19">
+<div id="08d1e6c8" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
@@ -873,64 +897,121 @@ TEAM EE
 <h1>지연시간에 날씨도 당연히 영향을 미치지 않을까?</h1>
 
 </section>
-<section id="우선-화씨를-섭씨르-변환해봅시다." class="slide level2">
-<h2>우선 화씨를 섭씨르 변환해봅시다.</h2>
+<section id="우선-화씨를-섭씨로-변환해봅시다" class="slide level2">
+<h2>우선 화씨를 섭씨로 변환해봅시다!</h2>
 <h3 id="화씨를-섭씨로-변환">화씨를 섭씨로 변환</h3>
-<div id="257b242e" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">from</span> nycflights13 <span class="im">import</span> flights,planes,weather,airports,airlines</span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a><span class="co"># 화씨를 섭씨로 변환하는 함수</span></span>
-<span id="cb1-4"><a href=""></a><span class="kw">def</span> F_to_C(f):</span>
-<span id="cb1-5"><a href=""></a>    <span class="cf">return</span> (f <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span></span>
-<span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a><span class="co"># 변환 적용</span></span>
-<span id="cb1-8"><a href=""></a>weather[<span class="st">"temp_c"</span>] <span class="op">=</span> weather[<span class="st">"temp"</span>].<span class="bu">apply</span>(F_to_C)</span>
-<span id="cb1-9"><a href=""></a>weather[<span class="st">"dewp_c"</span>] <span class="op">=</span> weather[<span class="st">"dewp"</span>].<span class="bu">apply</span>(F_to_C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6abb9748" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="im">from</span> nycflights13 <span class="im">import</span> flights,planes,weather,airports,airlines</span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a><span class="co"># 화씨를 섭씨로 변환하는 함수</span></span>
+<span id="cb2-4"><a href=""></a><span class="kw">def</span> F_to_C(f):</span>
+<span id="cb2-5"><a href=""></a>    <span class="cf">return</span> (f <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span></span>
+<span id="cb2-6"><a href=""></a></span>
+<span id="cb2-7"><a href=""></a><span class="co"># 변환 적용</span></span>
+<span id="cb2-8"><a href=""></a>weather[<span class="st">"temp_c"</span>] <span class="op">=</span> weather[<span class="st">"temp"</span>].<span class="bu">apply</span>(F_to_C)</span>
+<span id="cb2-9"><a href=""></a>weather[<span class="st">"dewp_c"</span>] <span class="op">=</span> weather[<span class="st">"dewp"</span>].<span class="bu">apply</span>(F_to_C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="temperature" class="slide level2">
-<h2>temperature</h2>
-<div id="8852fd3e" class="cell" data-execution_count="21">
+<section id="temperature기온" class="slide level2">
+<h2>Temperature(기온)</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div id="840e0e08" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="co"># 화씨 섭씨로 변환 후,</span></span>
+<span id="cb3-2"><a href=""></a><span class="co"># 구간 나누기</span></span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a><span class="kw">def</span> categorize_temp(t):</span>
+<span id="cb3-5"><a href=""></a>    t_c <span class="op">=</span> F_to_C(t)</span>
+<span id="cb3-6"><a href=""></a>    <span class="cf">if</span> t_c <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb3-7"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb3-8"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
+<span id="cb3-9"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
+<span id="cb3-10"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb3-11"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="dv">25</span></span>
+<span id="cb3-12"><a href=""></a>    <span class="cf">elif</span> t_c <span class="op">&lt;=</span> <span class="dv">30</span>: <span class="cf">return</span> <span class="dv">30</span></span>
+<span id="cb3-13"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div id="2e9a7d59" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-22-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-25-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
 </div>
+</div></div>
 </section>
-<section id="dew-point" class="slide level2">
-<h2>Dew point</h2>
-<div id="aa844dba" class="cell" data-execution_count="22">
+<section id="dew-point이슬점" class="slide level2">
+<h2>Dew point(이슬점)</h2>
+<p>이슬점과 비행기 지연의 관계</p>
+<p><img data-src="plane.png" height="200"> <img data-src="time.png" height="200"> <img data-src="dewp.png" height="200"></p>
+<ul>
+<li>이슬점이 낮다 –&gt; 공기가 매우 건조하다</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:40%;">
+<div id="d6f58453" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="co"># 화씨 섭씨로 변환 후,</span></span>
+<span id="cb4-2"><a href=""></a><span class="co"># 구간 나누는 함수 정의</span></span>
+<span id="cb4-3"><a href=""></a></span>
+<span id="cb4-4"><a href=""></a><span class="kw">def</span> categorize_dewp(d):</span>
+<span id="cb4-5"><a href=""></a>    d_c <span class="op">=</span> F_to_C(d)</span>
+<span id="cb4-6"><a href=""></a>    <span class="cf">if</span> d_c <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb4-7"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">5</span>: <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb4-8"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">10</span>: <span class="cf">return</span> <span class="dv">10</span></span>
+<span id="cb4-9"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">15</span>: <span class="cf">return</span> <span class="dv">15</span></span>
+<span id="cb4-10"><a href=""></a>    <span class="cf">elif</span> d_c <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb4-11"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div id="6bf6ce05" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-28-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
 </div>
+</div></div>
 </section>
 <section id="humid" class="slide level2">
 <h2>humid</h2>
-<div id="63159111" class="cell" data-execution_count="23">
+<div class="columns">
+<div class="column" style="width:40%;">
+<div id="9d0a16cd" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="co"># 범위 나누는 함수 정의</span></span>
+<span id="cb5-2"><a href=""></a><span class="kw">def</span> categorize_humid(h):</span>
+<span id="cb5-3"><a href=""></a>    <span class="cf">if</span> h <span class="op">&lt;=</span> <span class="dv">20</span>: <span class="cf">return</span> <span class="dv">20</span></span>
+<span id="cb5-4"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">40</span>: <span class="cf">return</span> <span class="dv">40</span></span>
+<span id="cb5-5"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">60</span>: <span class="cf">return</span> <span class="dv">60</span></span>
+<span id="cb5-6"><a href=""></a>    <span class="cf">elif</span> h <span class="op">&lt;=</span> <span class="dv">80</span>: <span class="cf">return</span> <span class="dv">80</span></span>
+<span id="cb5-7"><a href=""></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div id="e39ea056" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-24-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-31-output-1.png" width="565" height="373"></p>
 </figure>
 </div>
 </div>
 </div>
+</div></div>
 </section>
 <section id="wind_speed" class="slide level2">
 <h2>wind_speed</h2>
-<div id="8317801f" class="cell" data-execution_count="24">
+<div id="b9b505df" class="cell" data-execution_count="31">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-25-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-32-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
@@ -938,8 +1019,8 @@ TEAM EE
 </section>
 <section id="precip" class="slide level2">
 <h2>precip</h2>
-<div id="c0fcde45" class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div id="dc795c34" class="cell" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>precip
 0.0    23881
 Name: count, dtype: int64</code></pre>
@@ -948,11 +1029,11 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="pressure" class="slide level2">
 <h2>pressure</h2>
-<div id="0dc19ae0" class="cell" data-execution_count="26">
+<div id="ed46c694" class="cell" data-execution_count="33">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-27-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-34-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
@@ -960,11 +1041,11 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="visib" class="slide level2">
 <h2>visib</h2>
-<div id="c36c1911" class="cell" data-execution_count="27">
+<div id="ea2a2d5e" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-28-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-35-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
