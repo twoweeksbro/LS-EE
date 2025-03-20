@@ -17,11 +17,12 @@ format:
 --- 
 
 
-# about TEAM
+# about TEAM {background-image=./static/images/airport.gif background-opacity=0.3}
 
 박수현 이주형 오윤지 조익현
 
-# NYC flights data 를 알아보자!
+# NYC flights data 를 알아보자! {background-image=./static/images/airport.gif background-opacity=0.3}
+
 
 
 
@@ -594,10 +595,14 @@ plt.show()
 
 ::::
 
+## delay가 양수인 데이터만 남김
 
+- arr_delay, dep_delay 가 음수로 된 값도 있다. 
+- 실제 지연 시간만 분석하기 위해 delay가 양수인 값만 취한다. 
 ```{python}
+#| echo: True
 
-merged_df_f = merged_df_f.loc[(merged_df_f['arr_delay']> 0) |  (merged_df_f['dep_delay']> 0),:]
+merged_df_f = merged_df_f.loc[(merged_df_f['arr_delay']> 0) | (merged_df_f['dep_delay']> 0),:]
 
 ```
 
@@ -662,100 +667,28 @@ plt.show()
 ```
 
 
-# flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
+# flights(airtime)과 planes(seats)간 관계성 {background-image=./static/images/airport.gif background-opacity=0.3}
 
-## 비행시간과 좌석수 상관계수의 관계 {.scrollable}
+## 비행시간과 좌석수 상관계수의 관계
 
 ### flights(air_time)-planes(seats)
 - +0.54의 상관계수를 갖는다. => 비교적 강한 상관계수를 가진다.
-- **seat(좌석수)**가 많은수록 **비행시간**이 길다.
-- 큰 비행기 일 수록 비행 시간이 길다.
+- **seat(좌석수)**가 많은수록 **비행시간**이 길 것이다.
+- 큰 비행기 일 수록 비행 시간이 길 것이다.
 
 ### flights(air_time)-flights(distance)
 - +0.52의 상관계수를 갖는다. => 비교적 강한 상관계수를 가진다.
-- **seat(좌석수)**가 많을수록 **목적지**까지의 거리가 길다.
-- 큰 비행기일수록 목적지까지의 거리가 길다.
+- **seat(좌석수)**가 많을수록 **목적지**까지의 거리가 길 것이다.
+- 큰 비행기일수록 목적지까지의 거리가 길 것이다.
 
-
+## air_time과 seats/distance 상관관계 시각화
 
 ## air_time-seats의 관계 {.scrollable}
 비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드
-```{python}
-# plt.figure(figsize=(10, 10))
-# sns.scatterplot(
-#     x=merged_df["air_time"],
-#     y=merged_df["seats"],
-#     hue=merged_df["model"],
-#     sizes=(30, 200),
-#     palette="Set2",
-#     alpha=0.5,
-#     data=merged_df,
-# )
 
-# sns.regplot(
-#     x=merged_df["air_time"],
-#     y=merged_df["seats"],
-#     scatter=False,
-#     color="red",
-# )
+:::: {.columns}
 
-# plt.xlabel("air_time")
-# plt.ylabel("seats")
-# plt.title("Scatter Plot")
-# plt.show()
-```
-
-- seats 변수는 대부분 100~200 사이에 집중
-- 대부분의 항공기가 중형 크기로 설계되었음
-- 좌석 수가 많을수록 비행 시간이 길어지는 경향이 관찰됨
-- 속도가 높은 항공기는 비행 시간이 짧거나 특정 좌석 수에 집중되어 있음
-- seats와 air_time: 상관계수 +0.52로, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있습니다.
-
-
-## flights(distance)-flights(seats)의 관계 {.scrollable}
-비행거리와 좌석 수의 관계 시각화 코드
-```{python}
-# import seaborn as sns
-
-# plt.figure(figsize=(10, 10))
-# sns.scatterplot(
-#     x=merged_df["distance"],
-#     y=merged_df["seats"],
-#     sizes=(30, 200),
-#     palette="Set2",
-#     alpha=0.5,
-#     data=merged_df,
-# )
-
-# # Regression line (correlation line)
-# sns.regplot(
-#     x=merged_df["air_time"],
-#     y=merged_df["seats"],
-#     scatter=False,
-#     color="orange",
-# )
-
-# plt.xlabel("air_time")
-# plt.ylabel("seats")
-# plt.title("Scatter Plot")
-# plt.show()
-```
-
-
-## 둘 사이의 관계
-- 비행기의 구조적인 측면
-멀리 가려면 연료가 많이 필요하다. 연료통이 큰 비행기가 필요하다. 큰 비행기는 좌석수가 많다.
-
-- 규모의 경제 측면
-같은 돈을 내더라도 사람 수가 많으면 멀리갈 수 있다. 
-
-
-
-<!-- # 지연시간(delay)과 관계가 있는 칼럼은 무엇인가? -->
-
-
-<!-- ## Model vs Delay  -->
-
+::: {.column width="60%"}
 ```{python}
 
 # 모델 그룹화 기준
@@ -787,21 +720,242 @@ merged_df_f['group'].value_counts()
 model_delay=merged_df_f.groupby('group')['delay'].mean().sort_values()
 
 #시각화
-plt.figure(figsize=(12, 6))
-sns.barplot(x=model_delay.index,y=model_delay.values,palette="viridis",ci=None)
-sns.light_palette("seagreen", as_cmap=True)
-plt.xlabel('Model')
-plt.ylabel('Average Delay (minutes)')
-plt.title('Average Delay by Model')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+# plt.figure(figsize=(12, 6))
+# sns.barplot(x=model_delay.index,y=model_delay.values,palette="viridis",ci=None)
+# sns.light_palette("seagreen", as_cmap=True)
+# plt.xlabel('Model')
+# plt.ylabel('Average Delay (minutes)')
+# plt.title('Average Delay by Model')
+# plt.xticks(rotation=45)
+# plt.tight_layout()
+# plt.show()
 
+```
+```{python}
+plt.figure(figsize=(10, 10))
+sns.scatterplot(
+    x=merged_df_f["air_time"],
+    y=merged_df_f["seats"],
+    hue=merged_df_f["group"],
+    sizes=(30, 200),
+    palette="Set2",
+    alpha=0.5,
+    data=merged_df,
+)
+
+sns.regplot(
+    x=merged_df_f["air_time"],
+    y=merged_df_f["seats"],
+    scatter=False,
+    color="red",
+)
+
+plt.xlabel("air_time")
+plt.ylabel("seats")
+plt.title("Scatter Plot")
+plt.show()
+```
+:::
+
+::: {.column width="40%"}
+1. 산점도에서 알 수 있는 것들
+- air_time(비행시간)과 seats(좌석 수)는 양의 상관관계임 (비행시간이 증가할 때마다 좌석 수도 증가하는 경향)
+- seats(좌석수) 변수는 대부분 100 ~ 200 사이에 집중
+- seats(좌석수)가 많을수록 air_time(비행 시간)이 길어지는 경향
+
+2. 결론 : 
+좌석 수가 많을수록 비행 시간이 길어지는 경향이 있음
+:::
+
+::::
+
+## 데이터를 그룹화 하여 특징 알아내기 {.scrollable}
+
+:::: {.columns}
+
+### 비행 시간 분포를 좌석 수 범주별로 시각화
+
+::: {.column width="70%"}
+```{python}
+seats_bins = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+seats_lebels = [
+    "0-50",
+    "50-100",
+    "100-150",
+    "150-200",
+    "200-250",
+    "250-300",
+    "300-350",
+    "350-400",
+    "400-450",
+    "450+",
+]
+
+merged_df_f["seats_category"] = pd.cut(
+    merged_df_f["seats"], bins=seats_bins, labels=seats_lebels, right=False
+)
+
+plt.figure(figsize=(12, 8))
+sns.histplot(
+    data=merged_df_f,
+    x="air_time",
+    hue="seats_category",
+    multiple="stack",
+    bins=20,
+    palette="hls",
+    alpha=0.7,
+)
+
+plt.xlabel("Air Time (minutes)")
+plt.ylabel("Frequency")
+plt.title("Histogram of Air Time Grouped by Seat Categories")
+
+plt.show()
+```
+
+:::
+
+::: {.column width="30%"}
+
+1. 좌석 수(개)별 범주 나눔
+- `0~150` (소형 항공기) : 비행시간이 짧은 구간(0~150)에 주로 분포
+- `150~250` (중형 항공기) : 비행시간이 100-150인 구간에 주로 분포
+- `250~350` (대형 항공기) : 비행시간이 짧은 구간에서는 작은 비율을 차지하다가 긴 구간에서 차지하는 비율이 서서히 증가하는 경향
+- `350~450+` (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행
+
+2. 결론
+소형 항공기일 수록 비행 시간에 영향을 많이 받음
+- 소형 항공기의 경우 운행 시 비행 시간에 많은 영향을 받음
+- 하지만 크기가 큰 항공기일 수록 오히려 비행 시간에 영향을 받지 않고 균등하게 분포하는 경향이 있음
+
+:::
+
+::::
+
+
+## flights(distance)-flights(seats)의 관계 {.scrollable}
+
+비행거리와 좌석 수의 관계 시각화 코드
+
+
+```{python}
+plt.figure(figsize=(10, 10))
+sns.scatterplot(
+    x=merged_df_f["distance"],
+    y=merged_df_f["seats"],
+    hue=merged_df_f["group"],
+    sizes=(30, 200),
+    palette="Set2",
+    alpha=0.5,
+    data=merged_df,
+)
+
+sns.regplot(
+    x=merged_df_f["distance"],
+    y=merged_df_f["seats"],
+    scatter=False,
+    color="red",
+)
+
+plt.xlabel("distance")
+plt.ylabel("seats")
+plt.title("Scatter Plot")
+plt.show()
 ```
 
 
 
-# 지연시간에 날씨도 당연히 영향을 미치지 않을까?
+## 데이터를 그룹화 하여 특징 알아내기 {.scrollable}
+
+:::: {.columns}
+
+### 비행 거리 분포를 좌석 수 범주별로 시각화 
+
+::: {.column width="70%"}
+```{python}
+plt.figure(figsize=(12, 8))
+sns.histplot(
+    data=merged_df_f,
+    x="distance",
+    hue="seats_category",
+    multiple="stack",
+    bins=20,
+    palette="hls",
+    alpha=0.7,
+)
+
+plt.xlabel("distance(miles)")
+plt.ylabel("Frequency")
+plt.title("Histogram of Distance Grouped by Seat Categories")
+
+plt.show()
+```
+
+:::
+
+::: {.column width="30%"}
+
+1. 좌석 수(개)별 범주 나눔
+- `0~150` (소형 항공기) : 비행거리가 짧은 구간(0~1000)에 주로 분포
+- `150~250` (중형 항공기) : 비행거리가 1000인 시점부터 전체 빈도 중 차지하는 비율 높아지는 것 관찰 가능
+- `250~350` (대형 항공기) : 비행거리 2500부터 운행 빈도가 증가
+- `350~450+` (초대형 항공기) : 시각화 자료로 확인 불가할 정도로 적은 수 운행
+
+2. 결론
+소형 항공기일 수록 비행 거리에 영향을 많이 받음 (주로 단거리 운행)
+- 소형 항공기의 경우 운행 시 비행거리에 많은 영향을 받음
+- 하지만 크기가 큰 항공기일 수록 오히려 비행 거리에 영향을 받지 않고 균등하게 분포하는 경향이 있음
+
+:::
+
+::::
+
+## 그룹화된 데이터에 대해 상관관계 시각화 {.scrollable}
+
+::::{.columns}
+
+:::{.column width="60%"}
+```{python}
+grouped_data = merged_df_f.groupby("seats_category").mean(numeric_only=True)[
+    ["seats", "air_time", "distance"]
+]
+correlation = grouped_data.corr()
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation, annot=True, cmap="YlGnBu", fmt=".2f")
+plt.title("Correlation Matrix")
+plt.show()
+```
+:::
+
+:::{.column width="40%"}
+1. 생성된 범주를 기준으로 그룹화된 데이터를 가지고 seats와 air_time 간의 상관관계를 계산해봄
+- air_time - seats : 0.52 (기존) > 0.82 (그룹화)
+- distance - seats : 0.54 (기존) > 0.83 (그룹화)
+2. 그룹화된 데이터의 상관관계는 기존 데이터보다 더 높은 상관관계를 가지는 것으로 보임
+:::
+::::
+
+
+## 둘 사이의 관계
+- 비행기의 구조적인 측면
+멀리 가려면 연료가 많이 필요하다. 연료통이 큰 비행기가 필요하다. 큰 비행기는 좌석수가 많다.
+
+- 규모의 경제 측면
+같은 돈을 내더라도 사람 수가 많으면 멀리갈 수 있다. 
+
+
+
+<!-- # 지연시간(delay)과 관계가 있는 칼럼은 무엇인가? -->
+
+
+<!-- ## Model vs Delay  -->
+
+
+
+
+
+# 지연시간에 날씨도 당연히 영향을 미치지 않을까? {background-image=./static/images/airport.gif background-opacity=0.3}
+
 
 ## 날씨 히트맵 {.scrollable}
 
@@ -844,8 +998,9 @@ def categorize_temp(t):
 ```
 :::
 
+
 ```{python}
-weather["temp_group"] = weather["temp"].apply(categorize_temp)
+weather_df_f["temp_group"] = weather_df_f["temp"].apply(categorize_temp)
 
 weather_mg=pd.merge(merged_df_f,weather_df_f,on=['origin','hour','month','day'],how='left')
 
@@ -1064,16 +1219,17 @@ def categorize_precip(precip):
 weather_mg["precip_group"] = weather_mg["precip"].apply(categorize_precip)
 
 precip_delay = weather_mg.groupby('precip_group')['delay'].mean()
+
+colors = ["lightgrey","yellowgreen"]  
 plt.figure(figsize=(12, 6))
-sns.barplot(x=precip_delay.index, y=precip_delay.values, palette="viridis", ci=None)
+sns.barplot(x=precip_delay.index, y=precip_delay.values, palette=colors, ci=None, width=0.4)
 sns.light_palette("seagreen", as_cmap=True)
-plt.xlabel('Wind Speed (km/h or m/s)')
+plt.xlabel('Precipitation (mm)')
 plt.ylabel('Average Delay (minutes)')
-plt.title('Average Delay by Wind Speed')
+plt.title('Average Delay by Precipitation (mm)')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-
 
 ```
 
@@ -1107,7 +1263,8 @@ plt.show()
 ```
 
 
-# 최종 결론
+# Conclusion {background-image=./static/images/airport.gif background-opacity=0.3}
+
 
 ## Conclusion
 
@@ -1118,3 +1275,6 @@ plt.show()
 
 날씨가 악화될수록 항공기 운행이 지연될 가능성이 높아진다. 
 특히, **저온, 높은 습도, 극단적인 이슬점, 짧은 가시거리**와 같은 조건이 결합될 경우 지연 확률이 더욱 증가할 것으로 예상된다.
+
+
+# Q&A {background-image=./static/images/airport.gif background-opacity=0.3}
