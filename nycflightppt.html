@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="nycflightppt_files/libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
   <link rel="stylesheet" href="./static/css/statple.css">
@@ -472,7 +537,7 @@ TEAM EE
 <h3 id="지연시간에-이상치가-있다">지연시간에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="b3f9ac21" class="cell" data-execution_count="5">
+<div id="9d1df7e7" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -588,7 +653,7 @@ TEAM EE
 <h3 id="weahterwind_speed-풍속에-이상치가-있다">weahter(wind_speed) 풍속에 이상치가 있다!</h3>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="3945485f" class="cell" data-execution_count="8">
+<div id="0f7a8e39" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -652,7 +717,7 @@ TEAM EE
 </section>
 <section id="전처리-후-지연시간delay-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 지연시간(delay) 히스토그램</h2>
-<div id="75d288e6" class="cell" data-execution_count="11">
+<div id="7b8e7e0e" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -678,7 +743,7 @@ TEAM EE
 </section>
 <section id="전처리-후-weatherwind_speed-풍속-히스토그램" class="slide level2 scrollable">
 <h2>전처리 후 weather(wind_speed) 풍속 히스토그램</h2>
-<div id="a0b7de9e" class="cell" data-execution_count="12">
+<div id="3708a746" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -690,7 +755,7 @@ TEAM EE
 </section>
 <section id="month-day-hour-변수와-delay-간-시각화" class="slide level2 scrollable">
 <h2>month, day, hour 변수와 delay 간 시각화</h2>
-<div id="446aabf1" class="cell" data-execution_count="14">
+<div id="930369b0" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -714,19 +779,13 @@ TEAM EE
 </div>
 </div>
 </section>
-<section id="나머지-범주형-변수와-delay-간-시각화" class="slide level2 scrollable">
-<h2>나머지 범주형 변수와 delay 간 시각화</h2>
-</section>
-<section id="프린트-함수" class="slide level2">
-<h2>프린트 함수</h2>
-</section>
 <section id="전체-히트맵" class="slide level2">
 <h2>전체 히트맵</h2>
-<div id="51067848" class="cell" data-execution_count="18">
+<div id="409832ea" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="848" height="896"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-17-output-1.png" width="848" height="896"></p>
 </figure>
 </div>
 </div>
@@ -752,17 +811,14 @@ TEAM EE
 <li>큰 비행기일수록 목적지까지의 거리가 길다.</li>
 </ul>
 </section>
-<section id="air_time과-seatsdistance-상관관계-시각화" class="slide level2">
-<h2>air_time과 seats/distance 상관관계 시각화</h2>
-</section>
-<section id="air_time-seats의-관계" class="slide level2">
+<section id="air_time-seats의-관계" class="slide level2 scrollable">
 <h2>air_time-seats의 관계</h2>
 <p>비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드</p>
-<div id="2609aa42" class="cell" data-execution_count="19">
+<div id="39390860" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="816" height="2449"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-18-output-1.png" width="816" height="2449"></p>
 </figure>
 </div>
 </div>
@@ -778,11 +834,11 @@ TEAM EE
 <section id="flightsdistance-flightsseats의-관계" class="slide level2">
 <h2>flights(distance)-flights(seats)의 관계</h2>
 <p>비행거리와 좌석 수의 관계 시각화 코드</p>
-<div id="e673e18e" class="cell" data-execution_count="20">
+<div id="bd87d3ed" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-21-output-1.png" width="816" height="819"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-19-output-1.png" width="816" height="819"></p>
 </figure>
 </div>
 </div>
@@ -800,28 +856,13 @@ TEAM EE
 <h1>지연시간(delay)과 관계가 있는 칼럼은 무엇인가?</h1>
 
 </section>
-<section id="비행기-제조년도와-지연시간-관계" class="slide level2">
-<h2>비행기 제조년도와 지연시간 관계</h2>
-<div id="214e2f3f" class="cell" data-execution_count="21">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-22-output-1.png" width="819" height="523"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="날씨와-지연시간-관계" class="slide level2">
-<h2>날씨와 지연시간 관계</h2>
-</section>
 <section id="model-vs-delay" class="slide level2">
 <h2>Model vs Delay</h2>
-<div id="26c5cf2a" class="cell" data-execution_count="22">
+<div id="5e019c2c" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="1141" height="565"></p>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-20-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>
@@ -832,12 +873,60 @@ TEAM EE
 <h1>지연시간에 날씨도 당연히 영향을 미치지 않을까?</h1>
 
 </section>
-<section id="화씨를-섭씨로-변환" class="slide level2">
-<h2>화씨를 섭씨로 변환</h2>
+<section id="우선-화씨를-섭씨르-변환해봅시다." class="slide level2">
+<h2>우선 화씨를 섭씨르 변환해봅시다.</h2>
+<h3 id="화씨를-섭씨로-변환">화씨를 섭씨로 변환</h3>
+<div id="257b242e" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">from</span> nycflights13 <span class="im">import</span> flights,planes,weather,airports,airlines</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a><span class="co"># 화씨를 섭씨로 변환하는 함수</span></span>
+<span id="cb1-4"><a href=""></a><span class="kw">def</span> F_to_C(f):</span>
+<span id="cb1-5"><a href=""></a>    <span class="cf">return</span> (f <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span> <span class="op">/</span> <span class="dv">9</span></span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="co"># 변환 적용</span></span>
+<span id="cb1-8"><a href=""></a>weather[<span class="st">"temp_c"</span>] <span class="op">=</span> weather[<span class="st">"temp"</span>].<span class="bu">apply</span>(F_to_C)</span>
+<span id="cb1-9"><a href=""></a>weather[<span class="st">"dewp_c"</span>] <span class="op">=</span> weather[<span class="st">"dewp"</span>].<span class="bu">apply</span>(F_to_C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="temperature" class="slide level2">
 <h2>temperature</h2>
-<div id="85ec6c7c" class="cell" data-execution_count="24">
+<div id="8852fd3e" class="cell" data-execution_count="21">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-22-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dew-point" class="slide level2">
+<h2>Dew point</h2>
+<div id="aa844dba" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-23-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="humid" class="slide level2">
+<h2>humid</h2>
+<div id="63159111" class="cell" data-execution_count="23">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nycflightppt_files/figure-revealjs/cell-24-output-1.png" width="1141" height="565"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="wind_speed" class="slide level2">
+<h2>wind_speed</h2>
+<div id="8317801f" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -847,21 +936,19 @@ TEAM EE
 </div>
 </div>
 </section>
-<section id="dew-point" class="slide level2">
-<h2>Dew point</h2>
-<div id="4478d17d" class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-26-output-1.png" width="1141" height="565"></p>
-</figure>
-</div>
+<section id="precip" class="slide level2">
+<h2>precip</h2>
+<div id="c0fcde45" class="cell" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>precip
+0.0    23881
+Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="humid" class="slide level2">
-<h2>humid</h2>
-<div id="836c1c8e" class="cell" data-execution_count="26">
+<section id="pressure" class="slide level2">
+<h2>pressure</h2>
+<div id="0dc19ae0" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -871,47 +958,13 @@ TEAM EE
 </div>
 </div>
 </section>
-<section id="wind_speed" class="slide level2">
-<h2>wind_speed</h2>
-<div id="b51c7c3c" class="cell" data-execution_count="27">
+<section id="visib" class="slide level2">
+<h2>visib</h2>
+<div id="c36c1911" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
 <p><img data-src="nycflightppt_files/figure-revealjs/cell-28-output-1.png" width="1141" height="565"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="precip" class="slide level2">
-<h2>precip</h2>
-<div id="b5f4aa02" class="cell" data-execution_count="28">
-<div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>precip
-0.0    23881
-Name: count, dtype: int64</code></pre>
-</div>
-</div>
-</section>
-<section id="pressure" class="slide level2">
-<h2>pressure</h2>
-<div id="49e559a3" class="cell" data-execution_count="29">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-30-output-1.png" width="1141" height="565"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="visib" class="slide level2">
-<h2>visib</h2>
-<div id="92a7f983" class="cell" data-execution_count="30">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="nycflightppt_files/figure-revealjs/cell-31-output-1.png" width="1141" height="565"></p>
 </figure>
 </div>
 </div>

@@ -397,42 +397,19 @@ time_cols = ['month', 'day', 'hour']
 visualization_df(merged_df_f, time_cols, 'delay' )
 ```
 
-## 나머지 범주형 변수와 delay 간 시각화 {.scrollable}
 
 ```{python}
 #| echo: false
 
 # 숫자 아닌 다른 칼럼과 delay Visualization
 # 숫자가 아닌 칼럼(범주형)
-categorical_cols = merged_df_f.select_dtypes(exclude='number').columns 
-categorical_cols = categorical_cols.delete([0,-1])
+# categorical_cols = merged_df_f.select_dtypes(exclude='number').columns 
+# categorical_cols = categorical_cols.delete([0,-1])
 
 # visualization_df(merged_df_f, categorical_cols, 'delay' )
 ```
 
 
-## 프린트 함수
-
-```{python}
-def print_grouped_data(df, group_cols, target):
-    """
-    특정한 범주형 컬럼 리스트(group_cols)에 대해 숫자형 칼럼(num_col)의 groupby 통계를 출력하는 함수.
-    """
-    for cat_col in group_cols:
-        if cat_col not in df.columns:
-            print(f"⚠️ Warning: '{cat_col}' 칼럼이 데이터프레임에 없음\n")
-            continue  # 존재하지 않는 컬럼이면 건너뛰기
-        
-        grouped = df.groupby(cat_col)[target].agg(['mean', 'median', 'count', 'std'])
-        print(f"\n📌 Grouped statistics by '{cat_col}':\n")
-        print(grouped)
-        print("-" * 50)
-```
-
-```{python}
-# print_grouped_data(merged_df_f, time_cols, 'delay')
-
-```
 
 
 ## 전체 히트맵
@@ -462,10 +439,9 @@ plt.show()
 - **seat(좌석수)**가 많을수록 **목적지**까지의 거리가 길다.
 - 큰 비행기일수록 목적지까지의 거리가 길다.
 
-## air_time과 seats/distance 상관관계 시각화
 
 
-## air_time-seats의 관계
+## air_time-seats의 관계 {.scrollable}
 비행시간(air_time)과 좌석 수(seats)의 관계 시각화 코드
 ```{python}
 plt.figure(figsize=(10, 10))
@@ -540,32 +516,6 @@ plt.show()
 
 # 지연시간(delay)과 관계가 있는 칼럼은 무엇인가?
 
-## 비행기 제조년도와 지연시간 관계 
-
-```{python}
-merged_df_f
-# 1. 제조년도 데이터프레임을 10년 단위로 그룹화
-merged_df_f['decade']=(merged_df_f['year']//10)*10
-
-# 2. 'arr_time'과 제조년도 그룹화 후 평균 구하기
-decade_delay = merged_df_f.groupby('decade')['delay'].mean().reset_index()
-
-# 3. 시각화 (10년 단위별 평균 도착 시간)
-plt.figure(figsize=(10, 6))
-sns.barplot(y=merged_df_f['delay'], x=merged_df_f['decade'],ci=None)
-plt.title('Average Arrival Delay by Decade')
-plt.xlabel('Decade')
-plt.ylabel('Average Arrival Delay (minutes)')
-# plt.grid(True)
-plt.show()
-
-```
-
-## 날씨와 지연시간 관계
-
-```{python}
-
-```
 
 ## Model vs Delay 
 
@@ -614,9 +564,11 @@ plt.show()
 
 
 # 지연시간에 날씨도 당연히 영향을 미치지 않을까?
+## 우선 화씨를 섭씨로 변환해봅시다!
 
-## 화씨를 섭씨로 변환
+### 화씨를 섭씨로 변환
 ```{python}
+#| echo: True
 
 from nycflights13 import flights,planes,weather,airports,airlines
 
@@ -664,7 +616,7 @@ plt.show()
 
 ```
 
-## Dew point
+## Dew point 
 
 ```{python}
 weather["dewp_c"] = weather["dewp"].apply(F_to_C)
