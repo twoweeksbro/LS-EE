@@ -560,7 +560,7 @@ plt.show()
 ::: {.column width="50%"}
 ```{python}
 weather_df = weather.copy()
-weather_df = PreProcessing(weather_df, ['wind_speed'])
+weather_df_f = PreProcessing(weather_df, ['wind_speed'])
 
 ## 'wind_speed' 히스토그램
 plt.figure(figsize=(6,4))       
@@ -602,7 +602,7 @@ merged_df_f = merged_df_f.loc[(merged_df_f['arr_delay']> 0) |  (merged_df_f['dep
 ```
 
 
-## month, day, hour 변수와 delay 간 시각화 {.scrollable}
+<!-- ## month, day, hour 변수와 delay 간 시각화 {.scrollable} -->
 
 ```{python}
 import seaborn as sns
@@ -631,7 +631,7 @@ def visualization_df(df, group_cols, target):
 # 월, 일, 시간 변수 와 delay Visualization
 time_cols = ['month', 'day', 'hour']
 
-visualization_df(merged_df_f, time_cols, 'delay' )
+# visualization_df(merged_df_f, time_cols, 'delay' )
 ```
 
 
@@ -653,14 +653,13 @@ visualization_df(merged_df_f, time_cols, 'delay' )
 
 ```{python}
 import seaborn as sns
-corr_mat = merged_df.select_dtypes('number').corr()
+corr_mat = merged_df.select_dtypes('number').drop(columns=["year","month","day","hour","minute","flight"]).corr()
 plt.figure(figsize=(10,10))
 sns.heatmap(corr_mat, annot=True,
             cmap="coolwarm", fmt=".2f", linewidths=0.5)
 plt.title("Heatmap of Feature Correlations")
 plt.show()
 ```
-
 
 
 # flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
@@ -752,10 +751,10 @@ plt.show()
 
 
 
-# 지연시간(delay)과 관계가 있는 칼럼은 무엇인가?
+<!-- # 지연시간(delay)과 관계가 있는 칼럼은 무엇인가? -->
 
 
-## Model vs Delay 
+<!-- ## Model vs Delay  -->
 
 ```{python}
 
@@ -804,6 +803,19 @@ plt.show()
 
 # 지연시간에 날씨도 당연히 영향을 미치지 않을까?
 
+## 날씨 히트맵 {.scrollable}
+
+```{python}
+import seaborn as sns
+corr_mat = weather_df_f.select_dtypes('number').drop(columns=["year","month","day","hour"]).corr()
+plt.figure(figsize=(8,8))
+sns.heatmap(corr_mat, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
+plt.title("Heatmap of Feature Correlations")
+plt.show()
+
+```
+
+
 ## Temperature(기온)
 ::::: {.columns}
 <small>**가독성을 위해 화씨(°F)를 섭씨(°C)로 변환**</small>
@@ -835,7 +847,7 @@ def categorize_temp(t):
 ```{python}
 weather["temp_group"] = weather["temp"].apply(categorize_temp)
 
-weather_mg=pd.merge(merged_df_f,weather,on=['origin','hour','month','day'],how='left')
+weather_mg=pd.merge(merged_df_f,weather_df_f,on=['origin','hour','month','day'],how='left')
 
 #groupby
 temp_delay=weather_mg.groupby('temp_group')['delay'].mean()
@@ -892,10 +904,12 @@ def categorize_dewp(d):
     elif d_c <= 20: return 20
     else: return 25
 ```
+
 <br>
 <br>
 <br>
 <br>
+
 ```{python}
 # | echo : True
 # 습도 범위 나누는 함수 정의
@@ -906,6 +920,7 @@ def categorize_humid(h):
     elif h <= 80: return 80
     else: return 100
 ```
+
 <br>
 <br>
 <br>
@@ -1037,10 +1052,29 @@ plt.show()
 ```
 
 ## precip
+
+
 ```{python}
-weather = PreProcessing(weather,['precip'])
-weather["precip"].describe()
-weather["precip"].value_counts()
+
+def categorize_precip(precip):
+    if precip == 0: return 0
+    else: return 1
+
+
+weather_mg["precip_group"] = weather_mg["precip"].apply(categorize_precip)
+
+precip_delay = weather_mg.groupby('precip_group')['delay'].mean()
+plt.figure(figsize=(12, 6))
+sns.barplot(x=precip_delay.index, y=precip_delay.values, palette="viridis", ci=None)
+sns.light_palette("seagreen", as_cmap=True)
+plt.xlabel('Wind Speed (km/h or m/s)')
+plt.ylabel('Average Delay (minutes)')
+plt.title('Average Delay by Wind Speed')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
 ```
 
 ## pressure
