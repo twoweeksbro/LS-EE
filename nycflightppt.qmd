@@ -242,31 +242,16 @@ plt.show()
 
 ::::
 
+## 전처리에 사용된 함수
+:::: {.columns}
 
-
-## 전처리
-
-flight(arr_delay), flight(dep_delay), weather(wind_speed) 전처리
-
-
+::: {.column width="60%"}
 ```{python}
-# 최종 전처리 시작.
-
-flights_df = flights.copy()
-planes_df = planes.copy()
-
+#| echo: True
+#| 
 # 전처리 함수 
 def PreProcessing(df, columns):
-    """
-    여러 개의 컬럼에 대해 IQR 방식을 사용하여 이상치를 제거하는 함수
-    
-    Parameters:
-    df (pd.DataFrame): 데이터프레임
-    columns (list): 이상치를 제거할 컬럼 리스트
-    
-    Returns:
-    pd.DataFrame: 이상치가 제거된 데이터프레임
-    """
+
     f_df = df.copy()  # 원본 데이터프레임 유지
     
     for column in columns:
@@ -278,41 +263,214 @@ def PreProcessing(df, columns):
         upper_boundary = q3 + (iqr * 1.5)
         
         # 이상치 제거 적용
-        f_df = f_df[(f_df[column] >= lower_boundary) & (f_df[column] <= upper_boundary)]
+        f_df = f_df[(f_df[column] >= lower_boundary) & \
+         (f_df[column] <= upper_boundary)]
     
     return f_df
+```
+
+:::
+
+::: {.column width="40%"}
+여러 개의 컬럼에 대해 IQR 방식을 사용하여 이상치를 제거하는 함수
+
+`Parameters:df`
+(pd.DataFrame): 데이터프레임
+columns (list): 이상치를 제거할 컬럼 리스트
+
+Returns:
+pd.DataFrame: 이상치가 제거된 데이터프레임
+
+:::
+
+::::
+
+
+## 전처리 {.scrollable}
+#### 최종 전처리 시작
+
+```{python}
+#| echo: True
+
+from nycflights13 import flights, planes, weather
+
+flights_df = flights.copy()
+planes_df = planes.copy()
+weather_df = weather.copy()
+```
 
 
 
-# 필요 없는 칼럼 제거
+#### 필요 없는 칼럼 제거
+```{python}
+#| echo: True
+
 flights_df = flights_df.drop(columns=['year'])
 planes_df = planes_df.drop(columns=['speed'])
+weather_df = weather_df.drop(columns=['wind_dir','wind_gust'])
+```
 
-# 결측치 처리
+## 결측치
+
+#### 결측치 확인
+
+```{python}
+#| echo: True
 flights_df.isna().sum()
 planes_df.isna().sum() 
+weather_df.isna().sum()
 
-flights_df = flights_df.dropna(subset=['dep_time', 'dep_delay','arr_time','arr_delay','tailnum','air_time'])
+```
+
+
+|----------------|--------------|
+| month          | 0            |
+| day            | 0            |
+| dep_time       | 8255         |
+| sched_dep_time | 0            |
+| dep_delay      | 8255         |
+| arr_time       | 8713         |
+| sched_arr_time | 0            |
+| arr_delay      | 9430         |
+| carrier        | 0            |
+| flight         | 0            |
+| tailnum        | 2512         |
+| origin         | 0            |
+| dest           | 0            |
+| air_time       | 9430         |
+| distance       | 0            |
+| hour           | 0            |
+| minute         | 0            |
+| time_hour      | 0            |
+|----------------|--------------|
+
+
+|--------------|--------------|
+| tailnum      | 0            |
+| year         | 70           |
+| type         | 0            |
+| manufacturer | 0            |
+| model        | 0            |
+| engines      | 0            |
+| seats        | 0            |
+| engine       | 0            |
+|----------------|--------------|
+
+
+|------------|--------------|
+| origin     | 0            |
+| year       | 0            |
+| month      | 0            |
+| day        | 0            |
+| hour       | 0            |
+| temp       | 1            |
+| dewp       | 1            |
+| humid      | 1            |
+| wind_speed | 4            |
+| precip     | 0            |
+| pressure   | 2729         |
+| visib      | 0            |
+| time_hour  | 0            |
+|------------|--------------|
+
+
+#### 결측치 처리
+```{python}
+#| echo: True
+
+flights_df = flights_df.dropna()
 planes_df = planes_df.dropna()
+weather_df = weather_df.dropna()
+
+```
 
 
-# merge: planes_df와 flights_df를 tailnum으로 left join
+
+
+
+
+## merge: planes_df와 flights_df를 tailnum으로 left join
+
+```{python}
+#| echo: True
+
 merged_df = pd.merge(planes_df, flights_df, on='tailnum', how='left')
 
+```
 
-# 지연시간에 대해 전처리 함수 적용
+
+### flights(arr_delay, dep_delay)과 weather(wind_speed) 에 대해 전처리 함수 적용
+
+```{python}
+#| echo: True
+
 merged_df_f = PreProcessing(merged_df, ['arr_delay', 'dep_delay'])
+weather_df_f = PreProcessing(weather_df, ['wind_speed'])
+```
 
 
-# 파생 변수 생성
+## 파생 변수 생성
+#### arr_delay와 dep_delay를 더해서 총 지연시간 delay 변수 생성
 
-## delay 합.
+```{python}
+#| echo: True
+
 merged_df_f['delay'] = merged_df_f['arr_delay'] + merged_df_f['dep_delay']
 
 ```
 
+
+이상치가 있는 칼럼 flight(arr_delay), flight(dep_delay), weather(wind_speed)에 대해 전처리를 진행했습니다.
+IQR을 이용하여 lower boundary를 Q1-(IQR * 1.5)로 설정하고 upper boundary를 Q3+(IQR * 1.5)로 설정했습니다.
+해당 범위 안에 있는 데이터만 남기고 나머지는 제외했습니다.
+
+
+
 ## 전처리 후 지연시간(delay) 히스토그램 {.scrollable}
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{python}
+## 'dep_delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(flights['dep_delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("dep_delay")
+plt.ylabel("Frequency")
+plt.show()
+
+
+## 'arr_delay' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(flights['arr_delay'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("arr_delay")
+plt.ylabel("Frequency")
+plt.show()
+
+## 'wind_speed' 히스토그램
+plt.figure(figsize=(6,4))       
+plt.hist(weather['wind_speed'], 
+         bins=20, 
+         edgecolor='black', 
+         alpha=0.7) 
+plt.xlabel("wind_speed")
+plt.ylabel("Frequency")
+plt.show()
+
+
+```
+
+
+:::
+
+::: {.column width="50%"}
 ```{python}
 ## 'dep_delay' 히스토그램
 plt.figure(figsize=(6,4))       
@@ -335,21 +493,28 @@ plt.xlabel("arr_delay")
 plt.ylabel("Frequency")
 plt.show()
 
-## 'delay' 히스토그램
+## 'wind_speed' 히스토그램
 plt.figure(figsize=(6,4))       
-plt.hist(merged_df_f['delay'], 
+plt.hist(weather_df_f['wind_speed'], 
          bins=20, 
          edgecolor='black', 
          alpha=0.7) 
-plt.xlabel("delay")
+plt.xlabel("wind_speed")
 plt.ylabel("Frequency")
 plt.show()
 
-
 ```
+:::
+
+
+
+::::
+
 
 ## 전처리 후 weather(wind_speed) 풍속 히스토그램 {.scrollable}
+:::: {.columns}
 
+::: {.column width="50%"}
 ```{python}
 weather_df = weather.copy()
 weather_df = PreProcessing(weather_df, ['wind_speed'])
@@ -364,6 +529,37 @@ plt.ylabel("Frequency")
 plt.show()
 
 ```
+
+:::
+
+::: {.column width="50%"}
+
+```{python}
+# weather_df['wind_speed'].describe()
+```
+
+| Statistic | Value         |
+|-----------|--------------|
+| count     | 25,531.000000 |
+| mean      | 10.104561     |
+| std       | 5.087477      |
+| min       | 0.000000      |
+| 25%       | 6.904680      |
+| 50%       | 9.206240      |
+| 75%       | 13.809360     |
+| max       | 23.015600     |
+
+
+:::
+
+::::
+
+
+```{python}
+
+merged_df_f = merged_df_f.loc[(merged_df_f['arr_delay']> 0) |  (merged_df_f['dep_delay']> 0),:]
+```
+
 
 ## month, day, hour 변수와 delay 간 시각화 {.scrollable}
 
@@ -412,7 +608,7 @@ visualization_df(merged_df_f, time_cols, 'delay' )
 
 
 
-## 전체 히트맵
+## 전체 히트맵 {.scrollable}
 
 ```{python}
 import seaborn as sns
@@ -423,6 +619,7 @@ sns.heatmap(corr_mat, annot=True,
 plt.title("Heatmap of Feature Correlations")
 plt.show()
 ```
+
 
 
 # flights(airtime) 칼럼과 planes(seats) 칼럼은 무슨 관계일까?
@@ -475,7 +672,7 @@ plt.show()
 - seats와 air_time: 상관계수 +0.52로, 좌석 수가 많을수록 비행 시간이 길어지는 경향이 있습니다.
 
 
-## flights(distance)-flights(seats)의 관계
+## flights(distance)-flights(seats)의 관계 {.scrollable}
 비행거리와 좌석 수의 관계 시각화 코드
 ```{python}
 import seaborn as sns
