@@ -130,7 +130,7 @@ viridis_cmap = sns.color_palette("viridis", as_cmap=True)
 
 <br>
 
-### 지연시간(arr_delay, dep_delay)과 날씨(weather) 간 상관관계 분석
+### 지연시간(arr_delay, dep_delay)과 날씨(weather) 간 상관관계가 있을까?
 
 
 
